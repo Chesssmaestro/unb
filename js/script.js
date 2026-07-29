@@ -58,7 +58,6 @@
   };
 
   const modal = document.getElementById('presModal');
-  const modalFrame = document.getElementById('presModalFrame');
   const modalFallback = document.getElementById('presModalFallback');
   const modalLabel = document.getElementById('presModalLabel');
   const modalClose = document.getElementById('presModalClose');
@@ -86,30 +85,30 @@
     return `assets/presentations/products/${slug}-${lang}.pdf#view=FitH`;
   }
 
-  function showFrame(url){
-    modalFallback.hidden = true;
-    modalFrame.hidden = false;
-    modalFrame.src = url;
-  }
-
   function showFallback(){
-    modalFrame.hidden = true;
-    modalFrame.src = 'about:blank';
     modalFallback.hidden = false;
   }
 
+  // Mobile Chrome refuses to render a PDF inline inside an <iframe> — it shows
+  // a "tap to open" attachment card instead of the page itself. Navigating to
+  // the PDF directly (new tab) makes the browser use its real full-page PDF
+  // viewer, so it opens full-screen immediately with no extra tap.
   function loadPresentation(slug){
-    modalLabel.textContent = 'VIEWING · ' + (PRODUCT_LABELS[slug] || (slug.toUpperCase() + ' DECK'));
-
     const lang = currentLang;
 
     if(AVAILABLE_DECKS.has(`${slug}-${lang}`)){
-      showFrame(pdfUrl(slug, lang));
-    } else if(AVAILABLE_DECKS.has(`${slug}-ru`)){
-      showFrame(pdfUrl(slug, 'ru'));
-    } else {
-      showFallback();
+      closeModal();
+      window.open(pdfUrl(slug, lang), '_blank', 'noopener');
+      return;
     }
+    if(AVAILABLE_DECKS.has(`${slug}-ru`)){
+      closeModal();
+      window.open(pdfUrl(slug, 'ru'), '_blank', 'noopener');
+      return;
+    }
+
+    modalLabel.textContent = 'VIEWING · ' + (PRODUCT_LABELS[slug] || (slug.toUpperCase() + ' DECK'));
+    showFallback();
   }
 
   let savedScrollY = 0;
@@ -134,12 +133,12 @@
   }
 
   function openModal(slug){
+    modalFallback.hidden = true;
     currentProduct = slug;
     modalOpen = true;
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     lockScroll();
-    loadPresentation(slug);
   }
 
   function closeModal(){
@@ -148,17 +147,32 @@
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
     unlockScroll();
-    modalFrame.src = 'about:blank';
+  }
+
+  // Decks that exist just open straight into a new tab (real full-screen PDF
+  // viewer, no "tap to open" card). Only missing decks get the on-page modal.
+  function handleProductClick(slug){
+    const lang = currentLang;
+    if(AVAILABLE_DECKS.has(`${slug}-${lang}`)){
+      window.open(pdfUrl(slug, lang), '_blank', 'noopener');
+      return;
+    }
+    if(AVAILABLE_DECKS.has(`${slug}-ru`)){
+      window.open(pdfUrl(slug, 'ru'), '_blank', 'noopener');
+      return;
+    }
+    openModal(slug);
+    loadPresentation(slug);
   }
 
   document.querySelectorAll('.direction-card[data-product]').forEach(card=>{
     card.setAttribute('tabindex', '0');
     card.setAttribute('role', 'button');
-    card.addEventListener('click', ()=> openModal(card.getAttribute('data-product')));
+    card.addEventListener('click', ()=> handleProductClick(card.getAttribute('data-product')));
     card.addEventListener('keydown', (e)=>{
       if(e.key === 'Enter' || e.key === ' '){
         e.preventDefault();
-        openModal(card.getAttribute('data-product'));
+        handleProductClick(card.getAttribute('data-product'));
       }
     });
   });
