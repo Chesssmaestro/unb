@@ -3,6 +3,46 @@
   const htmlEl = document.documentElement;
   let currentLang = 'ru';
 
+  // Which decks were actually built, keyed slug -> lang. Generated into
+  // js/decks-index.js by tools/build-decks.mjs, so adding a PDF and rebuilding
+  // is enough — nothing here needs hand-editing. Reading a plain global also
+  // avoids a fetch()/HEAD probe, which a dev server (e.g. VS Code Live Preview)
+  // can block or mishandle.
+  // Declared up here because applyLang() reaches for it, and applyLang runs
+  // from a click listener that is wired before the rest of this file executes.
+  const DECKS = (typeof DECKS_INDEX !== 'undefined') ? DECKS_INDEX : {};
+
+  function hasDeck(slug, lang){
+    return !!(DECKS[slug] && DECKS[slug][lang]);
+  }
+
+  /** The language this deck should open in: the current one, else Russian, else anything. */
+  function deckLang(slug){
+    if(hasDeck(slug, currentLang)) return currentLang;
+    if(hasDeck(slug, 'ru')) return 'ru';
+    const langs = DECKS[slug] ? Object.keys(DECKS[slug]) : [];
+    return langs.length ? langs[0] : null;
+  }
+
+  function deckUrl(slug, lang){
+    return `deck.html?d=${slug}&l=${lang}`;
+  }
+
+  // Cards double as real links so they can be opened in a new tab, bookmarked
+  // and crawled; the language switch rewrites the target in place.
+  function syncDeckLinks(){
+    document.querySelectorAll('.direction-card[data-product]').forEach(card=>{
+      const slug = card.getAttribute('data-product');
+      const lang = deckLang(slug);
+      if(lang) card.setAttribute('data-href', deckUrl(slug, lang));
+    });
+    document.querySelectorAll('[data-deck]').forEach(link=>{
+      const slug = link.getAttribute('data-deck');
+      const lang = deckLang(slug);
+      if(lang) link.href = deckUrl(slug, lang);
+    });
+  }
+
   function applyLang(lang){
     const dict = I18N[lang] || I18N.ru;
     currentLang = I18N[lang] ? lang : 'ru';
@@ -16,9 +56,7 @@
     htmlEl.setAttribute('lang', currentLang);
     try{ localStorage.setItem(STORAGE_KEY, currentLang); }catch(e){}
 
-    if(modalOpen && currentProduct){
-      loadPresentation(currentProduct);
-    }
+    syncDeckLinks();
   }
 
   document.querySelectorAll('.lang-btn').forEach(btn=>{
@@ -62,53 +100,20 @@
   const modalLabel = document.getElementById('presModalLabel');
   const modalClose = document.getElementById('presModalClose');
 
-  let currentProduct = null;
   let modalOpen = false;
 
-  // Static list of presentations that actually exist in assets/presentations/products/.
-  // Checking membership here is deterministic and needs no network request —
-  // unlike a fetch()/HEAD probe, it can't be broken by a dev server (e.g. VS Code
-  // Live Preview) that blocks or mishandles fetch. Update this list whenever new
-  // PDFs are added to that folder.
-  const AVAILABLE_DECKS = new Set([
-    'solar-ru','solar-en','solar-uz','solar-ch',
-    'power-ru','power-en','power-uz','power-ch',
-    'city-ru','city-en','city-uz','city-ch',
-    'roads-ru','roads-en','roads-uz','roads-ch',
-    'construction-ru','construction-en','construction-uz','construction-ch'
-  ]);
-
-  function pdfUrl(slug, lang){
-    // #view=FitH tells the browser's built-in PDF viewer to fit the page
-    // to the available width, so mobile users land on a full-width page
-    // instead of a zoomed-in view they have to pinch out of.
-    return `assets/presentations/products/${slug}-${lang}.pdf#view=FitH`;
-  }
-
-  function showFallback(){
-    modalFallback.hidden = false;
-  }
-
-  // Mobile Chrome refuses to render a PDF inline inside an <iframe> — it shows
-  // a "tap to open" attachment card instead of the page itself. Navigating to
-  // the PDF directly (new tab) makes the browser use its real full-page PDF
-  // viewer, so it opens full-screen immediately with no extra tap.
-  function loadPresentation(slug){
-    const lang = currentLang;
-
-    if(AVAILABLE_DECKS.has(`${slug}-${lang}`)){
-      closeModal();
-      window.open(pdfUrl(slug, lang), '_blank', 'noopener');
+  // The decks are now HTML pages of their own, so they open in the same tab —
+  // deck.html carries a "back to site" link. This also sidesteps mobile Chrome
+  // refusing to render PDFs inline, which is what forced the old new-tab hack.
+  function openDeck(slug){
+    const lang = deckLang(slug);
+    if(!lang){
+      modalLabel.textContent = 'VIEWING · ' + (PRODUCT_LABELS[slug] || (slug.toUpperCase() + ' DECK'));
+      modalFallback.hidden = false;
+      openModal();
       return;
     }
-    if(AVAILABLE_DECKS.has(`${slug}-ru`)){
-      closeModal();
-      window.open(pdfUrl(slug, 'ru'), '_blank', 'noopener');
-      return;
-    }
-
-    modalLabel.textContent = 'VIEWING · ' + (PRODUCT_LABELS[slug] || (slug.toUpperCase() + ' DECK'));
-    showFallback();
+    window.location.href = deckUrl(slug, lang);
   }
 
   let savedScrollY = 0;
@@ -132,9 +137,7 @@
     window.scrollTo(0, savedScrollY);
   }
 
-  function openModal(slug){
-    modalFallback.hidden = true;
-    currentProduct = slug;
+  function openModal(){
     modalOpen = true;
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
@@ -143,36 +146,29 @@
 
   function closeModal(){
     modalOpen = false;
-    currentProduct = null;
+    modalFallback.hidden = true;
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
     unlockScroll();
   }
 
-  // Decks that exist just open straight into a new tab (real full-screen PDF
-  // viewer, no "tap to open" card). Only missing decks get the on-page modal.
-  function handleProductClick(slug){
-    const lang = currentLang;
-    if(AVAILABLE_DECKS.has(`${slug}-${lang}`)){
-      window.open(pdfUrl(slug, lang), '_blank', 'noopener');
-      return;
-    }
-    if(AVAILABLE_DECKS.has(`${slug}-ru`)){
-      window.open(pdfUrl(slug, 'ru'), '_blank', 'noopener');
-      return;
-    }
-    openModal(slug);
-    loadPresentation(slug);
-  }
-
   document.querySelectorAll('.direction-card[data-product]').forEach(card=>{
+    const slug = card.getAttribute('data-product');
     card.setAttribute('tabindex', '0');
     card.setAttribute('role', 'button');
-    card.addEventListener('click', ()=> handleProductClick(card.getAttribute('data-product')));
+    card.addEventListener('click', (e)=>{
+      // Ctrl/Cmd/middle click should still land in a new tab, like a link.
+      const href = card.getAttribute('data-href');
+      if(href && (e.metaKey || e.ctrlKey)){
+        window.open(href, '_blank', 'noopener');
+        return;
+      }
+      openDeck(slug);
+    });
     card.addEventListener('keydown', (e)=>{
       if(e.key === 'Enter' || e.key === ' '){
         e.preventDefault();
-        handleProductClick(card.getAttribute('data-product'));
+        openDeck(slug);
       }
     });
   });

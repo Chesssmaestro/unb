@@ -1,3 +1,10 @@
 .DS_Store
 __MACOSX/
 Thumbs.db
+node_modules/
+tools/.check/
+.claude/
+
+# Source decks: build input only. They are not served — the site shows the
+# rendered slides — and they still carry the branding that the build strips.
+assets/presentations/

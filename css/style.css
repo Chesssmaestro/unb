@@ -262,7 +262,8 @@ p{margin:0;}
 /* ---------- Presentations ---------- */
 .presentations{padding:88px 0;border-bottom:1px solid var(--line);}
 .pres__text{color:var(--ink-soft);font-size:16px;max-width:560px;margin-bottom:32px;}
-.pres__buttons{display:flex;gap:14px;flex-wrap:wrap;}
+.pres__buttons{display:flex;gap:18px;flex-wrap:wrap;}
+.pres__item{display:flex;flex-direction:column;align-items:center;gap:8px;}
 .pres__btn{
   display:flex;align-items:center;gap:10px;
   border:1px solid var(--ink);border-radius:4px;padding:13px 22px;
@@ -273,9 +274,9 @@ p{margin:0;}
   font-family:var(--font-mono);font-size:11px;border:1px solid currentColor;
   border-radius:3px;padding:2px 6px;
 }
-
 @media (max-width:480px){
   .pres__buttons{flex-direction:column;align-items:stretch;}
+  .pres__item{align-items:stretch;}
   .pres__btn{justify-content:center;}
 }
 

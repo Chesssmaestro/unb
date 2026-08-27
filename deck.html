@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Презентация — UNB Group</title>
+<meta name="description" content="Презентации UNB Group: интеллектуальная платформа мониторинга инфраструктуры — дроны, AI и цифровые модели.">
+<meta name="theme-color" content="#10171B">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=7">
+<link rel="stylesheet" href="css/deck.css?v=7">
+</head>
+<body class="deck-body">
+
+<div class="deck" id="deck">
+
+  <header class="deck__bar">
+    <a class="deck__back" href="index.html" data-i18n-title="deck.back" title="На сайт">
+      <span aria-hidden="true">←</span>
+      <span data-i18n="deck.back">На сайт</span>
+    </a>
+
+    <div class="deck__ident">
+      <img src="assets/logo.png" alt="UNB Group" class="deck__logo">
+      <span class="deck__title" id="deckTitle"></span>
+      <span class="deck__lang-note" id="deckLangNote" hidden></span>
+    </div>
+
+    <div class="deck__bar-right">
+      <div class="lang-switch lang-switch--deck" role="group" aria-label="Language" id="deckLangs">
+        <button data-lang="ru" class="lang-btn" type="button">RU</button>
+        <button data-lang="en" class="lang-btn" type="button">EN</button>
+        <button data-lang="uz" class="lang-btn" type="button">UZ</button>
+        <button data-lang="ch" class="lang-btn" type="button">CH</button>
+      </div>
+      <button class="deck__icon-btn" id="deckFull" type="button" data-i18n-title="deck.fullscreen" title="Во весь экран" aria-label="Во весь экран">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="deck__stage" id="deckStage">
+    <button class="deck__nav deck__nav--prev" id="deckPrev" type="button" data-i18n-title="deck.prev" title="Назад" aria-label="Назад">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 L7 12 L15 20" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+
+    <figure class="deck__frame" id="deckFrame">
+      <img class="deck__slide" id="deckSlide" alt="" decoding="async" fetchpriority="high">
+      <div class="deck__loader" id="deckLoader" hidden><span></span></div>
+    </figure>
+
+    <button class="deck__nav deck__nav--next" id="deckNext" type="button" data-i18n-title="deck.next" title="Вперёд" aria-label="Вперёд">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 L17 12 L9 20" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+  </main>
+
+  <div class="deck__progress" id="deckProgress" aria-hidden="true"><span id="deckProgressBar"></span></div>
+
+  <footer class="deck__foot">
+    <div class="deck__counter">
+      <span id="deckCurrent">1</span><span class="deck__counter-sep">/</span><span id="deckTotal">1</span>
+    </div>
+    <div class="deck__thumbs" id="deckThumbs" role="tablist" aria-label="Slides"></div>
+    <button class="deck__icon-btn deck__thumbs-toggle" id="deckThumbsToggle" type="button" data-i18n-title="deck.thumbs" title="Миниатюры" aria-label="Миниатюры">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="5" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="14" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="14" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+    </button>
+  </footer>
+
+  <div class="deck__missing" id="deckMissing" hidden>
+    <span class="deck__missing-mark" aria-hidden="true">⌖</span>
+    <p data-i18n="deck.missing">Презентация скоро будет доступна</p>
+    <a class="btn btn--primary" href="index.html" data-i18n="deck.back_site">Вернуться на сайт</a>
+  </div>
+
+</div>
+
+<noscript>
+  <div class="deck__noscript">
+    <p>Для просмотра презентации нужен JavaScript — включите его и обновите страницу.</p>
+    <p><a href="index.html">Вернуться на сайт</a></p>
+  </div>
+</noscript>
+
+<script src="js/i18n.js?v=7"></script>
+<script src="js/decks-index.js?v=7"></script>
+<script src="js/deck.js?v=7"></script>
+</body>
+</html>

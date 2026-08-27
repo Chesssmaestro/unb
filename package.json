@@ -1,0 +1,14 @@
+{
+  "name": "unb-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "unbgroup.uz — static site. Node is only used to build the HTML decks from the source PDFs.",
+  "type": "module",
+  "scripts": {
+    "build:decks": "node tools/build-decks.mjs"
+  },
+  "devDependencies": {
+    "mupdf": "^1.28.0",
+    "sharp": "^0.34.5"
+  }
+}

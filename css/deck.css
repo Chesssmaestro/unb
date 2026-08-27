@@ -1,0 +1,384 @@
+/* ==========================================================================
+   Deck viewer — deck.html
+   Dark, full-bleed stage so the slide itself carries all the colour.
+   ========================================================================== */
+
+.deck-body{
+  background:var(--ink);
+  color:var(--paper);
+  overflow:hidden;
+  overscroll-behavior:none;
+}
+
+.deck{
+  /* 100dvh keeps the stage correct while mobile browser chrome slides away. */
+  height:100vh;
+  height:100dvh;
+  width:100%;
+  max-width:100vw;
+  overflow:hidden;
+  display:grid;
+  /* minmax(0,1fr) rather than the implicit auto column: an auto column sizes
+     to its widest content, so the top bar would drag the whole viewer — slide
+     included — past the right edge of a narrow phone. */
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:auto 1fr auto auto;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* Grid and flex children default to min-*:auto, which lets a wide row push
+   the whole viewer past the viewport instead of shrinking. */
+.deck > *{min-width:0;min-height:0;}
+
+/* ---------- Top bar ---------- */
+.deck__bar{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:12px 20px;
+  border-bottom:1px solid rgba(245,246,244,0.12);
+  min-height:56px;
+}
+
+.deck__back{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:rgba(245,246,244,0.72);
+  padding:8px 12px;
+  margin-left:-12px;
+  border-radius:2px;
+  transition:color .18s ease, background .18s ease;
+  white-space:nowrap;
+}
+.deck__back:hover{color:var(--white);background:rgba(245,246,244,0.08);}
+
+.deck__ident{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+  flex:1 1 auto;
+  justify-content:center;
+  overflow:hidden;
+}
+.deck__logo{
+  height:24px;
+  width:auto;
+  filter:brightness(0) invert(1);
+  opacity:.85;
+  flex-shrink:0;
+}
+.deck__title{
+  font-family:var(--font-display);
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:-0.01em;
+  color:rgba(245,246,244,0.9);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* Shown only when the requested language has no deck and another one stands
+   in for it, so the mismatch is never silent. */
+.deck__lang-note{
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--alert);
+  border:1px solid currentColor;
+  border-radius:2px;
+  padding:2px 6px;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+
+.deck__bar-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-shrink:0;
+}
+
+.lang-switch--deck{
+  border-color:rgba(245,246,244,0.2);
+}
+.lang-switch--deck .lang-btn{
+  color:rgba(245,246,244,0.65);
+  background:transparent;
+}
+.lang-switch--deck .lang-btn:hover:not(:disabled){color:var(--white);}
+.lang-switch--deck .lang-btn.is-active{
+  background:var(--signal);
+  color:var(--ink);
+}
+.lang-switch--deck .lang-btn:disabled{
+  opacity:.28;
+  cursor:not-allowed;
+}
+
+.deck__icon-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  padding:0;
+  border:1px solid rgba(245,246,244,0.25);
+  border-radius:2px;
+  background:transparent;
+  color:rgba(245,246,244,0.8);
+  cursor:pointer;
+  transition:border-color .18s ease, color .18s ease;
+}
+.deck__icon-btn:hover{border-color:var(--signal);color:var(--white);}
+.deck__icon-btn svg{width:18px;height:18px;}
+
+/* ---------- Stage ---------- */
+.deck__stage{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px 68px;
+  min-width:0;
+  min-height:0;
+  overflow:hidden;
+}
+
+.deck__frame{
+  position:relative;
+  margin:0;
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.deck__slide{
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  background:#0b1013;
+  border:1px solid rgba(245,246,244,0.1);
+  /* aspect-ratio reserves the slot before the first image decodes, so the
+     stage does not jolt on load or when stepping to a slide not yet cached. */
+  aspect-ratio:16/9;
+  opacity:1;
+  transition:opacity .16s ease;
+}
+.deck__slide.is-loading{opacity:.35;}
+
+/* :not([hidden]) rather than a bare display:flex — an author-origin display
+   rule outranks the UA's [hidden]{display:none} and would pin the overlay
+   permanently on top of the slide. */
+.deck__loader{
+  position:absolute;
+  inset:0;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+}
+.deck__loader:not([hidden]){display:flex;}
+.deck__loader span{
+  width:26px;
+  height:26px;
+  border:2px solid rgba(245,246,244,0.25);
+  border-top-color:var(--signal);
+  border-radius:50%;
+  animation:deck-spin .7s linear infinite;
+}
+@keyframes deck-spin{to{transform:rotate(360deg);}}
+
+/* ---------- Prev / next ---------- */
+.deck__nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:48px;
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(245,246,244,0.18);
+  border-radius:2px;
+  background:rgba(16,23,27,0.6);
+  color:rgba(245,246,244,0.8);
+  cursor:pointer;
+  z-index:2;
+  transition:border-color .18s ease, color .18s ease, background .18s ease, opacity .18s ease;
+}
+.deck__nav:hover:not(:disabled){border-color:var(--signal);color:var(--white);background:rgba(16,23,27,0.9);}
+.deck__nav:disabled{opacity:.22;cursor:default;}
+.deck__nav svg{width:22px;height:22px;}
+.deck__nav--prev{left:10px;}
+.deck__nav--next{right:10px;}
+
+/* ---------- Progress ---------- */
+.deck__progress{
+  height:2px;
+  background:rgba(245,246,244,0.12);
+}
+.deck__progress span{
+  display:block;
+  height:100%;
+  width:0;
+  background:var(--signal);
+  transition:width .22s ease;
+}
+
+/* ---------- Footer / thumbnails ---------- */
+.deck__foot{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:10px 20px;
+  border-top:1px solid rgba(245,246,244,0.12);
+  min-height:60px;
+}
+
+.deck__counter{
+  font-family:var(--font-mono);
+  font-size:12px;
+  letter-spacing:0.06em;
+  color:rgba(245,246,244,0.75);
+  flex-shrink:0;
+  min-width:52px;
+}
+.deck__counter-sep{opacity:.4;margin:0 3px;}
+
+.deck__thumbs{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  flex:1;
+  padding:2px 0;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(245,246,244,0.3) transparent;
+}
+.deck__thumbs::-webkit-scrollbar{height:4px;}
+.deck__thumbs::-webkit-scrollbar-thumb{background:rgba(245,246,244,0.3);}
+
+.deck__thumb{
+  flex:0 0 auto;
+  width:72px;
+  padding:0;
+  border:1px solid rgba(245,246,244,0.2);
+  border-radius:2px;
+  background:#0b1013;
+  cursor:pointer;
+  overflow:hidden;
+  line-height:0;
+  opacity:.55;
+  transition:opacity .18s ease, border-color .18s ease;
+}
+.deck__thumb img{width:100%;aspect-ratio:16/9;object-fit:cover;}
+.deck__thumb:hover{opacity:.85;}
+.deck__thumb.is-active{opacity:1;border-color:var(--signal);}
+
+.deck__thumbs-toggle{display:none;}
+
+/* ---------- Deck missing ---------- */
+.deck__missing{
+  position:absolute;
+  inset:0;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  background:var(--ink);
+  text-align:center;
+  padding:24px;
+  z-index:5;
+}
+.deck__missing:not([hidden]){display:flex;}
+.deck__missing-mark{
+  font-size:34px;
+  color:var(--signal);
+}
+.deck__missing p{
+  font-family:var(--font-display);
+  font-size:20px;
+  color:rgba(245,246,244,0.9);
+}
+
+.deck__noscript{
+  padding:40px 24px;
+  max-width:640px;
+  margin:0 auto;
+  font-family:var(--font-body);
+}
+.deck__noscript a{color:var(--signal);text-decoration:underline;}
+
+/* ---------- Fullscreen ---------- */
+.deck:fullscreen{background:var(--ink);}
+.deck.is-immersive .deck__bar,
+.deck.is-immersive .deck__foot{display:none;}
+.deck.is-immersive .deck__stage{padding:0;}
+.deck.is-immersive .deck__slide{border:none;}
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  .deck__title{display:none;}
+  .deck__ident{flex:0 0 auto;justify-content:flex-start;}
+  .deck__bar{gap:10px;}
+  .deck__bar-right{margin-left:auto;}
+}
+
+@media (max-width:720px){
+  .deck__stage{padding:12px;}
+  .deck__bar{padding:10px 12px;gap:8px;min-height:50px;}
+  .deck__logo{height:20px;}
+  /* requestFullscreen does not work on iOS Safari for non-video elements, and
+     the slide already fills the screen here — the button only costs width. */
+  #deckFull{display:none;}
+  .lang-switch--deck .lang-btn{padding:6px 7px;font-size:10px;min-height:30px;}
+  .deck__nav{
+    /* Thumb-reachable side rails instead of floating arrows — on a phone the
+       swipe is the primary control and the arrows must not cover the slide. */
+    top:auto;
+    bottom:8px;
+    transform:none;
+    width:44px;
+    height:44px;
+  }
+  .deck__nav--prev{left:8px;}
+  .deck__nav--next{right:8px;}
+  .deck__back span:last-child{display:none;}
+  .deck__lang-note{display:none;}
+  .deck__foot{padding:8px 12px;min-height:50px;}
+  .deck__thumbs{display:none;}
+  .deck__thumbs.is-open{
+    display:flex;
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:50px;
+    background:rgba(16,23,27,0.96);
+    border-top:1px solid rgba(245,246,244,0.12);
+    padding:10px 12px;
+    z-index:4;
+  }
+  .deck__thumbs-toggle{display:inline-flex;margin-left:auto;}
+  .deck__counter{min-width:auto;}
+}
+
+@media (max-height:480px) and (orientation:landscape){
+  .deck__foot{display:none;}
+  .deck__stage{padding:8px 56px;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .deck__slide,.deck__progress span{transition:none;}
+  .deck__loader span{animation:none;}
+}
