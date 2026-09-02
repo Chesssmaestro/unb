@@ -9,11 +9,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=7">
+<link rel="stylesheet" href="css/style.css?v=12">
 </head>
 <body>
 
-<!-- Telemetry ticker -->
+<!-- Бегущая телеметрия и навигация липнут к верху одним блоком -->
+<header class="site-header" id="top">
+
 <div class="ticker" aria-hidden="true">
   <div class="ticker__track">
     <span>GRID HEALTH 98%</span><span>·</span>
@@ -31,7 +33,7 @@
   </div>
 </div>
 
-<header class="nav" id="top">
+<div class="nav">
   <div class="nav__inner">
     <a href="#top" class="nav__brand">
       <img src="assets/logo.png" alt="UNB Group" class="nav__logo">
@@ -52,6 +54,8 @@
       <a class="nav__phone" href="tel:+998943888882">+998 94 388 88 82</a>
     </div>
   </div>
+</div>
+
 </header>
 
 <main>
@@ -276,12 +280,32 @@
     <div class="hero__inner">
       <div class="hero__copy">
         <p class="eyebrow"><span class="eyebrow__mark">⌖</span> <span data-i18n="hero.eyebrow">UNB GROUP · КОМАНДНЫЙ ЦЕНТР ИНФРАСТРУКТУРЫ</span></p>
-        <h1 data-i18n="hero.title">Интеллектуальная платформа мониторинга инфраструктуры</h1>
-        <p class="hero__subhead" data-i18n="hero.subhead">Дроны + AI + цифровые модели + автоматизация эксплуатации — единый контур для солнечных станций, ЛЭП, дорог, строек и умных городов.</p>
+        <h1 data-i18n="hero.title" data-i18n-html><span class="accent-word">Интеллектуальная</span> платформа мониторинга инфраструктуры</h1>
+        <p class="hero__subhead" data-i18n="hero.subhead" data-i18n-html>Дроны <span class="accent-mark">+</span> AI <span class="accent-mark">+</span> цифровые модели <span class="accent-mark">+</span> автоматизация эксплуатации — единый контур для солнечных станций, ЛЭП, дорог, строек и умных городов.</p>
         <div class="hero__actions">
-          <a href="#directions" class="btn btn--primary" data-i18n="hero.cta_primary">Смотреть направления</a>
-          <a href="#presentations" class="btn btn--ghost" data-i18n="hero.cta_secondary">Смотреть презентацию</a>
+          <a href="#directions" class="btn btn--primary">
+            <span data-i18n="hero.cta_primary">Смотреть направления</span>
+            <span class="btn__icon" aria-hidden="true">→</span>
+          </a>
+          <a href="#presentations" class="btn btn--ghost">
+            <span class="btn__icon btn__icon--play" aria-hidden="true">▶</span>
+            <span data-i18n="hero.cta_secondary">Смотреть презентацию</span>
+          </a>
         </div>
+        <ul class="trust">
+          <li class="trust__item">
+            <span class="trust__num">9</span>
+            <span class="trust__label" data-i18n="trust.directions">направлений мониторинга</span>
+          </li>
+          <li class="trust__item">
+            <span class="trust__num">95%<span class="accent-mark">+</span></span>
+            <span class="trust__label" data-i18n="trust.accuracy">точность AI-распознавания</span>
+          </li>
+          <li class="trust__item">
+            <span class="trust__num"><span class="accent-mark">−</span>60%</span>
+            <span class="trust__label" data-i18n="trust.cost">операционных затрат</span>
+          </li>
+        </ul>
       </div>
       <div class="hero__visual">
         <svg viewBox="0 0 480 460" class="hero__svg" aria-hidden="true">
@@ -289,41 +313,63 @@
             <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
               <path d="M 24 0 L 0 0 0 24" fill="none" stroke="var(--line)" stroke-width="1"/>
             </pattern>
+            <!-- Луч сканирования: плотный у борта, растворяется у поверхности -->
+            <linearGradient id="scanCone" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" class="cone-stop cone-stop--in"/>
+              <stop offset="1" class="cone-stop cone-stop--out"/>
+            </linearGradient>
+            <radialGradient id="droneGlow" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0" class="glow-stop glow-stop--in"/>
+              <stop offset="1" class="glow-stop glow-stop--out"/>
+            </radialGradient>
+            <!-- Держит бегущую строку сканирования внутри рамки визора -->
+            <clipPath id="hudClip"><rect x="16" y="118" width="448" height="204"/></clipPath>
           </defs>
           <rect x="0" y="0" width="480" height="460" fill="url(#grid)" opacity="0.6"/>
-          <!-- solar panel block -->
-          <g transform="translate(60,240)">
-            <rect x="0" y="0" width="150" height="90" fill="none" stroke="var(--blueprint)" stroke-width="1.5"/>
-            <line x1="30" y1="0" x2="30" y2="90" stroke="var(--blueprint)" stroke-width="1"/>
-            <line x1="75" y1="0" x2="75" y2="90" stroke="var(--blueprint)" stroke-width="1"/>
-            <line x1="120" y1="0" x2="120" y2="90" stroke="var(--blueprint)" stroke-width="1"/>
-            <line x1="0" y1="30" x2="150" y2="30" stroke="var(--blueprint)" stroke-width="1"/>
-            <line x1="0" y1="60" x2="150" y2="60" stroke="var(--blueprint)" stroke-width="1"/>
-            <circle cx="97" cy="45" r="12" fill="none" stroke="var(--alert)" stroke-width="1.6"/>
-            <path d="M91,45 L103,45 M97,39 L97,51" stroke="var(--alert)" stroke-width="1.6"/>
-            <text x="112" y="42" class="hud-label" fill="var(--alert)">92°C</text>
+
+          <!-- Сканирование поверхности -->
+          <path d="M 206 236 L 122 402 L 358 402 L 274 236 Z" fill="url(#scanCone)"/>
+          <ellipse class="hud-ring hud-ring--1" cx="240" cy="402" rx="118" ry="25"/>
+          <ellipse class="hud-ring hud-ring--2" cx="240" cy="402" rx="78" ry="17"/>
+          <ellipse class="hud-ring hud-ring--3" cx="240" cy="402" rx="38" ry="8"/>
+          <line class="hud-axis" x1="112" y1="402" x2="368" y2="402"/>
+          <line class="hud-axis" x1="240" y1="372" x2="240" y2="432"/>
+
+          <ellipse cx="240" cy="212" rx="152" ry="88" fill="url(#droneGlow)"/>
+
+          <image href="assets/T100_image3.png" x="-30" y="78" width="540" height="304"
+                 preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
+
+          <!-- Рамка визора -->
+          <g class="hud-visor">
+            <path d="M 16 62 L 16 34 L 44 34"/>
+            <path d="M 436 34 L 464 34 L 464 62"/>
+            <path d="M 464 402 L 464 430 L 436 430"/>
+            <path d="M 44 430 L 16 430 L 16 402"/>
           </g>
-          <!-- pylon -->
-          <g transform="translate(260,60)">
-            <path d="M50,0 L20,220 M50,0 L80,220 M30,60 L70,60 M25,120 L75,120 M20,180 L80,180" stroke="var(--blueprint)" stroke-width="1.5" fill="none"/>
-            <circle cx="50" cy="55" r="10" fill="none" stroke="var(--signal)" stroke-width="1.6"/>
-            <path d="M44,55 L56,55 M50,49 L50,61" stroke="var(--signal)" stroke-width="1.6"/>
+          <g class="hud-tick">
+            <path d="M 100 34 v 7 M 160 34 v 7 M 220 34 v 7 M 280 34 v 7 M 340 34 v 7 M 400 34 v 7"/>
           </g>
-          <!-- drone -->
-          <g transform="translate(150,60)">
-            <circle cx="0" cy="0" r="4" fill="var(--ink)"/>
-            <circle cx="-22" cy="-14" r="6" fill="none" stroke="var(--ink)" stroke-width="1.4"/>
-            <circle cx="22" cy="-14" r="6" fill="none" stroke="var(--ink)" stroke-width="1.4"/>
-            <circle cx="-22" cy="14" r="6" fill="none" stroke="var(--ink)" stroke-width="1.4"/>
-            <circle cx="22" cy="14" r="6" fill="none" stroke="var(--ink)" stroke-width="1.4"/>
-            <line x1="0" y1="0" x2="-22" y2="-14" stroke="var(--ink)" stroke-width="1.2"/>
-            <line x1="0" y1="0" x2="22" y2="-14" stroke="var(--ink)" stroke-width="1.2"/>
-            <line x1="0" y1="0" x2="-22" y2="14" stroke="var(--ink)" stroke-width="1.2"/>
-            <line x1="0" y1="0" x2="22" y2="14" stroke="var(--ink)" stroke-width="1.2"/>
-            <path d="M0,4 L0,120" stroke="var(--blueprint)" stroke-width="1" stroke-dasharray="3 4"/>
+
+          <!-- Захват цели на фюзеляже -->
+          <g class="hud-lock">
+            <path d="M 188 186 L 188 170 L 204 170"/>
+            <path d="M 278 170 L 294 170 L 294 186"/>
+            <path d="M 294 236 L 294 252 L 278 252"/>
+            <path d="M 204 252 L 188 252 L 188 236"/>
           </g>
-          <text x="20" y="24" class="hud-label" fill="var(--line-strong)">LAT 41.31 · LON 69.28</text>
-          <text x="20" y="440" class="hud-label" fill="var(--line-strong)">SCAN MODE · AUTONOMOUS</text>
+          <g class="hud-cross">
+            <path d="M 240 196 v 9 M 240 219 v 9 M 220 212 h 9 M 251 212 h 9"/>
+            <circle cx="240" cy="212" r="3"/>
+          </g>
+
+          <g clip-path="url(#hudClip)">
+            <line class="hud-scanline" x1="16" y1="118" x2="464" y2="118"/>
+          </g>
+
+          <text x="20" y="24" class="hud-label">LAT <tspan class="hud-label--accent">41.31</tspan> · LON <tspan class="hud-label--accent">69.28</tspan></text>
+          <text x="20" y="452" class="hud-label">SCAN MODE · <tspan class="hud-label--accent">AUTONOMOUS</tspan></text>
+          <text x="464" y="452" class="hud-label" text-anchor="end">ALT 120 M · T100</text>
         </svg>
       </div>
     </div>
@@ -635,8 +681,8 @@
   </div>
 </div>
 
-<script src="js/i18n.js?v=7"></script>
-<script src="js/decks-index.js?v=7"></script>
-<script src="js/script.js?v=7"></script>
+<script src="js/i18n.js?v=12"></script>
+<script src="js/decks-index.js?v=12"></script>
+<script src="js/script.js?v=12"></script>
 </body>
 </html>

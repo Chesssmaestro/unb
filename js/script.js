@@ -48,7 +48,11 @@
     currentLang = I18N[lang] ? lang : 'ru';
     document.querySelectorAll('[data-i18n]').forEach(el=>{
       const key = el.getAttribute('data-i18n');
-      if(dict[key]) el.textContent = dict[key];
+      if(!dict[key]) return;
+      // Заголовок и подзаголовок героя несут акцентную разметку внутри строки,
+      // поэтому хранятся в словаре как HTML. Остальное — обычный текст.
+      if(el.hasAttribute('data-i18n-html')) el.innerHTML = dict[key];
+      else el.textContent = dict[key];
     });
     document.querySelectorAll('.lang-btn').forEach(btn=>{
       btn.classList.toggle('is-active', btn.getAttribute('data-lang') === currentLang);
@@ -68,6 +72,20 @@
     const saved = localStorage.getItem(STORAGE_KEY);
     if(saved && I18N[saved]) initial = saved;
   }catch(e){}
+
+  // Хедер зафиксирован и выпал из потока, поэтому его высоту надо вернуть
+  // странице отступом. Меряем вместо жёсткой константы: высота гуляет от
+  // подгрузки шрифтов, переноса телефона/языков и брейкпоинтов.
+  const siteHeader = document.querySelector('.site-header');
+  if(siteHeader){
+    const syncHeaderHeight = ()=>{
+      htmlEl.style.setProperty('--header-h', siteHeader.offsetHeight + 'px');
+    };
+    syncHeaderHeight();
+    if('ResizeObserver' in window) new ResizeObserver(syncHeaderHeight).observe(siteHeader);
+    else window.addEventListener('resize', syncHeaderHeight);
+    window.addEventListener('load', syncHeaderHeight);
+  }
 
   // scroll reveal
   const revealTargets = document.querySelectorAll('.direction-card, .pipeline__step, .effect__stat, .transition__col');
