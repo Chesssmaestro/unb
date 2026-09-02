@@ -1,5 +1,7 @@
 const I18N = {
 ru:{
+  "meta.title":"UNB Group — интеллектуальная платформа мониторинга инфраструктуры",
+  "meta.description":"UNB Group: дроны + AI + цифровые модели для инспекции солнечных станций, ЛЭП, дорог, строек и умных городов.",
   "nav.directions":"Направления","nav.platform":"Платформа","nav.effect":"Эффект","nav.contacts":"Контакты",
   "hero.eyebrow":"UNB GROUP · КОМАНДНЫЙ ЦЕНТР ИНФРАСТРУКТУРЫ",
   "hero.title":"<span class=\"accent-word\">Интеллектуальная</span> платформа мониторинга инфраструктуры",
@@ -68,6 +70,8 @@ ru:{
   "deck.lang_missing":"Нет на этом языке"
 },
 en:{
+  "meta.title":"UNB Group — intelligent infrastructure monitoring platform",
+  "meta.description":"UNB Group: drones + AI + digital models for inspecting solar plants, power lines, roads, construction sites and smart cities.",
   "nav.directions":"Solutions","nav.platform":"Platform","nav.effect":"Impact","nav.contacts":"Contact",
   "hero.eyebrow":"UNB GROUP · INFRASTRUCTURE COMMAND CENTER",
   "hero.title":"An <span class=\"accent-word\">intelligent</span> platform for infrastructure monitoring",
@@ -136,6 +140,8 @@ en:{
   "deck.lang_missing":"Not available in this language"
 },
 uz:{
+  "meta.title":"UNB Group — infratuzilma monitoringining intellektual platformasi",
+  "meta.description":"UNB Group: quyosh stansiyalari, EUT, yo'llar, qurilish va aqlli shaharlarni tekshirish uchun dronlar + AI + raqamli modellar.",
   "nav.directions":"Yo'nalishlar","nav.platform":"Platforma","nav.effect":"Samara","nav.contacts":"Aloqa",
   "hero.eyebrow":"UNB GROUP · INFRATUZILMA BOSHQARUV MARKAZI",
   "hero.title":"Infratuzilmani monitoring qilishning <span class=\"accent-word\">intellektual</span> platformasi",
@@ -204,6 +210,8 @@ uz:{
   "deck.lang_missing":"Bu tilda mavjud emas"
 },
 ch:{
+  "meta.title":"UNB Group — 基础设施监测智能平台",
+  "meta.description":"UNB Group：无人机 + AI + 数字模型，用于太阳能电站、输电线路、道路、建筑工地和智慧城市的巡检。",
   "nav.directions":"解决方案","nav.platform":"平台","nav.effect":"成效","nav.contacts":"联系方式",
   "hero.eyebrow":"UNB GROUP · 基础设施指挥中心",
   "hero.title":"基础设施监测<span class=\"accent-word\">智能</span>平台",

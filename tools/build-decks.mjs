@@ -226,6 +226,10 @@ async function main() {
     'utf8'
   );
   console.log(`\nWrote ${path.relative(ROOT, indexFile)}`);
+
+  // Карта сайта строится из этого же индекса, поэтому обновляем её сразу:
+  // иначе новая презентация появится на сайте, но не в sitemap.xml.
+  await import('./build-sitemap.mjs');
 }
 
 main().catch((e) => {

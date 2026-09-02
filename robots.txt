@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Исходные PDF весят ~930 МБ и продублированы веб-презентациями — в индексе не нужны.
+Disallow: /assets/presentations/
+
+Sitemap: https://unbgroup.uz/sitemap.xml

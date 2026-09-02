@@ -100,6 +100,7 @@ body{padding-top:var(--header-h);}
 .nav__phone{font-family:var(--font-mono);font-size:13px;color:var(--ink-soft);}
 .lang-switch{display:flex;border:1px solid var(--line-strong);border-radius:4px;overflow:hidden;font-family:var(--font-mono);font-size:12px;}
 .lang-btn{
+  display:flex;align-items:center;
   background:none;border:none;padding:8px 10px;cursor:pointer;color:var(--ink-soft);
   border-right:1px solid var(--line-strong);font-family:var(--font-mono);
   min-height:34px;

@@ -24,8 +24,10 @@
     return langs.length ? langs[0] : null;
   }
 
+  // От корня, а не относительный: языковые копии лежат в /en/, /uz/, /zh/,
+  // и относительный путь увёл бы на несуществующий /en/deck.html.
   function deckUrl(slug, lang){
-    return `deck.html?d=${slug}&l=${lang}`;
+    return `/deck.html?d=${slug}&l=${lang}`;
   }
 
   // Cards double as real links so they can be opened in a new tab, bookmarked
@@ -57,21 +59,20 @@
     document.querySelectorAll('.lang-btn').forEach(btn=>{
       btn.classList.toggle('is-active', btn.getAttribute('data-lang') === currentLang);
     });
-    htmlEl.setAttribute('lang', currentLang);
+    htmlEl.setAttribute('lang', currentLang === 'ch' ? 'zh' : currentLang);
+    // Пишем язык для deck.html: там свой переключатель, и он должен открыться
+    // на том же языке, с которого посетитель пришёл.
     try{ localStorage.setItem(STORAGE_KEY, currentLang); }catch(e){}
 
     syncDeckLinks();
   }
 
-  document.querySelectorAll('.lang-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=> applyLang(btn.getAttribute('data-lang')));
-  });
-
-  let initial = 'ru';
-  try{
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if(saved && I18N[saved]) initial = saved;
-  }catch(e){}
+  // У каждого языка теперь свой URL (/, /en/, /uz/, /zh/), а страницы собраны
+  // заранее — переключатель это обычные ссылки, перехватывать клик не нужно.
+  // Язык определяет адрес: localStorage больше не участвует, иначе посетитель
+  // с сохранённым «ru» открыл бы /en/ и увидел русский текст.
+  const PATH_LANG = {en:'en', uz:'uz', zh:'ch'};
+  const initial = PATH_LANG[location.pathname.split('/').filter(Boolean)[0]] || 'ru';
 
   // Хедер зафиксирован и выпал из потока, поэтому его высоту надо вернуть
   // странице отступом. Меряем вместо жёсткой константы: высота гуляет от
