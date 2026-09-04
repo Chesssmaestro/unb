@@ -1,0 +1,242 @@
+/* ==========================================================================
+   Оформление презентаций в стиле сайта — decks/<slug>/index.html
+
+   Подключается ПОСЛЕ собственного <style> презентации, поэтому при равной
+   специфичности переопределяет его. Меняется только оформление: палитра,
+   шрифты, рамки, скругления и микро-детали. Сетки, размеры в cqw и порядок
+   блоков остаются авторскими — иначе слайд поедет.
+
+   Каждая презентация свёрстана отдельно и со своими именами цветов
+   (--navy/--cyan/--amber/--orange/--blue). Ниже они переназначены на палитру
+   сайта, поэтому большая часть слайдов перекрашивается одним :root, без
+   правки самих правил.
+   ========================================================================== */
+
+:root{
+  /* Палитра сайта — те же значения, что в css/style.css. */
+  --paper:#F5F6F4;
+  --paper-2:#EDEFEB;
+  --blueprint:#123C55;
+  --blueprint-2:#1B4E6E;
+  --signal:#2FA8A0;
+  --alert:#E2963A;
+  --accent:#FF6B2C;
+  --site-line:#D7DBD8;
+  --site-line-strong:#AEB6B1;
+
+  /* Токены презентаций -> палитра сайта. */
+  --navy:var(--blueprint);
+  --navy-2:var(--blueprint-2);
+  --blue:var(--blueprint-2);
+  --cyan:var(--signal);
+  /* Сигнальный по светлому фону берём темнее: #2FA8A0 в мелком тексте
+     недобирает контраста. */
+  --cyan-d:#1B7A74;
+  --orange:var(--accent);
+  --amber:var(--alert);
+  --ink:#10171B;
+  --muted:#4A5459;
+  --line:#D7DBD8;
+  --bg:#EDEFEB;
+  --card:#FFFFFF;
+
+  /* Стек ровно тот же, что в css/style.css, и это важно: в Space Grotesk нет
+     кириллицы, поэтому русские заголовки и на сайте, и здесь должны падать на
+     один и тот же системный sans-serif — иначе шрифт разойдётся. */
+  --font-display:'Space Grotesk',sans-serif;
+  --font-body:'IBM Plex Sans',sans-serif;
+  --font-mono:'IBM Plex Mono',monospace;
+
+  /* Чертёжная сетка слайда — тот же приём, что у .hero__grid на сайте. */
+  --grid-line:rgba(18,60,85,.06);
+  --grid-line-dark:rgba(245,246,244,.05);
+}
+
+/* ---------- Типографика ---------- */
+
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--ink);
+}
+h1,h2,h3{
+  font-family:var(--font-display);
+  font-weight:600;
+  letter-spacing:-0.01em;
+}
+
+/* ---------- Каркас слайда ---------- */
+
+.slide{
+  background-color:var(--card);
+  background-image:
+    linear-gradient(var(--grid-line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
+  background-size:40px 40px;
+  border:1px solid var(--line);
+  border-radius:6px;
+  box-shadow:0 2px 16px rgba(16,23,27,.07);
+}
+/* Внутренняя рамка (city, power) — оставляем как чертёжную линию, но тише. */
+.slide::before{
+  inset:1.4cqw;
+  border-color:rgba(18,60,85,.10);
+  border-radius:3px;
+}
+
+.slide.dark{
+  background-color:#10171B;
+  background-image:
+    linear-gradient(var(--grid-line-dark) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-line-dark) 1px,transparent 1px);
+  color:var(--paper);
+  border-color:rgba(245,246,244,.14);
+}
+.slide.dark::before{border-color:rgba(245,246,244,.12);}
+.slide.dark h1,.slide.dark h2,.slide.dark h3{color:var(--paper);}
+.slide.dark .lead,.slide.dark .sub{color:rgba(245,246,244,.68);}
+
+/* Номер слайда и надзаголовок — моноширинные метки, как на сайте. */
+.num,.kicker{
+  font-family:var(--font-mono);
+  letter-spacing:.06em;
+}
+.num{color:var(--site-line-strong);}
+.slide.dark .num{color:rgba(245,246,244,.4);}
+.kicker{color:var(--muted);text-transform:uppercase;}
+
+/* ---------- Карточки ---------- */
+/* Сайт держит карточки плоскими: белая заливка, линия в 1px, скругление 4px. */
+
+.stg,.st,.sc,.cal,.pc,.limc,.chipc,.camrow,.cv4 div,.n4 div,.sit,.bc,.astep,.dit,
+.node,.blk,.prob,.feat .f,.ec,.wire,.mods,.step,.dhead{
+  border-radius:4px;
+}
+.chipc{box-shadow:none;}
+.pc,.limc,.blk{overflow:hidden;}
+
+/* Акцентные полосы делаем тоньше — на сайте это 2px, а не 4px. */
+.stg,.st{border-top-width:2px;}
+.cal{border-left-width:2px;}
+.pc .cap,.limc .cap{border-left-width:2px;}
+.node{border-left-width:2px;}
+.dit{border-left-width:2px;}
+
+/* ---------- Ленты, чипы, бейджи ---------- */
+/* Скругление 3px и моноширинный шрифт у коротких меток — как .direction-card__tag. */
+
+.pin,.chip,.tag,.badge,.lab{border-radius:3px;}
+.pin{border-width:1px;font-weight:600;}
+.badge{background:var(--blueprint);color:var(--paper);}
+.chip span{font-family:var(--font-mono);color:var(--accent);}
+
+/* Оранжевый на сайте живёт только в микро-деталях и никогда не заливает блок
+   (см. комментарий к --accent в css/style.css). Заливки переводим на тёмную,
+   а акцент оставляем значку и цифрам внутри. */
+.tag{background:var(--ink);color:var(--paper);}
+.tag svg{fill:var(--accent);}
+.pin.o{background:var(--ink);border-color:var(--ink);color:var(--paper);}
+.pin.o b,.pin.n b{color:var(--accent);}
+
+/* Светло-серые заливки карточек прописаны литералами в холодных тонах —
+   переводим на бумажные, чтобы слайд не расходился с сайтом по оттенку. */
+.prob,.node,.feat .f,.ec,.blk,.pc .cap,.limc .cap{background:var(--paper);}
+
+/* Порядковые номера внутри карточек — мониторинговые метки, а не крупный акцент. */
+.sc .n,.n4 .n,.ol .n,.astep .n{
+  font-family:var(--font-mono);
+  font-weight:500;
+  color:var(--blueprint);
+}
+.astep .n{color:var(--signal);}
+.arr,.io .arw{
+  font-family:var(--font-mono);
+  font-weight:400;
+  color:var(--site-line-strong);
+}
+
+/* Выделенный шаг: на сайте активный блок — тонкая рамка, без свечения. */
+.sc.on{
+  border:1px solid var(--blueprint);
+  box-shadow:0 0 0 1px var(--blueprint) inset;
+}
+
+/* ---------- Таблицы (city, power) ---------- */
+
+th.a{background:var(--paper-2);color:var(--blueprint);}
+th.b{background:var(--blueprint);color:var(--paper);}
+td.a{background:var(--paper-2);color:var(--ink);}
+td.b{background:rgba(47,168,160,.10);color:var(--ink);}
+td.b i{color:var(--cyan-d);}
+
+/* ---------- Тёмные слайды: power, roads ---------- */
+/* Заливки и рамки там прописаны литералами в голубых тонах — переводим их
+   на бумажно-сигнальные, иначе тёмный слайд остаётся из старой палитры. */
+
+.slide.dark .astep,
+.slide.dark .dit,
+.slide.dark .bc{
+  background:rgba(245,246,244,.05);
+  border-color:rgba(47,168,160,.26);
+}
+.slide.dark .dhead{
+  background:rgba(47,168,160,.16);
+  border-color:rgba(47,168,160,.4);
+  color:var(--paper);
+}
+.slide.dark .astep .b{color:var(--signal);}
+.slide.dark .astep p,
+.slide.dark .dit p,
+.slide.dark .bc p,
+.slide.dark td{color:rgba(245,246,244,.66);}
+.slide.dark .dit b,
+.slide.dark th{color:var(--paper);}
+.slide.dark th{border-bottom-color:var(--signal);}
+.slide.dark th:last-child,
+.slide.dark td:last-child{color:var(--signal);}
+.slide.dark th,.slide.dark td{border-bottom-color:rgba(245,246,244,.14);}
+
+/* city: тёмный блок сценариев. */
+.scen{
+  background:#10171B;
+  border:1px solid rgba(47,168,160,.35);
+  border-radius:6px;
+}
+.scen .lab{background:rgba(245,246,244,.92);color:var(--ink);}
+.hub{
+  background:radial-gradient(circle,rgba(47,168,160,.7) 0%,rgba(47,168,160,.16) 45%,transparent 70%);
+  border-color:rgba(47,168,160,.5);
+}
+.hub div{background:var(--signal);box-shadow:0 0 3cqw rgba(47,168,160,.85);}
+
+/* roads: лестница на слайде 3 — светлые ступени из бумажных тонов. */
+.step.s1{background:var(--paper-2);}
+.step.s2{background:#DCDFDA;}
+.step.s3{background:var(--blueprint);}
+.step.s3 p{color:rgba(245,246,244,.72);}
+
+/* roads: карточки распознавания поверх фото. */
+.cvc{background:#10171B;border-width:1px;}
+/* Красной рамки в палитре сайта нет — тревожную категорию ведём янтарным. */
+.cvc.r{border-color:var(--alert);}
+.cvc.r .chip{border-color:rgba(226,150,58,.75);}
+.cvc .ttl{background:rgba(16,23,27,.82);border-bottom-right-radius:4px;}
+/* Только чипы поверх фото: в city .chip — светлая лента на белом слайде. */
+.cvc .chip{
+  background:rgba(16,23,27,.8);
+  border-color:rgba(245,246,244,.35);
+  color:var(--paper);
+  border-radius:3px;
+}
+
+/* power: врезка «проводная» схема. */
+.wire{background:var(--paper-2);border-color:var(--site-line);}
+.mods{background:var(--paper-2);}
+.dot{background:var(--paper-2);border-color:var(--site-line-strong);}
+.dot span{background:var(--blueprint);}
+
+/* ---------- Печать ---------- */
+
+@media print{
+  .slide{border:none;box-shadow:none;}
+}

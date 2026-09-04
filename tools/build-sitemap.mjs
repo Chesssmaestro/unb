@@ -36,8 +36,20 @@ function lastmod(relPath) {
 
 const xmlEscape = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-function deckUrl(slug, lang) {
-  return `${ORIGIN}/deck.html?d=${slug}&l=${lang}`;
+/**
+ * Адрес презентации. У свёрстанных страницами (decks/<slug>/) он записан в
+ * индексе полем `page`; остальные листает deck.html.
+ */
+function deckUrl(decks, slug, lang) {
+  const page = decks[slug] && decks[slug][lang] && decks[slug][lang].page;
+  return page ? ORIGIN + page : `${ORIGIN}/deck.html?d=${slug}&l=${lang}`;
+}
+
+/** Файл, по которому считаем дату последнего изменения презентации. */
+function deckSource(decks, slug, lang) {
+  const page = decks[slug] && decks[slug][lang] && decks[slug][lang].page;
+  return page ? path.join(page.replace(/^\/|\/$/g, ''), 'index.html')
+              : path.join('assets', 'decks', `${slug}-${lang}`);
 }
 
 /**
@@ -85,14 +97,14 @@ function main() {
   for (const slug of Object.keys(decks)) {
     const langs = LANGS.filter((l) => decks[slug][l]);
     // x-default ведёт на русскую версию, если она есть: это язык по умолчанию.
-    const alternates = langs.map((l) => [HREFLANG[l], deckUrl(slug, l)]);
-    alternates.push(['x-default', deckUrl(slug, langs.includes('ru') ? 'ru' : langs[0])]);
+    const alternates = langs.map((l) => [HREFLANG[l], deckUrl(decks, slug, l)]);
+    alternates.push(['x-default', deckUrl(decks, slug, langs.includes('ru') ? 'ru' : langs[0])]);
 
     for (const lang of langs) {
       entries.push(
         urlEntry({
-          loc: deckUrl(slug, lang),
-          mod: lastmod(path.join('assets', 'decks', `${slug}-${lang}`)),
+          loc: deckUrl(decks, slug, lang),
+          mod: lastmod(deckSource(decks, slug, lang)),
           changefreq: 'monthly',
           priority: slug === 'group' ? '0.8' : '0.7',
           alternates,

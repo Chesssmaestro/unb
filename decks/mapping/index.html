@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Современная картография: цифровой двойник объекта — UNB Group</title>
+<meta name="description" content="Презентация UNB Group: геодезия и картография на базе БПЛА — ортофотопланы, цифровые модели рельефа, топосъёмка и RTK-точность до 1 см.">
+<link rel="canonical" href="https://unbgroup.uz/decks/mapping/">
+<link rel="alternate" hreflang="ru" href="https://unbgroup.uz/decks/mapping/">
+<link rel="alternate" hreflang="en" href="https://unbgroup.uz/en/decks/mapping/">
+<link rel="alternate" hreflang="uz" href="https://unbgroup.uz/uz/decks/mapping/">
+<link rel="alternate" hreflang="zh" href="https://unbgroup.uz/zh/decks/mapping/">
+<link rel="alternate" hreflang="x-default" href="https://unbgroup.uz/decks/mapping/">
+<link rel="icon" href="/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/deck-page.css?v=1">
+<style>
+/* Оформление то же, что у decks/hardware/: палитра и шрифты сайта заложены
+   сразу, поэтому css/deck-theme.css не подключается. Размеры — в cqw: слайд
+   остаётся 16:9 на любой ширине, из него же собирается миниатюра листалки. */
+:root{
+  --paper:#F5F6F4;
+  --paper-2:#EDEFEB;
+  --ink:#10171B;
+  --ink-soft:#4A5459;
+  --blueprint:#123C55;
+  --blueprint-2:#1B4E6E;
+  --signal:#2FA8A0;
+  --accent:#FF6B2C;
+  --line:rgba(16,23,27,.17);
+  --line-soft:rgba(16,23,27,.09);
+  --grid:rgba(18,60,85,.05);
+
+  /* В Space Grotesk нет кириллицы: стек тот же, что в css/style.css, чтобы
+     русские заголовки падали на тот же системный шрифт, что на сайте. */
+  --font-display:'Space Grotesk',sans-serif;
+  --font-body:'IBM Plex Sans',sans-serif;
+  --font-mono:'IBM Plex Mono',monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;min-width:0}
+body{
+  background:var(--paper-2);color:var(--ink);
+  font-family:var(--font-body);line-height:1.45;
+  -webkit-font-smoothing:antialiased;padding:28px 16px 60px;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+
+/* ---------- каркас слайда ---------- */
+.deck{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
+.slide{
+  position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;
+  background-color:#FFFFFF;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:40px 40px;
+  border:1px solid #D7DBD8;border-radius:6px;
+  box-shadow:0 2px 16px rgba(16,23,27,.07);
+  container-type:inline-size;
+}
+.pad{position:absolute;inset:0;padding:3.6cqw 4cqw 4.4cqw;display:flex;flex-direction:column;justify-content:center}
+
+/* приводочные метки по углам */
+.slide::before,.slide::after{
+  content:"";position:absolute;width:2.4cqw;height:2.4cqw;pointer-events:none;
+  border:1px solid var(--line);
+}
+.slide::before{top:1.5cqw;left:1.5cqw;border-right:0;border-bottom:0}
+.slide::after{bottom:1.5cqw;right:1.5cqw;border-left:0;border-top:0}
+
+.pager{
+  position:absolute;left:4cqw;bottom:1.6cqw;
+  font-family:var(--font-mono);font-size:.95cqw;letter-spacing:.1em;color:var(--ink-soft);
+}
+/* Отступ больше, чем у номера слайда: справа внизу стоит приводочная метка. */
+.credit{
+  position:absolute;right:5cqw;bottom:1.6cqw;
+  font-family:var(--font-mono);font-size:.82cqw;letter-spacing:.08em;
+  color:rgba(16,23,27,.4);text-transform:uppercase;
+}
+
+/* ---------- типографика ---------- */
+.kicker{display:flex;align-items:center;gap:1cqw;margin-bottom:1.4cqw}
+.kicker::after{content:"";flex:1;height:1px;background:var(--line)}
+.kicker span{
+  font-family:var(--font-mono);font-size:.95cqw;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--blueprint);white-space:nowrap;
+}
+h1{font-family:var(--font-display);font-weight:600;font-size:3.7cqw;line-height:1.06;letter-spacing:-.01em;text-wrap:balance}
+h2{font-family:var(--font-display);font-weight:600;font-size:2.8cqw;line-height:1.1;letter-spacing:-.01em}
+h3{font-family:var(--font-display);font-weight:600;font-size:1.4cqw;line-height:1.2;letter-spacing:-.01em}
+p{font-size:1.25cqw}
+
+/* ---------- фото ---------- */
+.shot{position:relative;overflow:hidden;background:var(--paper-2);border-radius:3px}
+.shot img{width:100%;height:100%;object-fit:cover}
+.frame{position:relative;padding:.8cqw}
+.frame::before,.frame::after{
+  content:"";position:absolute;width:1.8cqw;height:1.8cqw;border:1px solid var(--ink);pointer-events:none;
+}
+.frame::before{left:0;top:0;border-right:0;border-bottom:0}
+.frame::after{right:0;bottom:0;border-left:0;border-top:0}
+.hud{
+  position:absolute;top:.8cqw;right:1cqw;
+  font-family:var(--font-mono);font-size:.66cqw;letter-spacing:.08em;
+  color:#fff;text-align:right;line-height:1.7;text-shadow:0 1px 6px rgba(0,0,0,.75);
+}
+
+/* ---------- элементы ---------- */
+.badge{
+  display:inline-block;border:1px solid var(--accent);border-radius:4px;
+  padding:.9cqw 1.4cqw;font-weight:600;font-size:1.25cqw;line-height:1.3;color:var(--ink);
+}
+.tagline{
+  display:inline-block;margin-top:.9cqw;
+  font-family:var(--font-mono);font-size:.95cqw;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent);
+}
+.bars{display:grid;grid-template-columns:1fr 1fr;gap:1.2cqw;margin-top:1.6cqw}
+.bar{
+  background:var(--blueprint);color:var(--paper);border-radius:4px;
+  padding:.9cqw 1.2cqw;font-weight:600;font-size:1.2cqw;text-align:center;line-height:1.25;
+}
+.bar.alt{background:var(--blueprint-2)}
+
+.list{display:grid;gap:1cqw;margin:1.6cqw 0 2cqw;max-width:52ch}
+.list li{position:relative;padding-left:2cqw;font-size:1.3cqw;line-height:1.45}
+.list li::before{content:"";position:absolute;left:0;top:.5em;width:.7cqw;height:.7cqw;border:1px solid var(--accent)}
+
+.rows{display:grid;gap:.9cqw}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:1cqw;margin-top:1.4cqw}
+.row{
+  border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,.6);
+  padding:.9cqw 1.1cqw;display:grid;grid-template-columns:auto 1fr;gap:1cqw;align-items:start;
+  font-size:1.1cqw;line-height:1.4;
+}
+.row .n{font-family:var(--font-mono);font-size:.9cqw;color:var(--blueprint);letter-spacing:.08em;padding-top:.15em}
+.row b{font-weight:600}
+.row i{font-style:normal;color:var(--accent);font-weight:600}
+
+/* ---------- слайд 1 ---------- */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:3cqw;align-items:center}
+.hero .shot{aspect-ratio:16/10}
+
+/* ---------- слайд 2: сравнение ---------- */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:2cqw;margin-top:1.6cqw}
+.panel{border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,.55);overflow:hidden;display:flex;flex-direction:column}
+.panel__head{
+  padding:.7cqw 1.1cqw;font-family:var(--font-mono);font-weight:500;
+  text-transform:uppercase;letter-spacing:.08em;font-size:.9cqw;color:var(--paper);
+}
+.panel--bad .panel__head{background:var(--ink)}
+.panel--good .panel__head{background:var(--blueprint)}
+.panel__body{padding:1cqw;display:grid;gap:.85cqw}
+.panel .shot{aspect-ratio:16/9}
+.mark{display:grid;grid-template-columns:auto 1fr;gap:.8cqw;align-items:start;font-size:1.1cqw;line-height:1.4}
+.mark i{font-style:normal;font-family:var(--font-mono);font-weight:500}
+.panel--bad .mark i{color:var(--accent)}
+.panel--good .mark i{color:var(--signal)}
+
+/* ---------- слайды 3, 4, 6, 7: текст + фото ---------- */
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:2.4cqw;align-items:center;margin-top:1.4cqw}
+.stack{display:grid;gap:1cqw}
+.stack .shot{aspect-ratio:16/9}
+/* Второй, не окантованный снимок — полосой: вдвоём с кадром в рамке пара
+   16:9 не помещается в высоту слайда. */
+.stack > .shot{aspect-ratio:2.7/1}
+.quad{display:grid;grid-template-columns:1fr 1fr;gap:1cqw}
+
+/* ---------- слайд 5: цепочка обработки ---------- */
+.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:1.2cqw;align-items:stretch;margin:1.4cqw 0}
+.flow__arrow{align-self:center;font-family:var(--font-mono);color:var(--accent);font-size:1.6cqw}
+.step{border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,.6);overflow:hidden;display:flex;flex-direction:column}
+.step .shot{aspect-ratio:16/10;border-radius:0}
+.step p{padding:.85cqw 1cqw 1cqw;font-size:1.05cqw;line-height:1.4}
+.step p b{font-weight:600}
+
+@media print{
+  @page{size:1280px 720px;margin:0}
+  body{background:#fff;padding:0}
+  .deck{gap:0;max-width:none}
+  .slide{border:0;border-radius:0;box-shadow:none;break-after:page}
+}
+</style>
+</head>
+<body>
+<header class="dp-bar">
+  <a class="dp-back" href="/">
+    <span aria-hidden="true">←</span>
+    <span data-i18n="deck.back">На сайт</span>
+  </a>
+  <span class="dp-title" data-i18n="meta.short">Картография</span>
+  <nav class="dp-langs" aria-label="Language">
+      <a href="/decks/mapping/" data-lang="ru" class="is-active">RU</a>
+      <a href="/en/decks/mapping/" data-lang="en">EN</a>
+      <a href="/uz/decks/mapping/" data-lang="uz">UZ</a>
+      <a href="/zh/decks/mapping/" data-lang="ch">CH</a>
+  </nav>
+    <button class="dp-icon-btn dp-full" id="dpFull" type="button" data-i18n-title="deck.fullscreen" title="Во весь экран" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+    </button>
+</header>
+
+<div class="deck">
+
+<!-- ═══════ 1 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="hero">
+      <div>
+        <div class="kicker"><span data-i18n="s01.k01">01 / Титул</span></div>
+        <h1 data-i18n="s01.k02">Современная картография: цифровой двойник вашего объекта</h1>
+        <ul class="list">
+          <li data-i18n="s01.k03">Интеллектуальные геодезические решения на базе БПЛА: съёмка, обработка и готовые материалы в едином цикле.</li>
+          <li data-i18n="s01.k04">Ортофотопланы, цифровые модели рельефа и топографическая съёмка под задачи проектирования и кадастра.</li>
+        </ul>
+        <p class="badge" data-i18n="s01.k05">Абсолютная точность<br>до 1 сантиметра</p>
+      </div>
+      <div class="frame">
+        <div class="shot">
+          <img src="foto/01-hero.webp" alt="Инженер управляет геодезическим дроном на площадке земляных работ" data-i18n-alt="s01.k06" fetchpriority="high">
+          <div class="hud">RTK STATUS: FIXED<br>PRECISION: 1 CM<br>GSD: 1.2 CM/PX</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">01 / 07</div>
+  <div class="credit">Photo: dji.com</div>
+</section>
+
+<!-- ═══════ 2 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s02.k01">02 / Позиционирование</span></div>
+    <h2 data-i18n="s02.k02">Смена парадигмы: от точечных замеров<br>к сплошному покрытию</h2>
+    <div class="compare">
+      <div class="panel panel--bad">
+        <div class="panel__head" data-i18n="s02.k03">Традиционные методы</div>
+        <div class="panel__body">
+          <div class="shot">
+            <img src="foto/02-manual.webp" alt="Геодезист с вехой выполняет замеры вручную" data-i18n-alt="s02.k04" loading="lazy">
+          </div>
+          <div class="mark"><i>!</i><span data-i18n="s02.k05">Медленный сбор данных и зависимость от человеческого фактора.</span></div>
+          <div class="mark"><i>!</i><span data-i18n="s02.k06">Пропуски и «слепые зоны» на сложном рельефе.</span></div>
+          <div class="mark"><i>!</i><span data-i18n="s02.k07">Ограниченный доступ к опасным и труднодоступным участкам.</span></div>
+        </div>
+      </div>
+      <div class="panel panel--good">
+        <div class="panel__head" data-i18n="s02.k08">Дроны + RTK</div>
+        <div class="panel__body">
+          <div class="shot">
+            <img src="foto/02-drone.webp" alt="Зона аэрофотосъёмки, размеченная над местностью" data-i18n-alt="s02.k09" loading="lazy">
+          </div>
+          <div class="mark"><i>✓</i><span data-i18n="s02.k10"><b>Скорость:</b> съёмка до 100 га за один день.</span></div>
+          <div class="mark"><i>✓</i><span data-i18n="s02.k11"><b>Полнота:</b> сплошное сканирование — миллионы точек, а не сотни.</span></div>
+          <div class="mark"><i>✓</i><span data-i18n="s02.k12"><b>Безопасность:</b> бесконтактная съёмка опасных объектов.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">02 / 07</div>
+  <div class="credit">Photo: dji.com</div>
+</section>
+
+<!-- ═══════ 3 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s03.k01">03 / Технологический стандарт</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s03.k02">Кинематика в реальном времени (RTK)</h2>
+        <div class="rows" style="margin-top:1.6cqw">
+          <div class="row"><span class="n">01</span><span data-i18n="s03.k03"><b>Модуль RTK:</b> мгновенная коррекция координат со спутников — погрешность в плане и по высоте не более <i>10 мм</i>.</span></div>
+          <div class="row"><span class="n">02</span><span data-i18n="s03.k04"><b>Минимум наземной опоры:</b> зависимость от опорных геодезических пунктов снижена, полевые работы ускоряются <i>в 3 раза</i>.</span></div>
+          <div class="row"><span class="n">03</span><span data-i18n="s03.k05"><b>Валидация:</b> материалы готовятся под требования кадастрового учёта и профильных стандартов для проектных работ.</span></div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="frame">
+          <div class="shot">
+            <img src="foto/03-rtk.webp" alt="Базовая станция RTK на треноге в поле" data-i18n-alt="s03.k06" loading="lazy">
+            <div class="hud">RTK SYNC: 100%<br>BASE: FIXED</div>
+          </div>
+        </div>
+        <div class="shot"><img src="foto/03-gcp.webp" alt="Наземная опознавательная марка для привязки аэрофотосъёмки" data-i18n-alt="s03.k07" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">03 / 07</div>
+  <div class="credit">Photo: dji.com</div>
+</section>
+
+<!-- ═══════ 4 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s04.k01">04 / Продукт 01</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s04.k02">Построение ортофотопланов</h2>
+        <span class="tagline" data-i18n="s04.k03">GSD до 1 см / пиксель</span>
+        <div class="rows" style="margin-top:1.4cqw">
+          <div class="row"><span class="n">01</span><span data-i18n="s04.k04"><b>Абсолютная геометрия:</b> фотографическое качество с математической точностью карты.</span></div>
+          <div class="row"><span class="n">02</span><span data-i18n="s04.k05"><b>Инвентаризация:</b> кадастровый учёт, выявление самозахватов и наложений границ.</span></div>
+          <div class="row"><span class="n">03</span><span data-i18n="s04.k06"><b>Мониторинг:</b> фиксация as-built — как построено — для контроля работы подрядчиков.</span></div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="frame">
+          <div class="shot">
+            <img src="foto/04-ortho.webp" alt="Ортофотоплан городского квартала, съёмка в надир" data-i18n-alt="s04.k07" loading="lazy">
+            <div class="hud">ORTHOMOSAIC<br>GSD: 1.0 CM/PX</div>
+          </div>
+        </div>
+        <div class="shot"><img src="foto/04-site.webp" alt="Промышленная площадка с высоты: границы участков и объекты" data-i18n-alt="s04.k08" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">04 / 07</div>
+  <div class="credit">Photo: dji.com</div>
+</section>
+
+<!-- ═══════ 5 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s05.k01">05 / Продукт 02</span></div>
+    <h2 data-i18n="s05.k02">Цифровые модели рельефа и местности (ЦМР / ЦММ)</h2>
+    <div class="flow">
+      <div class="step">
+        <div class="shot"><img src="foto/05-cloud.webp" alt="Облако точек лазерного сканирования местности" data-i18n-alt="s05.k03" loading="lazy"></div>
+        <p data-i18n="s05.k04"><b>Облако точек:</b> исходные данные съёмки — миллионы измерений.</p>
+      </div>
+      <div class="flow__arrow" aria-hidden="true">→</div>
+      <div class="step">
+        <div class="shot"><img src="foto/05-mesh.webp" alt="Триангуляционная модель рельефа" data-i18n-alt="s05.k05" loading="lazy"></div>
+        <p data-i18n="s05.k06"><b>TIN-сетка:</b> поверхность рельефа для расчётов и проектирования.</p>
+      </div>
+      <div class="flow__arrow" aria-hidden="true">→</div>
+      <div class="step">
+        <div class="shot"><img src="foto/05-model.webp" alt="Текстурированная 3D-модель участка на экране" data-i18n-alt="s05.k07" loading="lazy"></div>
+        <p data-i18n="s05.k08"><b>3D-модель:</b> текстурированный двойник объекта для работы и презентаций.</p>
+      </div>
+    </div>
+    <div class="trio">
+      <div class="row"><span class="n">01</span><span data-i18n="s05.k09"><b>Плотность данных:</b> тысячи точек на квадратный метр — без «слепых» зон.</span></div>
+      <div class="row"><span class="n">02</span><span data-i18n="s05.k10"><b>Проектирование уклонов:</b> анализ водоотведения, инсоляции и вертикальной планировки.</span></div>
+      <div class="row"><span class="n">03</span><span data-i18n="s05.k11"><b>Расчёт объёмов:</b> выемка и насыпь земляных масс с погрешностью <i>&lt; 1%</i>.</span></div>
+    </div>
+  </div>
+  <div class="pager">05 / 07</div>
+  <div class="credit">Photo: dji.com</div>
+</section>
+
+<!-- ═══════ 6 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s06.k01">06 / Продукт 03</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s06.k02">Топографическая съёмка нового формата</h2>
+        <div class="rows" style="margin-top:1.4cqw">
+          <div class="row"><span class="n">01</span><span data-i18n="s06.k03"><b>Все масштабы:</b> планы <i>1:500</i>, <i>1:1000</i> и <i>1:2000</i>.</span></div>
+          <div class="row"><span class="n">02</span><span data-i18n="s06.k04"><b>Векторизация:</b> конвертация облаков точек в стандартные чертежи без потери качества.</span></div>
+          <div class="row"><span class="n">03</span><span data-i18n="s06.k05"><b>Комплексный подход:</b> аэрофотосъёмка плюс наземное дообследование подземных коммуникаций.</span></div>
+        </div>
+        <div class="bar" style="margin-top:1.4cqw" data-i18n="s06.k06">DWG / DXF — готово к загрузке в проектные системы</div>
+      </div>
+      <div class="stack">
+        <div class="frame">
+          <div class="shot">
+            <img src="foto/06-map.webp" alt="Топографический план участка в программе обработки" data-i18n-alt="s06.k07" loading="lazy">
+          </div>
+        </div>
+        <div class="shot"><img src="foto/06-quarry.webp" alt="Карьерный откос с геодезическими марками" data-i18n-alt="s06.k08" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">06 / 07</div>
+  <div class="credit">Photo: dji.com</div>
+</section>
+
+<!-- ═══════ 7 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s07.k01">07 / Результат</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s07.k02">Бесшовная интеграция<br>в ваши бизнес-процессы</h2>
+        <div class="quad" style="margin-top:1.4cqw">
+          <div class="row"><span class="n">01</span><span data-i18n="s07.k03"><b>Кадастровый инженер:</b> межевание и постановка границ.</span></div>
+          <div class="row"><span class="n">02</span><span data-i18n="s07.k04"><b>Строитель:</b> контроль земляных работ и объёмов.</span></div>
+          <div class="row"><span class="n">03</span><span data-i18n="s07.k05"><b>Архитектор:</b> BIM и генеральный план.</span></div>
+          <div class="row"><span class="n">04</span><span data-i18n="s07.k06"><b>Инвестор:</b> мониторинг бюджета и хода работ.</span></div>
+        </div>
+      </div>
+      <div class="frame">
+        <div class="shot">
+          <img src="foto/07-bim.webp" alt="Трёхмерная модель застройки на экране инженера" data-i18n-alt="s07.k07" loading="lazy">
+          <div class="hud">ENGINEERING BASE<br>BIM-READY</div>
+        </div>
+      </div>
+    </div>
+    <div class="bars">
+      <div class="bar alt" data-i18n="s07.k08">Снижение рисков: коллизии исключены до начала СМР</div>
+      <div class="bar" data-i18n="s07.k09">Экономия времени: цикл изысканий короче на 60%</div>
+    </div>
+  </div>
+  <div class="pager">07 / 07</div>
+  <div class="credit">Photo: dji.com</div>
+</section>
+
+</div>
+
+<button class="dp-nav dp-nav--prev" id="dpPrev" type="button" data-i18n-title="deck.prev" title="Назад" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 L7 12 L15 20" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+</button>
+<button class="dp-nav dp-nav--next" id="dpNext" type="button" data-i18n-title="deck.next" title="Вперёд" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 L17 12 L9 20" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+</button>
+
+<div class="dp-progress" id="dpProgress" aria-hidden="true" hidden><span id="dpProgressBar"></span></div>
+
+<footer class="dp-foot" id="dpFoot" hidden>
+  <div class="dp-counter"><span id="dpCurrent">1</span><span class="dp-counter-sep">/</span><span id="dpTotal">1</span></div>
+  <div class="dp-thumbs" id="dpThumbs" role="tablist" aria-label="Slides"></div>
+  <button class="dp-icon-btn dp-thumbs-toggle" id="dpThumbsToggle" type="button" data-i18n-title="deck.thumbs" title="Миниатюры">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="5" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="14" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="14" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+  </button>
+</footer>
+
+<script src="/js/deck-page.js?v=1" defer></script>
+</body>
+</html>

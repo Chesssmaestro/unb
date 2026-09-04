@@ -1,0 +1,265 @@
+/* ==========================================================================
+   Chrome around an HTML deck — decks/<slug>/index.html
+   Only the bar. Everything below it is the deck's own <style>, kept exactly
+   as the deck was authored, so the two never fight over a selector.
+   Colours are literal rather than site variables: the deck pages do not load
+   css/style.css, and their own :root redefines names like --ink.
+   ========================================================================== */
+
+.dp-bar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:10px 20px;
+  margin:-28px -16px 22px;   /* out of the deck's body padding, edge to edge */
+  background:#10171B;
+  color:rgba(245,246,244,0.72);
+  font-family:"IBM Plex Mono","Segoe UI",Roboto,Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  min-height:52px;
+}
+
+.dp-bar a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.dp-back{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  margin-left:-12px;
+  border-radius:2px;
+  white-space:nowrap;
+  transition:color .18s ease, background .18s ease;
+}
+.dp-back:hover{color:#FFFFFF;background:rgba(245,246,244,0.08);}
+
+.dp-title{
+  flex:1;
+  min-width:0;
+  text-align:center;
+  color:#F5F6F4;
+  font-weight:600;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.dp-langs{
+  display:flex;
+  gap:2px;
+  flex:none;
+}
+
+.dp-langs a{
+  padding:7px 10px;
+  border:1px solid transparent;
+  border-radius:2px;
+  transition:color .18s ease, background .18s ease, border-color .18s ease;
+}
+.dp-langs a:hover{color:#FFFFFF;background:rgba(245,246,244,0.08);}
+.dp-langs a.is-active{
+  color:#10171B;
+  background:#F5F6F4;
+  border-color:#F5F6F4;
+}
+
+.dp-icon-btn{
+  flex:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  padding:0;
+  border:1px solid rgba(245,246,244,0.18);
+  border-radius:2px;
+  background:none;
+  color:inherit;
+  cursor:pointer;
+  transition:color .18s ease, background .18s ease, border-color .18s ease;
+}
+.dp-icon-btn svg{width:18px;height:18px;}
+.dp-icon-btn:hover{color:#FFFFFF;background:rgba(245,246,244,0.08);border-color:rgba(245,246,244,0.4);}
+
+/* ==========================================================================
+   Листалка
+   Без JS страница остаётся обычной: слайды идут подряд и просто листаются
+   прокруткой. Скрипт вешает на <body> класс dp-on, и та же разметка
+   превращается в просмотрщик — по одному слайду, как в deck.html.
+   ========================================================================== */
+
+.dp-on{
+  height:100vh;
+  height:100dvh;
+  overflow:hidden;
+  overscroll-behavior:none;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  background:#10171B;
+}
+
+.dp-on .dp-bar{margin:0;}
+
+/* Сцена. container-type:size — чтобы слайд считался от её высоты: он всегда
+   16:9, и по высоте экрана его нужно ужимать не меньше, чем по ширине.
+   width и margin здесь обязательны: в вёрстке презентации у .deck стоит
+   `margin:0 auto`, а автополя отменяют растягивание флекс-элемента — вместе
+   с size-контейнером ширина сцены схлопывалась в ноль вместе со слайдом. */
+.dp-on .deck{
+  flex:1;
+  min-height:0;
+  width:100%;
+  max-width:none;
+  margin:0;
+  gap:0;
+  padding:14px 54px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  container-type:size;
+}
+
+.dp-on .slide{
+  display:none;
+  width:min(100cqw, calc(100cqh * 16 / 9));
+  max-width:1280px;
+  flex:none;
+}
+
+.dp-on .slide.is-current{display:block;animation:dp-fade .16s ease;}
+
+@keyframes dp-fade{from{opacity:.35;}to{opacity:1;}}
+
+/* ---------- Стрелки ---------- */
+
+.dp-nav{
+  position:fixed;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:9;
+  width:40px;
+  height:64px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(245,246,244,0.18);
+  border-radius:2px;
+  background:rgba(16,23,27,0.72);
+  color:rgba(245,246,244,0.72);
+  cursor:pointer;
+  transition:border-color .18s ease, color .18s ease, background .18s ease, opacity .18s ease;
+}
+.dp-nav svg{width:22px;height:22px;}
+.dp-nav:hover{color:#FFFFFF;border-color:rgba(245,246,244,0.4);}
+.dp-nav:disabled{opacity:.22;cursor:default;}
+.dp-nav--prev{left:8px;}
+.dp-nav--next{right:8px;}
+
+/* ---------- Прогресс и низ ---------- */
+
+.dp-progress{
+  flex:none;
+  height:2px;
+  background:rgba(245,246,244,0.12);
+}
+.dp-progress span{
+  display:block;
+  height:100%;
+  width:0;
+  background:#F5F6F4;
+  transition:width .22s ease;
+}
+
+.dp-foot{
+  flex:none;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:8px 20px;
+  min-height:52px;
+  color:rgba(245,246,244,0.72);
+  font-family:"IBM Plex Mono","Segoe UI",Roboto,Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:0.08em;
+}
+
+.dp-counter{flex:none;}
+.dp-counter-sep{opacity:.4;margin:0 3px;}
+
+.dp-thumbs{
+  flex:1;
+  min-width:0;
+  display:none;
+  gap:6px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:thin;
+}
+.dp-thumbs.is-open{display:flex;}
+
+.dp-thumb{
+  flex:none;
+  width:96px;
+  padding:0;
+  border:1px solid transparent;
+  border-radius:2px;
+  background:none;
+  cursor:pointer;
+  opacity:.55;
+  overflow:hidden;
+  transition:opacity .18s ease, border-color .18s ease;
+}
+.dp-thumb:hover{opacity:.85;}
+.dp-thumb.is-active{opacity:1;border-color:#F5F6F4;}
+
+/* Миниатюра — тот же слайд целиком: он свёрстан в cqw, поэтому в узкой
+   коробке сам собирается в уменьшенную копию. Клик по нему ловит кнопка. */
+.dp-on .dp-thumb .slide{
+  display:block;
+  width:100%;
+  max-width:none;
+  pointer-events:none;
+  box-shadow:none;
+  border-radius:0;
+}
+.dp-on .dp-thumb .num{display:none;}
+
+.dp-thumbs-toggle{margin-left:auto;}
+
+@media (max-width:640px){
+  .dp-bar{
+    padding:8px 12px;
+    margin:-28px -16px 16px;
+    gap:8px;
+  }
+  .dp-title{display:none;}
+  .dp-langs a{padding:7px 8px;}
+
+  .dp-on .deck{padding:10px 12px;}
+  /* На телефоне стрелки закрывают слайд — листается свайпом и миниатюрами. */
+  .dp-nav{display:none;}
+  .dp-foot{padding:8px 12px;gap:10px;}
+  .dp-thumb{width:72px;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .dp-on .slide.is-current{animation:none;}
+  .dp-progress span{transition:none;}
+}
+
+/* На печать уходит вся презентация, а не текущий слайд. */
+@media print{
+  .dp-bar,.dp-nav,.dp-foot,.dp-progress{display:none;}
+  .dp-on{height:auto;overflow:visible;display:block;background:#fff;}
+  .dp-on .deck{display:block;padding:0;container-type:normal;}
+  .dp-on .slide{display:block;width:100%;max-width:none;}
+}

@@ -34,56 +34,68 @@ const DECKS_INDEX = {
   },
   "power": {
     "ru": {
-      "pages": 16,
-      "title": "ЛЭП — интеллектуальная инспекция"
+      "pages": 15,
+      "title": "От инспекции к управлению ЛЭП — UNB Group",
+      "page": "/decks/power/"
     },
     "en": {
-      "pages": 16,
-      "title": "Power lines — intelligent inspection"
+      "pages": 15,
+      "title": "From inspection to power line management — UNB Group",
+      "page": "/en/decks/power/"
     },
     "uz": {
-      "pages": 16,
-      "title": "EUT — intellektual inspeksiya"
+      "pages": 15,
+      "title": "Inspeksiyadan elektr uzatish liniyalarini boshqarishga — UNB Group",
+      "page": "/uz/decks/power/"
     },
     "ch": {
       "pages": 15,
-      "title": "输电线路 — 智能巡检"
+      "title": "从巡检到输电线路管理 — UNB Group",
+      "page": "/zh/decks/power/"
     }
   },
   "city": {
     "ru": {
-      "pages": 11,
-      "title": "Смарт-сити — цифровой двойник города"
+      "pages": 10,
+      "title": "Интеллектуальная платформа Smart City — UNB Group",
+      "page": "/decks/city/"
     },
     "en": {
-      "pages": 11,
-      "title": "Smart city — digital twin"
+      "pages": 10,
+      "title": "Smart City monitoring and management platform — UNB Group",
+      "page": "/en/decks/city/"
     },
     "uz": {
-      "pages": 11,
-      "title": "Aqlli shahar — raqamli egizak"
+      "pages": 10,
+      "title": "Smart City monitoring va boshqaruv platformasi — UNB Group",
+      "page": "/uz/decks/city/"
     },
     "ch": {
-      "pages": 11,
-      "title": "智慧城市 — 城市数字孪生"
+      "pages": 10,
+      "title": "智慧城市监测与管理平台 — UNB Group",
+      "page": "/zh/decks/city/"
     }
   },
   "roads": {
     "ru": {
-      "pages": 17,
-      "title": "Дороги — AI-аналитика дорожной сети"
+      "pages": 16,
+      "title": "Интеллектуальные решения для инспекции дорог — UNB Group",
+      "page": "/decks/roads/"
     },
     "en": {
-      "pages": 15,
-      "title": "Roads — AI road-network analytics"
+      "pages": 16,
+      "title": "Intelligent road inspection solutions — UNB Group",
+      "page": "/en/decks/roads/"
     },
     "uz": {
-      "pages": 15,
-      "title": "Yo'llar — yo'l tarmog'ining AI-tahlili"
+      "pages": 16,
+      "title": "Yo'llarni inspeksiya qilishning intellektual yechimlari — UNB Group",
+      "page": "/uz/decks/roads/"
     },
     "ch": {
-      "pages": 15,
-      "title": "道路 — 道路网AI分析"
+      "pages": 16,
+      "title": "道路巡检智能解决方案 — UNB Group",
+      "page": "/zh/decks/roads/"
     }
   },
   "construction": {
@@ -102,6 +114,72 @@ const DECKS_INDEX = {
     "ch": {
       "pages": 10,
       "title": "建筑工地 — 数字化施工管控"
+    }
+  },
+  "mapping": {
+    "ru": {
+      "pages": 7,
+      "title": "Современная картография: цифровой двойник объекта — UNB Group",
+      "page": "/decks/mapping/"
+    },
+    "en": {
+      "pages": 7,
+      "title": "Modern mapping: a digital twin of your site — UNB Group",
+      "page": "/en/decks/mapping/"
+    },
+    "uz": {
+      "pages": 7,
+      "title": "Zamonaviy kartografiya: obyektingizning raqamli egizagi — UNB Group",
+      "page": "/uz/decks/mapping/"
+    },
+    "ch": {
+      "pages": 7,
+      "title": "现代测绘：您的项目数字孪生 — UNB Group",
+      "page": "/zh/decks/mapping/"
+    }
+  },
+  "farming": {
+    "ru": {
+      "pages": 7,
+      "title": "Smart Farming: цифровой двойник агробизнеса — UNB Group",
+      "page": "/decks/farming/"
+    },
+    "en": {
+      "pages": 7,
+      "title": "Smart Farming: a digital twin of your agribusiness — UNB Group",
+      "page": "/en/decks/farming/"
+    },
+    "uz": {
+      "pages": 7,
+      "title": "Smart Farming: agrobiznesingizning raqamli egizagi — UNB Group",
+      "page": "/uz/decks/farming/"
+    },
+    "ch": {
+      "pages": 7,
+      "title": "智慧农业：您的农业数字孪生 — UNB Group",
+      "page": "/zh/decks/farming/"
+    }
+  },
+  "hardware": {
+    "ru": {
+      "pages": 7,
+      "title": "Комплексные поставки БПЛА и энергооборудования — UNB Group",
+      "page": "/decks/hardware/"
+    },
+    "en": {
+      "pages": 7,
+      "title": "Turnkey supply of industrial drones and power equipment — UNB Group",
+      "page": "/en/decks/hardware/"
+    },
+    "uz": {
+      "pages": 7,
+      "title": "Sanoat BPLA va energiya uskunalarini kompleks yetkazib berish — UNB Group",
+      "page": "/uz/decks/hardware/"
+    },
+    "ch": {
+      "pages": 7,
+      "title": "工业无人机与能源设备一体化供应 — UNB Group",
+      "page": "/zh/decks/hardware/"
     }
   }
 };

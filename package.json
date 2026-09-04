@@ -5,9 +5,10 @@
   "description": "unbgroup.uz — static site. Node is only used to build the HTML decks from the source PDFs.",
   "type": "module",
   "scripts": {
-    "build": "npm run build:pages && npm run build:sitemap",
+    "build": "npm run build:pages && npm run build:deck-pages && npm run build:sitemap",
     "build:decks": "node tools/build-decks.mjs",
     "build:pages": "node tools/build-pages.mjs",
+    "build:deck-pages": "node tools/build-deck-pages.mjs",
     "build:sitemap": "node tools/build-sitemap.mjs"
   },
   "devDependencies": {

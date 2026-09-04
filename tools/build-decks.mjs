@@ -11,6 +11,7 @@
  * Usage:  node tools/build-decks.mjs [slug-lang ...]
  *         node tools/build-decks.mjs            # everything
  *         node tools/build-decks.mjs solar-ru   # one deck
+ *         node tools/build-decks.mjs --index    # only rewrite the index
  *
  * Requires: npm i mupdf sharp   (dev-only, not shipped to the site)
  */
@@ -36,7 +37,16 @@ const WIDTHS = [
 const RENDER_WIDTH = 1600;
 
 const LANGS = ['ru', 'en', 'uz', 'ch'];
-const PRODUCTS = ['solar', 'power', 'city', 'roads', 'construction'];
+const PRODUCTS = ['solar', 'construction'];
+
+// Презентации, свёрстанные страницами, а не отрендеренные из PDF: они лежат в
+// decks/<slug>/ и собираются tools/build-deck-pages.mjs. Рендерить тут нечего,
+// но в индекс они попасть должны — по нему карточки направлений и sitemap
+// узнают, что презентация есть и по какому адресу открывается.
+const PAGE_DECKS = ['city', 'power', 'roads', 'hardware', 'mapping', 'farming'];
+
+// Каталог языковой версии сайта; русская лежит в корне.
+const DIRS = { ru: '', en: 'en', uz: 'uz', ch: 'zh' };
 
 // slug -> where the source PDF lives, per language
 function sourcePdf(slug, lang) {
@@ -184,14 +194,47 @@ async function buildDeck(slug, lang) {
   return deck;
 }
 
+/**
+ * Запись индекса для презентации-страницы: сколько слайдов и по какому адресу
+ * она открывается на каждом языке. Слайды тут не рендерятся, поэтому число
+ * берём из самой разметки, а названия — из её словаря.
+ */
+function pageDeckEntry(slug) {
+  const dir = path.join(ROOT, 'decks', slug);
+  const html = fs.readFileSync(path.join(dir, 'index.html'), 'utf8');
+  const pages = (html.match(/<section[^>]*class="[^"]*\bslide\b/g) || []).length;
+
+  const src = fs.readFileSync(path.join(dir, 'i18n.js'), 'utf8');
+  const m = src.match(/const DECK_I18N\s*=\s*(\{[\s\S]*\});\s*$/);
+  if (!m) throw new Error(`Не разобрать decks/${slug}/i18n.js`);
+  const dict = new Function('return ' + m[1])();
+
+  const entry = {};
+  for (const lang of LANGS) {
+    if (!dict[lang]) continue;
+    entry[lang] = {
+      pages,
+      title: dict[lang]['meta.title'],
+      page: `/${DIRS[lang] ? DIRS[lang] + '/' : ''}decks/${slug}/`,
+    };
+  }
+  return entry;
+}
+
 async function main() {
-  const only = process.argv.slice(2);
+  const args = process.argv.slice(2);
+  // --index: ничего не рендерить, только пересобрать js/decks-index.js.
+  // Нужен, когда меняется презентация-страница: рендерить ради неё PDF
+  // остальных презентаций — полчаса работы впустую.
+  const indexOnly = args.includes('--index');
+  const only = args.filter((a) => a !== '--index');
   fs.mkdirSync(OUT, { recursive: true });
 
   const index = {};
   const wanted = [];
   for (const slug of ['group', ...PRODUCTS]) {
     for (const lang of LANGS) {
+      if (indexOnly) continue;
       if (only.length && !only.includes(`${slug}-${lang}`)) continue;
       wanted.push([slug, lang]);
     }
@@ -206,7 +249,7 @@ async function main() {
   // Merge with anything already built, so a single-deck rebuild does not
   // wipe the availability map for the other decks.
   const indexFile = path.join(ROOT, 'js', 'decks-index.js');
-  if (only.length && fs.existsSync(indexFile)) {
+  if ((only.length || indexOnly) && fs.existsSync(indexFile)) {
     const prev = fs.readFileSync(indexFile, 'utf8').match(/=\s*(\{[\s\S]*\});/);
     if (prev) {
       const old = JSON.parse(prev[1]);
@@ -216,8 +259,15 @@ async function main() {
     }
   }
 
+  // Презентации-страницы в индекс попадают всегда: рендерить их не нужно, а
+  // без записи о них карточки направлений остались бы без ссылки.
+  for (const slug of PAGE_DECKS) index[slug] = pageDeckEntry(slug);
+
+  // Порядок направлений на главной, чтобы индекс читался как список сайта.
+  const ORDER = ['group', 'solar', 'power', 'city', 'roads', 'construction', 'mapping', 'farming', 'hardware'];
   const ordered = {};
-  for (const slug of ['group', ...PRODUCTS]) if (index[slug]) ordered[slug] = index[slug];
+  for (const slug of ORDER) if (index[slug]) ordered[slug] = index[slug];
+  for (const slug of Object.keys(index)) if (!ordered[slug]) ordered[slug] = index[slug];
 
   fs.writeFileSync(
     indexFile,

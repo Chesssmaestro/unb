@@ -26,8 +26,12 @@
 
   // От корня, а не относительный: языковые копии лежат в /en/, /uz/, /zh/,
   // и относительный путь увёл бы на несуществующий /en/deck.html.
+  //
+  // Часть презентаций свёрстана отдельными страницами (decks/<slug>/) —
+  // у них в индексе записан свой адрес, остальные листает deck.html.
   function deckUrl(slug, lang){
-    return `/deck.html?d=${slug}&l=${lang}`;
+    const deck = DECKS[slug] && DECKS[slug][lang];
+    return (deck && deck.page) || `/deck.html?d=${slug}&l=${lang}`;
   }
 
   // Cards double as real links so they can be opened in a new tab, bookmarked

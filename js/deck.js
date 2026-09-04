@@ -235,6 +235,15 @@
       showMissing();
       return;
     }
+    // Презентация, свёрстанная отдельной страницей: листать тут нечего, но
+    // старые ссылки вида deck.html?d=city до сих пор ходят из поиска и
+    // переписок — уводим их на новый адрес, а не на «скоро будет доступна».
+    var entry = DECKS_INDEX[nextSlug] && DECKS_INDEX[nextSlug][resolved];
+    if (entry && entry.page) {
+      window.location.replace(entry.page);
+      return;
+    }
+
     var key = nextSlug + '-' + resolved;
     if (loaded[key]) {
       show(loaded[key]);
