@@ -16,20 +16,24 @@ const DECKS_INDEX = {
   },
   "solar": {
     "ru": {
-      "pages": 15,
-      "title": "Солнечные станции — AI-инспекция"
+      "pages": 13,
+      "title": "Интеллектуальные решения для солнечной энергетики — UNB Group",
+      "page": "/decks/solar/"
     },
     "en": {
-      "pages": 15,
-      "title": "Solar plants — AI inspection"
+      "pages": 13,
+      "title": "Intelligent solutions for solar power — UNB Group",
+      "page": "/en/decks/solar/"
     },
     "uz": {
-      "pages": 15,
-      "title": "Quyosh stansiyalari — AI-inspeksiya"
+      "pages": 13,
+      "title": "Quyosh energetikasi uchun intellektual yechimlar — UNB Group",
+      "page": "/uz/decks/solar/"
     },
     "ch": {
-      "pages": 14,
-      "title": "太阳能电站 — AI巡检"
+      "pages": 13,
+      "title": "光伏电站智能解决方案 — UNB Group",
+      "page": "/zh/decks/solar/"
     }
   },
   "power": {
@@ -101,19 +105,23 @@ const DECKS_INDEX = {
   "construction": {
     "ru": {
       "pages": 10,
-      "title": "Стройка — цифровой контроль строительства"
+      "title": "Автономный мониторинг строительной площадки — UNB Group",
+      "page": "/decks/construction/"
     },
     "en": {
       "pages": 10,
-      "title": "Construction — digital site control"
+      "title": "Autonomous construction site monitoring — UNB Group",
+      "page": "/en/decks/construction/"
     },
     "uz": {
       "pages": 10,
-      "title": "Qurilish — raqamli nazorat"
+      "title": "Qurilish maydonchasining avtonom monitoringi — UNB Group",
+      "page": "/uz/decks/construction/"
     },
     "ch": {
       "pages": 10,
-      "title": "建筑工地 — 数字化施工管控"
+      "title": "施工现场自主监测 — UNB Group",
+      "page": "/zh/decks/construction/"
     }
   },
   "mapping": {
@@ -158,6 +166,28 @@ const DECKS_INDEX = {
       "pages": 7,
       "title": "智慧农业：您的农业数字孪生 — UNB Group",
       "page": "/zh/decks/farming/"
+    }
+  },
+  "delivery": {
+    "ru": {
+      "pages": 8,
+      "title": "Drone Delivery: автономная доставка грузов — UNB Group",
+      "page": "/decks/delivery/"
+    },
+    "en": {
+      "pages": 8,
+      "title": "Drone Delivery: autonomous cargo delivery — UNB Group",
+      "page": "/en/decks/delivery/"
+    },
+    "uz": {
+      "pages": 8,
+      "title": "Drone Delivery: yuklarni avtonom yetkazib berish — UNB Group",
+      "page": "/uz/decks/delivery/"
+    },
+    "ch": {
+      "pages": 8,
+      "title": "无人机运输：货物自主配送 — UNB Group",
+      "page": "/zh/decks/delivery/"
     }
   },
   "hardware": {

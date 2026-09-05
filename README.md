@@ -37,8 +37,8 @@ tools/check-marks.mjs        проверка собранных слайдов 
 
 | Презентация | Откуда | Адрес |
 | --- | --- | --- |
-| `group`, `solar`, `construction` | отрендерены из PDF | `deck.html?d=solar&l=ru` |
-| `city`, `power`, `roads`, `hardware`, `mapping`, `farming` | свёрстаны как страницы | `/decks/city/`, `/en/decks/city/` |
+| `group` | отрендерена из PDF | `deck.html?d=group&l=ru` |
+| `city`, `power`, `roads`, `hardware`, `mapping`, `farming`, `solar`, `construction` | свёрстаны как страницы | `/decks/city/`, `/en/decks/city/` |
 
 Что где лежит, знает `js/decks-index.js`: у презентаций-страниц там записан
 свой адрес полем `page`, у остальных его нет, и ссылка ведёт в просмотрщик.
@@ -64,7 +64,7 @@ tools/check-marks.mjs        проверка собранных слайдов 
 
 ### Свёрстанные страницами
 
-`city`, `power`, `roads`, `hardware`, `mapping` и `farming` пришли не PDF, а вёрсткой: слайды
+Все продуктовые презентации пришли не PDF, а вёрсткой: слайды
 16:9 идут подряд одной страницей, размеры внутри слайда заданы в `cqw`, поэтому
 он масштабируется целиком. Рендерить нечего — страница и есть презентация.
 
@@ -168,7 +168,7 @@ UNB проверяется глазами по нему. Для Drone Service л
 ```bash
 npm install                            # один раз: mupdf + sharp
 npm run build:decks                    # все презентации
-node tools/build-decks.mjs solar-ru    # только одна
+node tools/build-decks.mjs group-ru    # только одна
 ```
 
 Сборщик сам обновляет `js/decks-index.js`, поэтому список доступных
@@ -180,7 +180,7 @@ node tools/build-decks.mjs solar-ru    # только одна
 | PDF | Презентация |
 | --- | --- |
 | `assets/presentations/UNB_Group_RU.pdf` | `deck.html?d=group&l=ru` |
-| `assets/presentations/products/solar-ru.pdf` | `deck.html?d=solar&l=ru` |
+| `assets/presentations/products/<slug>-ru.pdf` | `deck.html?d=<slug>&l=ru` |
 
 Языки: `ru`, `en`, `uz`, `ch`. Если презентации на выбранном языке нет,
 показывается русская версия, а интерфейс остаётся на языке посетителя.

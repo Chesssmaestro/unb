@@ -37,13 +37,17 @@ const WIDTHS = [
 const RENDER_WIDTH = 1600;
 
 const LANGS = ['ru', 'en', 'uz', 'ch'];
-const PRODUCTS = ['solar', 'construction'];
+// Из PDF рендерится только корпоративная презентация: все продуктовые
+// свёрстаны страницами (см. PAGE_DECKS).
+const PRODUCTS = [];
 
 // Презентации, свёрстанные страницами, а не отрендеренные из PDF: они лежат в
 // decks/<slug>/ и собираются tools/build-deck-pages.mjs. Рендерить тут нечего,
 // но в индекс они попасть должны — по нему карточки направлений и sitemap
 // узнают, что презентация есть и по какому адресу открывается.
-const PAGE_DECKS = ['city', 'power', 'roads', 'hardware', 'mapping', 'farming'];
+const PAGE_DECKS = [
+  'city', 'power', 'roads', 'hardware', 'mapping', 'farming', 'solar', 'construction', 'delivery',
+];
 
 // Каталог языковой версии сайта; русская лежит в корне.
 const DIRS = { ru: '', en: 'en', uz: 'uz', ch: 'zh' };
@@ -264,7 +268,10 @@ async function main() {
   for (const slug of PAGE_DECKS) index[slug] = pageDeckEntry(slug);
 
   // Порядок направлений на главной, чтобы индекс читался как список сайта.
-  const ORDER = ['group', 'solar', 'power', 'city', 'roads', 'construction', 'mapping', 'farming', 'hardware'];
+  const ORDER = [
+    'group', 'solar', 'power', 'city', 'roads', 'construction',
+    'mapping', 'farming', 'delivery', 'hardware',
+  ];
   const ordered = {};
   for (const slug of ORDER) if (index[slug]) ordered[slug] = index[slug];
   for (const slug of Object.keys(index)) if (!ordered[slug]) ordered[slug] = index[slug];

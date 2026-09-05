@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Автономный мониторинг строительной площадки — UNB Group</title>
+<meta name="description" content="Презентация UNB Group: цифровой контроль строительства — облёты БПЛА, сканирование закрытых зон, сопоставление с BIM, расчёт объёмов и оперативная сводка по готовности объекта.">
+<link rel="canonical" href="https://unbgroup.uz/decks/construction/">
+<link rel="alternate" hreflang="ru" href="https://unbgroup.uz/decks/construction/">
+<link rel="alternate" hreflang="en" href="https://unbgroup.uz/en/decks/construction/">
+<link rel="alternate" hreflang="uz" href="https://unbgroup.uz/uz/decks/construction/">
+<link rel="alternate" hreflang="zh" href="https://unbgroup.uz/zh/decks/construction/">
+<link rel="alternate" hreflang="x-default" href="https://unbgroup.uz/decks/construction/">
+<link rel="icon" href="/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/deck-page.css?v=1">
+<style>
+/* Оформление то же, что у decks/farming/ и decks/solar/: палитра и шрифты
+   сайта заложены сразу, поэтому css/deck-theme.css не подключается. Размеры —
+   в cqw: слайд остаётся 16:9, из него же собирается миниатюра листалки. */
+:root{
+  --paper:#F5F6F4;
+  --paper-2:#EDEFEB;
+  --ink:#10171B;
+  --ink-soft:#4A5459;
+  --blueprint:#123C55;
+  --blueprint-2:#1B4E6E;
+  --signal:#2FA8A0;
+  --accent:#FF6B2C;
+  --line:rgba(16,23,27,.17);
+  --line-soft:rgba(16,23,27,.09);
+  --grid:rgba(18,60,85,.05);
+
+  /* В Space Grotesk нет кириллицы: стек тот же, что в css/style.css, чтобы
+     русские заголовки падали на тот же системный шрифт, что на сайте. */
+  --font-display:'Space Grotesk',sans-serif;
+  --font-body:'IBM Plex Sans',sans-serif;
+  --font-mono:'IBM Plex Mono',monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;min-width:0}
+body{
+  background:var(--paper-2);color:var(--ink);
+  font-family:var(--font-body);line-height:1.45;
+  -webkit-font-smoothing:antialiased;padding:28px 16px 60px;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+
+/* ---------- каркас слайда ---------- */
+.deck{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
+.slide{
+  position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;
+  background-color:#FFFFFF;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:40px 40px;
+  border:1px solid #D7DBD8;border-radius:6px;
+  box-shadow:0 2px 16px rgba(16,23,27,.07);
+  container-type:inline-size;
+}
+.pad{position:absolute;inset:0;padding:3.6cqw 4cqw 4.4cqw;display:flex;flex-direction:column;justify-content:center}
+
+/* приводочные метки по углам */
+.slide::before,.slide::after{
+  content:"";position:absolute;width:2.4cqw;height:2.4cqw;pointer-events:none;
+  border:1px solid var(--line);
+}
+.slide::before{top:1.5cqw;left:1.5cqw;border-right:0;border-bottom:0}
+.slide::after{bottom:1.5cqw;right:1.5cqw;border-left:0;border-top:0}
+
+.pager{
+  position:absolute;left:4cqw;bottom:1.6cqw;
+  font-family:var(--font-mono);font-size:.95cqw;letter-spacing:.1em;color:var(--ink-soft);
+}
+
+/* ---------- типографика ---------- */
+.kicker{display:flex;align-items:center;gap:1cqw;margin-bottom:1.4cqw}
+.kicker::after{content:"";flex:1;height:1px;background:var(--line)}
+.kicker span{
+  font-family:var(--font-mono);font-size:.95cqw;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--blueprint);white-space:nowrap;
+}
+h1{font-family:var(--font-display);font-weight:600;font-size:3.4cqw;line-height:1.06;letter-spacing:-.01em;text-wrap:balance}
+h2{font-family:var(--font-display);font-weight:600;font-size:2.6cqw;line-height:1.1;letter-spacing:-.01em}
+h3{font-family:var(--font-display);font-weight:600;font-size:1.3cqw;line-height:1.2;letter-spacing:-.01em}
+p{font-size:1.2cqw}
+.lead{font-size:1.15cqw;line-height:1.5;margin-top:1cqw;max-width:96ch}
+
+/* ---------- фото ---------- */
+.shot{position:relative;overflow:hidden;background:var(--paper-2);border-radius:3px}
+.shot img{width:100%;height:100%;object-fit:cover}
+.frame{position:relative;padding:.8cqw}
+.frame::before,.frame::after{
+  content:"";position:absolute;width:1.8cqw;height:1.8cqw;border:1px solid var(--ink);pointer-events:none;
+}
+.frame::before{left:0;top:0;border-right:0;border-bottom:0}
+.frame::after{right:0;bottom:0;border-left:0;border-top:0}
+.hud{
+  position:absolute;top:.8cqw;right:1cqw;
+  font-family:var(--font-mono);font-size:.66cqw;letter-spacing:.08em;
+  color:#fff;text-align:right;line-height:1.7;text-shadow:0 1px 6px rgba(0,0,0,.75);
+}
+
+/* ---------- элементы ---------- */
+.badge{
+  display:inline-block;border:1px solid var(--accent);border-radius:4px;
+  padding:.9cqw 1.4cqw;font-weight:600;font-size:1.2cqw;line-height:1.3;color:var(--ink);
+}
+.bars{display:grid;grid-template-columns:1fr 1fr;gap:1.2cqw;margin-top:1.6cqw}
+.bar{
+  background:var(--blueprint);color:var(--paper);border-radius:4px;
+  padding:.9cqw 1.2cqw;font-weight:600;font-size:1.1cqw;text-align:center;line-height:1.3;
+}
+.bar.alt{background:var(--blueprint-2)}
+
+.list{display:grid;gap:1cqw;margin:1.6cqw 0 2cqw;max-width:52ch}
+.list li{position:relative;padding-left:2cqw;font-size:1.25cqw;line-height:1.45}
+.list li::before{content:"";position:absolute;left:0;top:.5em;width:.7cqw;height:.7cqw;border:1px solid var(--accent)}
+
+.rows{display:grid;gap:.9cqw}
+.row{
+  border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,.6);
+  padding:.9cqw 1.1cqw;display:grid;grid-template-columns:auto 1fr;gap:1cqw;align-items:start;
+  font-size:1.05cqw;line-height:1.4;
+}
+.row .n{font-family:var(--font-mono);font-size:.9cqw;color:var(--blueprint);letter-spacing:.08em;padding-top:.15em}
+.row b{font-weight:600}
+.row i{font-style:normal;color:var(--accent);font-weight:600}
+
+/* ---------- слайд 1 ---------- */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:3cqw;align-items:center}
+.hero .shot{aspect-ratio:16/10}
+
+/* ---------- слайд 2: четыре этапа ---------- */
+.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2cqw;margin-top:1.6cqw}
+.card{border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,.6);overflow:hidden;display:flex;flex-direction:column}
+.card .shot{aspect-ratio:16/10;border-radius:0}
+.card__body{padding:.9cqw 1cqw 1.1cqw;display:grid;gap:.45cqw}
+.card .n{font-family:var(--font-mono);font-size:.85cqw;letter-spacing:.1em;color:var(--accent);text-transform:uppercase}
+.card h3{color:var(--blueprint)}
+.card p{font-size:.95cqw;line-height:1.4}
+
+/* ---------- слайды с текстом и фото ---------- */
+.split{display:grid;grid-template-columns:1.08fr .92fr;gap:2.4cqw;align-items:center;margin-top:1.2cqw}
+.stack{display:grid;gap:1cqw}
+.stack .shot{aspect-ratio:16/9}
+/* Второй, не окантованный снимок — полосой: вдвоём с кадром в рамке пара
+   16:9 не помещается в высоту слайда. */
+.stack > .shot{aspect-ratio:2.7/1}
+.quad{display:grid;grid-template-columns:1fr 1fr;gap:1cqw}
+
+/* ---------- слайд 5: сравнительная таблица ---------- */
+.tbl{width:100%;border-collapse:collapse;margin-top:1.4cqw;font-size:1.05cqw}
+.tbl th,.tbl td{border:1px solid var(--line);padding:.85cqw 1cqw;text-align:left;vertical-align:top;line-height:1.4}
+.tbl thead th{background:var(--blueprint);color:var(--paper);font-family:var(--font-display);font-weight:600;font-size:1.15cqw}
+.tbl thead th:first-child{background:var(--blueprint-2)}
+.tbl tbody th{width:22%;font-weight:600;background:rgba(255,255,255,.6)}
+.tbl tbody td{background:rgba(255,255,255,.45)}
+.tblshots{display:grid;grid-template-columns:22% 1fr 1fr;gap:0;margin-top:1.4cqw}
+.tblshots .shot{aspect-ratio:16/6;margin:0 .5cqw;border-radius:3px}
+.tblshots .shot:first-of-type{margin-left:0}
+
+/* ---------- слайд 9: готовность объекта ---------- */
+.prog{display:grid;gap:1cqw;margin-top:1.4cqw}
+.prog__row{display:grid;grid-template-columns:1fr auto;gap:1cqw;align-items:center;
+  border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,.6);padding:.85cqw 1.1cqw}
+.prog__row b{font-weight:600;font-size:1.05cqw}
+.prog__row i{font-style:normal;font-family:var(--font-mono);font-size:1.15cqw;color:var(--blueprint);font-weight:600}
+.prog__track{grid-column:1 / -1;height:.55cqw;background:rgba(16,23,27,.09);border-radius:2px;overflow:hidden}
+.prog__track span{display:block;height:100%;background:var(--blueprint)}
+.prog__row--warn i{color:var(--accent)}
+.prog__row--warn .prog__track span{background:var(--accent)}
+.total{display:grid;gap:.6cqw;justify-items:center;align-content:center;
+  border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,.6);padding:1.6cqw}
+.total b{font-family:var(--font-display);font-weight:600;font-size:4.4cqw;line-height:1;color:var(--blueprint);letter-spacing:-.02em}
+.total span{font-size:1.05cqw;color:var(--ink-soft);text-align:center}
+
+/* ---------- слайд 10: цифры ---------- */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2.4cqw;margin-top:1.8cqw}
+.stat b{
+  display:block;font-family:var(--font-display);font-weight:600;
+  font-size:3.8cqw;line-height:.96;letter-spacing:-.02em;color:var(--blueprint);
+}
+.stat .rule{height:2px;width:5cqw;background:var(--accent);margin:.9cqw 0 1cqw}
+.stat p{font-size:1.1cqw;line-height:1.45}
+.stat p b{display:inline;font-family:var(--font-body);font-size:inherit;color:var(--ink);letter-spacing:0}
+.band{margin-top:1.6cqw;height:8cqw}
+.band .shot{height:100%}
+
+@media print{
+  @page{size:1280px 720px;margin:0}
+  body{background:#fff;padding:0}
+  .deck{gap:0;max-width:none}
+  .slide{border:0;border-radius:0;box-shadow:none;break-after:page}
+}
+</style>
+</head>
+<body>
+<header class="dp-bar">
+  <a class="dp-back" href="/">
+    <span aria-hidden="true">←</span>
+    <span data-i18n="deck.back">На сайт</span>
+  </a>
+  <span class="dp-title" data-i18n="meta.short">Стройка</span>
+  <nav class="dp-langs" aria-label="Language">
+      <a href="/decks/construction/" data-lang="ru" class="is-active">RU</a>
+      <a href="/en/decks/construction/" data-lang="en">EN</a>
+      <a href="/uz/decks/construction/" data-lang="uz">UZ</a>
+      <a href="/zh/decks/construction/" data-lang="ch">CH</a>
+  </nav>
+    <button class="dp-icon-btn dp-full" id="dpFull" type="button" data-i18n-title="deck.fullscreen" title="Во весь экран" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+    </button>
+</header>
+
+<div class="deck">
+
+<!-- ═══════ 1 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="hero">
+      <div>
+        <div class="kicker"><span data-i18n="s01.k01">01 / Титул</span></div>
+        <h1 data-i18n="s01.k02">Автономный мониторинг строительной площадки</h1>
+        <ul class="list">
+          <li data-i18n="s01.k03">Единая аналитическая платформа: БПЛА, робототехника, BIM и AI.</li>
+          <li data-i18n="s01.k04">Технический сценарий работы комплекса — от облёта до отчёта о готовности.</li>
+        </ul>
+        <p class="badge" data-i18n="s01.k05">Контроль «план / факт»<br>по цифровой модели</p>
+      </div>
+      <div class="frame">
+        <div class="shot">
+          <img src="foto/01-hero.webp" alt="БПЛА обследует строящееся здание с башенным краном" data-i18n-alt="s01.k06" fetchpriority="high">
+          <div class="hud">SITE SCAN: ACTIVE<br>MODEL: DAILY<br>MODE: AUTO</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">01 / 10</div>
+</section>
+
+<!-- ═══════ 2 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s02.k01">02 / Архитектура</span></div>
+    <h2 data-i18n="s02.k02">Архитектура автономного контроля объекта</h2>
+    <div class="cards4">
+      <div class="card">
+        <div class="shot"><img src="foto/02-uav.webp" alt="БПЛА снимает фасад строящегося здания" data-i18n-alt="s02.k03" loading="lazy"></div>
+        <div class="card__body">
+          <span class="n" data-i18n="s02.k04">Шаг 1</span>
+          <h3 data-i18n="s02.k05">Сбор макро-данных</h3>
+          <p data-i18n="s02.k06">Облёт БПЛА по заранее сформированным маршрутам.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="shot"><img src="foto/02-robot.webp" alt="Дрон сканирует пространство внутри бетонных конструкций" data-i18n-alt="s02.k07" loading="lazy"></div>
+        <div class="card__body">
+          <span class="n" data-i18n="s02.k08">Шаг 2</span>
+          <h3 data-i18n="s02.k09">Микро-инспекция</h3>
+          <p data-i18n="s02.k10">Сканирование закрытых зон и внутренних помещений.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="shot"><img src="foto/02-bim.webp" alt="Трёхмерная модель зданий с маршрутом съёмки" data-i18n-alt="s02.k11" loading="lazy"></div>
+        <div class="card__body">
+          <span class="n" data-i18n="s02.k12">Шаг 3</span>
+          <h3 data-i18n="s02.k13">Цифровой двойник</h3>
+          <p data-i18n="s02.k14">Интеграция полученных данных с BIM и CAD.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="shot"><img src="foto/02-ai.webp" alt="Интерфейс с автоматическим разбором снимков объекта" data-i18n-alt="s02.k15" loading="lazy"></div>
+        <div class="card__body">
+          <span class="n" data-i18n="s02.k16">Шаг 4</span>
+          <h3 data-i18n="s02.k17">ИИ-аналитика</h3>
+          <p data-i18n="s02.k18">Распознавание объектов и формирование отчётов.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">02 / 10</div>
+</section>
+
+<!-- ═══════ 3 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s03.k01">03 / Этап 1</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s03.k02">Воздушное обследование формирует цифровой слепок объекта</h2>
+        <p class="lead" data-i18n="s03.k03">Автоматический облёт БПЛА по заранее сформированным маршрутам непрерывно создаёт актуальную копию площадки.</p>
+        <div class="rows" style="margin-top:1.2cqw">
+          <div class="row"><span class="n">01</span><span data-i18n="s03.k04"><b>Фотограмметрическая съёмка</b> и ортофотоплан площадки.</span></div>
+          <div class="row"><span class="n">02</span><span data-i18n="s03.k05"><b>Построение актуальной 3D-модели</b> объекта на каждый облёт.</span></div>
+          <div class="row"><span class="n">03</span><span data-i18n="s03.k06"><b>Контроль техники и персонала</b> на территории стройплощадки.</span></div>
+          <div class="row"><span class="n">04</span><span data-i18n="s03.k07"><b>Облачная передача данных</b> в реальном времени.</span></div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="frame">
+          <div class="shot">
+            <img src="foto/03-site.webp" alt="Строительная площадка с башенными кранами с воздуха" data-i18n-alt="s03.k08" loading="lazy">
+          </div>
+        </div>
+        <div class="shot"><img src="foto/03-ortho.webp" alt="Ортофотоплан площадки на экране ноутбука" data-i18n-alt="s03.k09" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">03 / 10</div>
+</section>
+
+<!-- ═══════ 4 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s04.k01">04 / Этап 2</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s04.k02">Роботизированная инспекция закрытых зон и скрытых работ</h2>
+        <p class="lead" data-i18n="s04.k03">После завершения облёта платформа выполняет глубокое сканирование помещений с использованием LiDAR, HD-камер и алгоритмов автономного позиционирования.</p>
+        <ul class="list" style="margin:1.2cqw 0 0">
+          <li data-i18n="s04.k04">Контроль качества скрытых работ.</li>
+          <li data-i18n="s04.k05">Учёт строительных материалов на складах.</li>
+          <li data-i18n="s04.k06">Выявление отклонений от чертежей.</li>
+          <li data-i18n="s04.k07">Автономная навигация внутри здания.</li>
+        </ul>
+      </div>
+      <div class="stack">
+        <div class="frame">
+          <div class="shot">
+            <img src="foto/04-indoor.webp" alt="Аппарат обследует перекрытия внутри строящегося здания" data-i18n-alt="s04.k08" loading="lazy">
+          </div>
+        </div>
+        <div class="shot"><img src="foto/04-cloud.webp" alt="Облако точек LiDAR-сканирования конструкции" data-i18n-alt="s04.k09" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">04 / 10</div>
+</section>
+
+<!-- ═══════ 5 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s05.k01">05 / Покрытие</span></div>
+    <h2 data-i18n="s05.k02">Комплексное покрытие достигается за счёт синергии макро- и микро-сканирования</h2>
+    <div class="tblshots">
+      <div></div>
+      <div class="shot"><img src="foto/05-air.webp" alt="Панорама стройплощадки, снятая с воздуха" data-i18n-alt="s05.k03" loading="lazy"></div>
+      <div class="shot"><img src="foto/05-ground.webp" alt="Аппарат обследует фасад здания вблизи" data-i18n-alt="s05.k04" loading="lazy"></div>
+    </div>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th data-i18n="s05.k05">Параметр</th>
+          <th data-i18n="s05.k06">Воздушный сканер (БПЛА)</th>
+          <th data-i18n="s05.k07">Наземный сканер (робот)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th data-i18n="s05.k08">Зона покрытия</th>
+          <td data-i18n="s05.k09">Внешний контур и генплан</td>
+          <td data-i18n="s05.k10">Внутренние помещения и этажи</td>
+        </tr>
+        <tr>
+          <th data-i18n="s05.k11">Тип собираемых данных</th>
+          <td data-i18n="s05.k12">Ортофотоплан, 3D-каркас</td>
+          <td data-i18n="s05.k13">Точечные LiDAR-сканы, HD-фото узлов</td>
+        </tr>
+        <tr>
+          <th data-i18n="s05.k14">Ключевая задача</th>
+          <td data-i18n="s05.k15">Контроль объёмов и логистики</td>
+          <td data-i18n="s05.k16">Контроль качества и дефектовка</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pager">05 / 10</div>
+</section>
+
+<!-- ═══════ 6 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s06.k01">06 / Этап 3</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s06.k02">Сопоставление физической реальности с проектной BIM-моделью</h2>
+        <p class="lead" data-i18n="s06.k03">Полученные фактические данные автоматически накладываются на CAD-чертежи и план производства работ.</p>
+        <div class="quad" style="margin-top:1.2cqw">
+          <div class="row"><span class="n">01</span><span data-i18n="s06.k04"><b>Фактический объём</b> выполненных работ.</span></div>
+          <div class="row"><span class="n">02</span><span data-i18n="s06.k05"><b>Количество</b> использованных материалов.</span></div>
+          <div class="row"><span class="n">03</span><span data-i18n="s06.k06"><b>Отклонения</b> от проектных параметров.</span></div>
+          <div class="row"><span class="n">04</span><span data-i18n="s06.k07"><b>Соблюдение</b> строительного графика.</span></div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="frame">
+          <div class="shot">
+            <img src="foto/06-bim.webp" alt="Каркасная BIM-модель здания на экране рабочей станции" data-i18n-alt="s06.k08" loading="lazy">
+          </div>
+        </div>
+        <div class="shot"><img src="foto/06-overlay.webp" alt="Наложение модели съёмки на трёхмерный каркас объекта" data-i18n-alt="s06.k09" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">06 / 10</div>
+</section>
+
+<!-- ═══════ 7 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s07.k01">07 / Этап 4</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s07.k02">Нейросети классифицируют объекты и выявляют нарушения</h2>
+        <p class="lead" data-i18n="s07.k03">Алгоритмы искусственного интеллекта анализируют визуальные данные для автоматического формирования аналитических отчётов.</p>
+        <ul class="list" style="margin:1.2cqw 0 0">
+          <li data-i18n="s07.k04">Подсчёт объёма залитого бетона.</li>
+          <li data-i18n="s07.k05">Учёт установленных элементов и смонтированных конструкций.</li>
+          <li data-i18n="s07.k06">Фиксация строительных дефектов.</li>
+          <li data-i18n="s07.k07">Выявление нарушений техники безопасности.</li>
+        </ul>
+      </div>
+      <div class="stack">
+        <div class="frame">
+          <div class="shot">
+            <img src="foto/07-ai.webp" alt="Автоматический разбор трёхмерной модели площадки" data-i18n-alt="s07.k08" loading="lazy">
+          </div>
+        </div>
+        <div class="shot"><img src="foto/07-change.webp" alt="Сравнение двух съёмок объекта: выявленные изменения" data-i18n-alt="s07.k09" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">07 / 10</div>
+</section>
+
+<!-- ═══════ 8 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s08.k01">08 / Объёмы</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s08.k02">Объёмы и материалы считаются по цифровой модели</h2>
+        <div class="rows" style="margin-top:1.4cqw">
+          <div class="row"><span class="n">01</span><span data-i18n="s08.k03"><b>Расчёт земляных работ:</b> выемка и насыпь считаются по модели, без выхода геодезиста в котлован.</span></div>
+          <div class="row"><span class="n">02</span><span data-i18n="s08.k04"><b>Складские запасы:</b> объём отвалов и штабелей материалов на площадке.</span></div>
+          <div class="row"><span class="n">03</span><span data-i18n="s08.k05"><b>Динамика по датам:</b> сравнение съёмок показывает выработку за период.</span></div>
+          <div class="row"><span class="n">04</span><span data-i18n="s08.k06"><b>Сверка с актами:</b> фактические объёмы против предъявленных подрядчиком.</span></div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="frame">
+          <div class="shot">
+            <img src="foto/08-volume.webp" alt="Расчёт объёма выемки по модели на экране" data-i18n-alt="s08.k07" loading="lazy">
+          </div>
+        </div>
+        <div class="shot"><img src="foto/08-calc.webp" alt="Обмер котлована с точками съёмки на ортофотоплане" data-i18n-alt="s08.k08" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">08 / 10</div>
+</section>
+
+<!-- ═══════ 9 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s09.k01">09 / Сводка</span></div>
+    <h2 data-i18n="s09.k02">Оперативная сводка: данные реального времени для принятия решений</h2>
+    <div class="split" style="grid-template-columns:.72fr 1.28fr">
+      <div class="total">
+        <b>68%</b>
+        <span data-i18n="s09.k03">Готовность объекта</span>
+      </div>
+      <div class="prog">
+        <div class="prog__row">
+          <b data-i18n="s09.k04">Монтаж металлоконструкций</b><i>82%</i>
+          <span class="prog__track"><span style="width:82%"></span></span>
+        </div>
+        <div class="prog__row">
+          <b data-i18n="s09.k05">Монтаж фасадных элементов</b><i>54%</i>
+          <span class="prog__track"><span style="width:54%"></span></span>
+        </div>
+        <div class="prog__row">
+          <b data-i18n="s09.k06">Устройство инженерных сетей</b><i>41%</i>
+          <span class="prog__track"><span style="width:41%"></span></span>
+        </div>
+        <div class="prog__row prog__row--warn">
+          <b data-i18n="s09.k07">Календарный график: отклонение</b><i>+5 дней</i>
+          <span class="prog__track"><span style="width:16%"></span></span>
+        </div>
+      </div>
+    </div>
+    <div class="bars">
+      <div class="bar alt" data-i18n="s09.k08">Освоение строительных материалов — 72%</div>
+      <div class="bar" data-i18n="s09.k09">Сводка обновляется после каждого облёта</div>
+    </div>
+  </div>
+  <div class="pager">09 / 10</div>
+</section>
+
+<!-- ═══════ 10 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s10.k01">10 / Эффект</span></div>
+    <h2 data-i18n="s10.k02">Автоматизация контроля кардинально снижает риски и издержки</h2>
+    <div class="stats">
+      <div class="stat">
+        <b data-i18n="s10.k03">−80%</b>
+        <div class="rule"></div>
+        <p data-i18n="s10.k04"><b>Время на инспекцию объекта.</b> Облёт вместо пеших обходов и ручных замеров.</p>
+      </div>
+      <div class="stat">
+        <b data-i18n="s10.k05">24/7</b>
+        <div class="rule"></div>
+        <p data-i18n="s10.k06"><b>Обновление цифрового двойника.</b> Ежедневно и без присутствия людей.</p>
+      </div>
+      <div class="stat">
+        <b data-i18n="s10.k07">100%</b>
+        <div class="rule"></div>
+        <p data-i18n="s10.k08"><b>Прозрачность.</b> Для заказчика, подрядчика и инвестора.</p>
+      </div>
+    </div>
+    <div class="band">
+      <div class="shot"><img src="foto/10-final.webp" alt="Строительство транспортной развязки с воздуха" data-i18n-alt="s10.k09" loading="lazy"></div>
+    </div>
+    <div class="bar" style="margin-top:1.4cqw" data-i18n="s10.k10">Система обеспечивает автоматический расчёт строительной готовности и практически полностью исключает человеческий фактор при контроле выполнения работ</div>
+  </div>
+  <div class="pager">10 / 10</div>
+</section>
+
+</div>
+
+<button class="dp-nav dp-nav--prev" id="dpPrev" type="button" data-i18n-title="deck.prev" title="Назад" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 L7 12 L15 20" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+</button>
+<button class="dp-nav dp-nav--next" id="dpNext" type="button" data-i18n-title="deck.next" title="Вперёд" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 L17 12 L9 20" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+</button>
+
+<div class="dp-progress" id="dpProgress" aria-hidden="true" hidden><span id="dpProgressBar"></span></div>
+
+<footer class="dp-foot" id="dpFoot" hidden>
+  <div class="dp-counter"><span id="dpCurrent">1</span><span class="dp-counter-sep">/</span><span id="dpTotal">1</span></div>
+  <div class="dp-thumbs" id="dpThumbs" role="tablist" aria-label="Slides"></div>
+  <button class="dp-icon-btn dp-thumbs-toggle" id="dpThumbsToggle" type="button" data-i18n-title="deck.thumbs" title="Миниатюры">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="5" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="14" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="14" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+  </button>
+</footer>
+
+<script src="/js/deck-page.js?v=1" defer></script>
+</body>
+</html>
