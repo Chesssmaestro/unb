@@ -3,15 +3,23 @@ const DECKS_INDEX = {
   "group": {
     "ru": {
       "pages": 19,
-      "title": "UNB Group — платформа мониторинга инфраструктуры"
+      "title": "UNB Group — интеллектуальная платформа мониторинга инфраструктуры",
+      "page": "/decks/group/"
     },
     "en": {
       "pages": 19,
-      "title": "UNB Group — infrastructure monitoring platform"
+      "title": "UNB Group — intelligent infrastructure monitoring platform",
+      "page": "/en/decks/group/"
     },
     "uz": {
       "pages": 19,
-      "title": "UNB Group — infratuzilma monitoringi platformasi"
+      "title": "UNB Group — infratuzilma monitoringining intellektual platformasi",
+      "page": "/uz/decks/group/"
+    },
+    "ch": {
+      "pages": 19,
+      "title": "UNB Group — 基础设施智能监测平台",
+      "page": "/zh/decks/group/"
     }
   },
   "solar": {

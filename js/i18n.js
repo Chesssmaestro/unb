@@ -81,7 +81,8 @@ ru:{
   "deck.back":"На сайт","deck.fullscreen":"Во весь экран",
   "deck.prev":"Назад","deck.next":"Вперёд","deck.thumbs":"Миниатюры",
   "deck.missing":"Презентация скоро будет доступна","deck.back_site":"Вернуться на сайт",
-  "deck.lang_missing":"Нет на этом языке"
+  "deck.lang_missing":"Нет на этом языке",
+  "theme.toggle":"Сменить тему"
 },
 en:{
   "meta.title":"UNB Group — intelligent infrastructure monitoring platform",
@@ -165,7 +166,8 @@ en:{
   "deck.back":"Back to site","deck.fullscreen":"Fullscreen",
   "deck.prev":"Previous","deck.next":"Next","deck.thumbs":"Thumbnails",
   "deck.missing":"Presentation coming soon","deck.back_site":"Back to the site",
-  "deck.lang_missing":"Not available in this language"
+  "deck.lang_missing":"Not available in this language",
+  "theme.toggle":"Switch theme"
 },
 uz:{
   "meta.title":"UNB Group — infratuzilma monitoringining intellektual platformasi",
@@ -249,7 +251,8 @@ uz:{
   "deck.back":"Saytga","deck.fullscreen":"To'liq ekran",
   "deck.prev":"Orqaga","deck.next":"Oldinga","deck.thumbs":"Miniatyuralar",
   "deck.missing":"Prezentatsiya tez orada mavjud bo'ladi","deck.back_site":"Saytga qaytish",
-  "deck.lang_missing":"Bu tilda mavjud emas"
+  "deck.lang_missing":"Bu tilda mavjud emas",
+  "theme.toggle":"Mavzuni almashtirish"
 },
 ch:{
   "meta.title":"UNB Group — 基础设施监测智能平台",
@@ -333,6 +336,7 @@ ch:{
   "deck.back":"返回网站","deck.fullscreen":"全屏",
   "deck.prev":"上一页","deck.next":"下一页","deck.thumbs":"缩略图",
   "deck.missing":"演示文稿即将上线","deck.back_site":"返回网站",
-  "deck.lang_missing":"暂无该语言版本"
+  "deck.lang_missing":"暂无该语言版本",
+  "theme.toggle":"切换主题"
 }
 };

@@ -1,0 +1,117 @@
+/* ==========================================================================
+   Тёмная тема слайдов — presentations свёрстанные страницами.
+
+   Подключается ПОСЛЕДНЕЙ в <head>, после собственного <style> презентации,
+   поэтому при равной специфичности переопределяет его; атрибут data-theme
+   на <html> ставит js/theme.js ещё до отрисовки.
+
+   Файл общий для семи презентаций (group, mapping, hardware, farming, solar,
+   construction, delivery): у них один и тот же набор ролей в :root, отличается
+   только вёрстка слайдов. У city, power и roads палитра приходит из
+   css/deck-theme.css — их тёмная тема лежит в конце того файла.
+
+   Две роли в этой вёрстке двойные, и одной переменной их не развести:
+   • --paper — это и светлый текст на тёмной заливке, и (у --paper-2) фон
+     страницы. Текстовую роль оставляем светлой, фон уводим в тёмный;
+   • --blueprint и --ink — и цвет мелкого текста, и заливка плашек. Текст
+     делаем светлым, а заливки переводим на полупрозрачные — их немного,
+     и они перечислены ниже поимённо.
+   ========================================================================== */
+
+:root[data-theme="dark"]{
+  --paper:#EAF2FA;                    /* текст на заливках */
+  --paper-2:#081521;                  /* фон страницы под слайдами */
+  --ink:#E6F0F9;
+  --ink-soft:#9FBDD8;
+  --blueprint:#6FC0FF;
+  --blueprint-2:#9ED4FF;
+  --signal:#4FD1C5;
+  --accent:#FF7A42;
+  --line:rgba(230,240,249,0.20);
+  --line-soft:rgba(230,240,249,0.10);
+  --grid:rgba(138,205,255,0.05);
+
+  /* Своё, для правил ниже: «бумага» слайда и приподнятая карточка на ней. */
+  --slide:#0E2032;
+  --surface:rgba(255,255,255,0.05);
+  --surface-2:rgba(255,255,255,0.09);
+}
+
+/* ---------- Каркас ---------- */
+
+:root[data-theme="dark"] .slide{
+  background-color:var(--slide);
+  border-color:rgba(230,240,249,0.14);
+  box-shadow:none;
+}
+
+/* ---------- Поверхности вместо белых карточек ---------- */
+/* Селекторы собраны по всем семи презентациям; лишние в конкретной просто
+   ни во что не попадают. */
+
+:root[data-theme="dark"] .row,
+:root[data-theme="dark"] .panel,
+:root[data-theme="dark"] .step,
+:root[data-theme="dark"] .tile,
+:root[data-theme="dark"] .card,
+:root[data-theme="dark"] .chip,
+:root[data-theme="dark"] .link,
+:root[data-theme="dark"] .kpi,
+:root[data-theme="dark"] .sector,
+:root[data-theme="dark"] .stat,
+:root[data-theme="dark"] .prog__row,
+:root[data-theme="dark"] .total,
+:root[data-theme="dark"] .tbl tbody th,
+:root[data-theme="dark"] .tbl tbody td{
+  background:var(--surface);
+}
+:root[data-theme="dark"] .tbl tbody td{background:var(--surface-2);}
+
+/* ---------- Заливки, которые в светлой теме брались от --ink и --blueprint ---------- */
+
+:root[data-theme="dark"] .bar,
+:root[data-theme="dark"] .panel--good .panel__head,
+:root[data-theme="dark"] .card__head,
+:root[data-theme="dark"] .tbl thead th{
+  background:rgba(111,192,255,0.16);
+  color:var(--ink);
+}
+:root[data-theme="dark"] .bar.alt,
+:root[data-theme="dark"] .tbl thead th:first-child{
+  background:rgba(111,192,255,0.24);
+  color:var(--ink);
+}
+:root[data-theme="dark"] .panel--bad .panel__head{
+  background:rgba(230,240,249,0.12);
+  color:var(--ink);
+}
+
+/* ---------- Печать ---------- */
+/* На бумаге тёмный слайд — это залитый краской лист, поэтому в печать
+   презентация уходит светлой независимо от выбранной темы. */
+
+@media print{
+  :root[data-theme="dark"]{
+    --paper:#F5F6F4;
+    --paper-2:#EDEFEB;
+    --ink:#10171B;
+    --ink-soft:#4A5459;
+    --blueprint:#123C55;
+    --blueprint-2:#1B4E6E;
+    --signal:#2FA8A0;
+    --accent:#FF6B2C;
+    --line:rgba(16,23,27,0.17);
+    --line-soft:rgba(16,23,27,0.09);
+    --grid:rgba(18,60,85,0.05);
+    --slide:#FFFFFF;
+    --surface:rgba(255,255,255,0.6);
+    --surface-2:rgba(255,255,255,0.45);
+  }
+  :root[data-theme="dark"] .bar,
+  :root[data-theme="dark"] .panel--good .panel__head,
+  :root[data-theme="dark"] .card__head,
+  :root[data-theme="dark"] .tbl thead th{background:var(--blueprint);color:var(--paper);}
+  :root[data-theme="dark"] .bar.alt,
+  :root[data-theme="dark"] .tbl thead th:first-child{background:var(--blueprint-2);color:var(--paper);}
+  :root[data-theme="dark"] .panel--bad .panel__head{background:var(--ink);color:var(--paper);}
+}

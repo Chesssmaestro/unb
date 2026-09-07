@@ -37,15 +37,17 @@ const WIDTHS = [
 const RENDER_WIDTH = 1600;
 
 const LANGS = ['ru', 'en', 'uz', 'ch'];
-// Из PDF рендерится только корпоративная презентация: все продуктовые
-// свёрстаны страницами (см. PAGE_DECKS).
-const PRODUCTS = [];
+// Презентаций, которые рендерятся из PDF, не осталось: корпоративная тоже
+// свёрстана страницей (см. PAGE_DECKS). Рендерер оставлен на случай, если
+// в assets/presentations/ снова придёт презентация одним PDF.
+const PDF_DECKS = [];
 
 // Презентации, свёрстанные страницами, а не отрендеренные из PDF: они лежат в
 // decks/<slug>/ и собираются tools/build-deck-pages.mjs. Рендерить тут нечего,
 // но в индекс они попасть должны — по нему карточки направлений и sitemap
 // узнают, что презентация есть и по какому адресу открывается.
 const PAGE_DECKS = [
+  'group',
   'city', 'power', 'roads', 'hardware', 'mapping', 'farming', 'solar', 'construction', 'delivery',
 ];
 
@@ -236,7 +238,7 @@ async function main() {
 
   const index = {};
   const wanted = [];
-  for (const slug of ['group', ...PRODUCTS]) {
+  for (const slug of PDF_DECKS) {
     for (const lang of LANGS) {
       if (indexOnly) continue;
       if (only.length && !only.includes(`${slug}-${lang}`)) continue;

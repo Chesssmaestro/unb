@@ -33,7 +33,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=18">
+<link rel="stylesheet" href="/css/style.css?v=19">
+<!-- Без defer: тема должна встать на <html> до первой отрисовки, иначе
+     тёмная страница моргнёт светлой. -->
+<script src="/js/theme.js?v=1"></script>
 <!-- Организация, сайт и услуги для поисковиков и AI-поиска. Блок написан
      руками, копиям его собирает tools/build-pages.mjs из того же словаря —
      и он же падает, если этот блок с генератором разошёлся. -->
@@ -317,6 +320,10 @@
         <a href="/en/" hreflang="en" data-lang="en" class="lang-btn">EN</a>
         <a href="/zh/" hreflang="zh" data-lang="ch" class="lang-btn">CH</a>
       </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle data-i18n-title="theme.toggle" title="Mavzuni almashtirish" aria-label="Mavzuni almashtirish" aria-pressed="false">
+        <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.4A8.5 8.5 0 0 1 9.6 4 8.5 8.5 0 1 0 20 14.4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"></path></svg>
+        <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.7"></circle><path d="M12 2.5v2.2M12 19.3v2.2M4.2 12H2M22 12h-2.2M6.3 6.3 4.8 4.8M19.2 19.2l-1.5-1.5M17.7 6.3l1.5-1.5M4.8 19.2l1.5-1.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></path></svg>
+      </button>
       <a class="nav__phone" href="tel:+998943888882">+998 94 388 88 82</a>
     </div>
   </div>
@@ -670,20 +677,26 @@
       <p class="pres__text" data-i18n="pres.text">Barcha yo'nalishlar, platforma arxitekturasi va joriy etish keyslarining to'liq tavsifi.</p>
       <div class="pres__buttons">
         <div class="pres__item">
-          <a href="/deck.html?d=group&l=ru" class="pres__btn">
+          <a href="/decks/group/" class="pres__btn">
             <span class="pres__btn-lang">RU</span>
             <span data-i18n="pres.view">Onlayn ko'rish</span>
           </a>
         </div>
         <div class="pres__item">
-          <a href="/deck.html?d=group&l=en" class="pres__btn">
+          <a href="/en/decks/group/" class="pres__btn">
             <span class="pres__btn-lang">EN</span>
             <span data-i18n="pres.view">Onlayn ko'rish</span>
           </a>
         </div>
         <div class="pres__item">
-          <a href="/deck.html?d=group&l=uz" class="pres__btn">
+          <a href="/uz/decks/group/" class="pres__btn">
             <span class="pres__btn-lang">UZ</span>
+            <span data-i18n="pres.view">Onlayn ko'rish</span>
+          </a>
+        </div>
+        <div class="pres__item">
+          <a href="/zh/decks/group/" class="pres__btn">
+            <span class="pres__btn-lang">CH</span>
             <span data-i18n="pres.view">Onlayn ko'rish</span>
           </a>
         </div>

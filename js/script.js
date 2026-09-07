@@ -60,6 +60,14 @@
       if(el.hasAttribute('data-i18n-html')) el.innerHTML = dict[key];
       else el.textContent = dict[key];
     });
+    // Подписи иконочных кнопок: внутри только иконка, поэтому вместе с title
+    // ставим aria-label — иначе скринридер прочитает пустоту.
+    document.querySelectorAll('[data-i18n-title]').forEach(el=>{
+      const key = el.getAttribute('data-i18n-title');
+      if(!dict[key]) return;
+      el.setAttribute('title', dict[key]);
+      el.setAttribute('aria-label', dict[key]);
+    });
     document.querySelectorAll('.lang-btn').forEach(btn=>{
       btn.classList.toggle('is-active', btn.getAttribute('data-lang') === currentLang);
     });

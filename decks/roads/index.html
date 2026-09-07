@@ -15,7 +15,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/deck-page.css?v=2">
+<link rel="stylesheet" href="/css/deck-page.css?v=3">
+<!-- Без defer: тема должна встать на <html> до первой отрисовки. -->
+<script src="/js/theme.js?v=1"></script>
 <style>
 :root{
   --navy:#0E2C4B;
@@ -201,7 +203,7 @@ h3{font-size:1.85cqw;line-height:1.2;font-weight:700}
   .slide{border-radius:0;box-shadow:none;break-after:page}
 }
 </style>
-<link rel="stylesheet" href="/css/deck-theme.css?v=3">
+<link rel="stylesheet" href="/css/deck-theme.css?v=4">
 </head>
 <body>
 <header class="dp-bar">
@@ -216,6 +218,10 @@ h3{font-size:1.85cqw;line-height:1.2;font-weight:700}
       <a href="/en/decks/roads/" data-lang="en">EN</a>
       <a href="/zh/decks/roads/" data-lang="ch">CH</a>
   </nav>
+    <button class="dp-icon-btn dp-theme" id="dpTheme" type="button" data-theme-toggle data-i18n-title="theme.toggle" title="Сменить тему" aria-label="Сменить тему" aria-pressed="false">
+      <svg class="dp-theme__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.4A8.5 8.5 0 0 1 9.6 4 8.5 8.5 0 1 0 20 14.4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      <svg class="dp-theme__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 2.5v2.2M12 19.3v2.2M4.2 12H2M22 12h-2.2M6.3 6.3 4.8 4.8M19.2 19.2l-1.5-1.5M17.7 6.3l1.5-1.5M4.8 19.2l1.5-1.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
     <button class="dp-icon-btn dp-full" id="dpFull" type="button" data-i18n-title="deck.fullscreen" title="Во весь экран" hidden>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
     </button>

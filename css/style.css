@@ -605,3 +605,77 @@ body{padding-top:var(--header-h);}
   .effect,
   .presentations{padding:48px 0;}
 }
+
+/* ===========================================================================
+   Тёмная тема
+
+   Атрибут data-theme на <html> ставит js/theme.js ещё в <head>, до отрисовки.
+
+   Переставляются роли, а не правила: страница уходит в тёмно-синий, текст —
+   в светлый. Отдельными правилами добираются два случая, которые ролями не
+   закрываются:
+   • --white в вёрстке значит и «белая поверхность» (карточки, поля формы),
+     и «текст на тёмной заливке». Второе в тёмной теме остаётся белым, поэтому
+     переменную не трогаем, а поверхности переводим точечно;
+   • --ink служит и цветом текста, и заливкой тёмных плашек (подвал, шапки
+     окон). В тёмной теме он светлый, поэтому такие заливки уводим в --navy.
+   =========================================================================== */
+:root[data-theme="dark"]{
+  --paper:#0B1B2B;              /* фон страницы */
+  --paper-2:#12293E;            /* лёгкая подложка и наведение */
+  --navy:#061321;               /* самые тёмные плашки: тикер, «Эффект», подвал */
+  --surface:#102639;            /* то, что в светлой теме было белым */
+  --surface-2:#17334C;          /* наведение по такой поверхности */
+  --ink:#E6F0F9;
+  --ink-soft:#9FBDD8;
+  --action:var(--blue-500);
+  --action-hover:var(--blue-400);
+  --blueprint:var(--blue-300);
+  --blueprint-2:var(--blue-200);
+  --accent:var(--blue-300);
+  --signal:var(--blue-300);
+  --line:rgba(138,205,255,0.20);
+  --line-strong:rgba(138,205,255,0.34);
+}
+
+/* Поверхности вместо белого */
+:root[data-theme="dark"] .nav{background:rgba(11,27,43,0.92);}
+:root[data-theme="dark"] .transition__col,
+:root[data-theme="dark"] .direction-card,
+:root[data-theme="dark"] .request__input,
+:root[data-theme="dark"] .request__input:focus,
+:root[data-theme="dark"] .request__status{background:var(--surface);}
+:root[data-theme="dark"] .direction-card:hover,
+:root[data-theme="dark"] .direction-card--hardware:hover{background:var(--surface-2);}
+:root[data-theme="dark"] .direction-card--hardware{background:var(--paper-2);}
+:root[data-theme="dark"] .request__input:focus{box-shadow:0 0 0 3px rgba(43,163,255,0.28);}
+:root[data-theme="dark"] .request__input::placeholder{color:var(--ink-soft);opacity:.65;}
+
+/* Заливки, которые в светлой теме брались от --ink */
+:root[data-theme="dark"] .footer,
+:root[data-theme="dark"] .request-modal__bar,
+:root[data-theme="dark"] .pres-modal__bar{background:var(--navy);}
+:root[data-theme="dark"] .btn--ghost:hover,
+:root[data-theme="dark"] .pres__btn:hover{background:var(--action);border-color:var(--action);color:var(--white);}
+:root[data-theme="dark"] .lang-btn.is-active,
+:root[data-theme="dark"] .direction-card__tag--solid{background:var(--blue-700);border-color:var(--blue-700);color:var(--white);}
+:root[data-theme="dark"] .request-modal,
+:root[data-theme="dark"] .pres-modal{background:rgba(2,10,18,0.86);}
+:root[data-theme="dark"] .request-modal__close:hover,
+:root[data-theme="dark"] .pres-modal__close:hover{background:var(--white);color:var(--navy);border-color:var(--white);}
+
+/* ---------- Кнопка темы ---------- */
+.theme-toggle{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;flex-shrink:0;
+  background:none;border:1px solid var(--line-strong);border-radius:var(--r-pill);
+  color:var(--blueprint);cursor:pointer;
+  transition:color .15s, border-color .15s, background .15s;
+}
+.theme-toggle:hover{color:var(--ink);border-color:var(--ink);}
+.theme-toggle svg{width:17px;height:17px;display:block;}
+/* Показывается та иконка, на которую переключит нажатие. */
+.theme-toggle .theme-toggle__moon{display:block;}
+.theme-toggle .theme-toggle__sun{display:none;}
+:root[data-theme="dark"] .theme-toggle .theme-toggle__moon{display:none;}
+:root[data-theme="dark"] .theme-toggle .theme-toggle__sun{display:block;}

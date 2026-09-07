@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UNB Group — интеллектуальная платформа мониторинга инфраструктуры</title>
+<meta name="description" content="Корпоративная презентация UNB Group: дроны, AI и цифровые двойники для энергетики, городов, дорог, строительства, сельского хозяйства и логистики.">
+<link rel="canonical" href="https://unbgroup.uz/decks/group/">
+<link rel="alternate" hreflang="ru" href="https://unbgroup.uz/decks/group/">
+<link rel="alternate" hreflang="en" href="https://unbgroup.uz/en/decks/group/">
+<link rel="alternate" hreflang="uz" href="https://unbgroup.uz/uz/decks/group/">
+<link rel="alternate" hreflang="zh" href="https://unbgroup.uz/zh/decks/group/">
+<link rel="alternate" hreflang="x-default" href="https://unbgroup.uz/decks/group/">
+<link rel="icon" href="/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/deck-page.css?v=3">
+<!-- Без defer: тема должна встать на <html> до первой отрисовки. -->
+<script src="/js/theme.js?v=1"></script>
+<style>
+/* Корпоративная презентация. Оформление то же, что у decks/mapping/ и
+   decks/hardware/: палитра и шрифты сайта заложены сразу, поэтому
+   css/deck-theme.css не подключается. Размеры — в cqw: слайд остаётся 16:9
+   на любой ширине, из него же собирается миниатюра листалки. */
+:root{
+  --paper:#F5F6F4;
+  --paper-2:#EDEFEB;
+  --ink:#10171B;
+  --ink-soft:#4A5459;
+  --blueprint:#123C55;
+  --blueprint-2:#1B4E6E;
+  --signal:#2FA8A0;
+  --accent:#FF6B2C;
+  --line:rgba(16,23,27,.17);
+  --line-soft:rgba(16,23,27,.09);
+  --grid:rgba(18,60,85,.05);
+
+  /* В Space Grotesk нет кириллицы: стек тот же, что в css/style.css, чтобы
+     русские заголовки падали на тот же системный шрифт, что на сайте. */
+  --font-display:'Space Grotesk',sans-serif;
+  --font-body:'IBM Plex Sans',sans-serif;
+  --font-mono:'IBM Plex Mono',monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;min-width:0}
+body{
+  background:var(--paper-2);color:var(--ink);
+  font-family:var(--font-body);line-height:1.45;
+  -webkit-font-smoothing:antialiased;padding:28px 16px 60px;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+
+/* ---------- каркас слайда ---------- */
+.deck{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
+.slide{
+  position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;
+  background-color:#FFFFFF;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:40px 40px;
+  border:1px solid #D7DBD8;border-radius:6px;
+  box-shadow:0 2px 16px rgba(16,23,27,.07);
+  container-type:inline-size;
+}
+.pad{position:absolute;inset:0;padding:3.6cqw 4cqw 4.4cqw;display:flex;flex-direction:column;justify-content:center}
+
+/* приводочные метки по углам */
+.slide::before,.slide::after{
+  content:"";position:absolute;width:2.4cqw;height:2.4cqw;pointer-events:none;
+  border:1px solid var(--line);
+}
+.slide::before{top:1.5cqw;left:1.5cqw;border-right:0;border-bottom:0}
+.slide::after{bottom:1.5cqw;right:1.5cqw;border-left:0;border-top:0}
+
+.pager{
+  position:absolute;left:4cqw;bottom:1.6cqw;
+  font-family:var(--font-mono);font-size:.95cqw;letter-spacing:.1em;color:var(--ink-soft);
+}
+
+/* ---------- типографика ---------- */
+.kicker{display:flex;align-items:center;gap:1cqw;margin-bottom:1.4cqw}
+.kicker::after{content:"";flex:1;height:1px;background:var(--line)}
+.kicker span{
+  font-family:var(--font-mono);font-size:.95cqw;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--blueprint);white-space:nowrap;
+}
+h1{font-family:var(--font-display);font-weight:600;font-size:3.4cqw;line-height:1.06;letter-spacing:-.01em;text-wrap:balance}
+h2{font-family:var(--font-display);font-weight:600;font-size:2.6cqw;line-height:1.1;letter-spacing:-.01em}
+h3{font-family:var(--font-display);font-weight:600;font-size:1.35cqw;line-height:1.2;letter-spacing:-.01em}
+p{font-size:1.2cqw}
+.lead{margin-top:.9cqw;font-size:1.3cqw;color:var(--ink-soft);max-width:74ch}
+
+/* ---------- фото ---------- */
+.shot{position:relative;overflow:hidden;background:var(--paper-2);border-radius:3px}
+.shot img{width:100%;height:100%;object-fit:cover}
+.frame{position:relative;padding:.8cqw}
+.frame::before,.frame::after{
+  content:"";position:absolute;width:1.8cqw;height:1.8cqw;border:1px solid var(--ink);pointer-events:none;
+}
+.frame::before{left:0;top:0;border-right:0;border-bottom:0}
+.frame::after{right:0;bottom:0;border-left:0;border-top:0}
+.hud{
+  position:absolute;top:.8cqw;right:1cqw;
+  font-family:var(--font-mono);font-size:.66cqw;letter-spacing:.08em;
+  color:#fff;text-align:right;line-height:1.7;text-shadow:0 1px 6px rgba(0,0,0,.75);
+}
+
+/* ---------- элементы ---------- */
+.badge{
+  display:inline-block;border:1px solid var(--accent);border-radius:4px;
+  padding:.9cqw 1.4cqw;font-weight:600;font-size:1.2cqw;line-height:1.3;color:var(--ink);
+}
+.tagline{
+  display:inline-block;margin-top:.9cqw;
+  font-family:var(--font-mono);font-size:.95cqw;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent);
+}
+.bars{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2cqw;margin-top:1.6cqw}
+.bars--2{grid-template-columns:1fr 1fr}
+.bar{
+  background:var(--blueprint);color:var(--paper);border-radius:4px;
+  padding:.9cqw 1.2cqw;font-weight:600;font-size:1.15cqw;text-align:center;line-height:1.25;
+}
+.bar.alt{background:var(--blueprint-2)}
+.bar.wide{grid-column:1/-1}
+
+.list{display:grid;gap:1cqw;margin:1.6cqw 0 2cqw;max-width:52ch}
+.list li{position:relative;padding-left:2cqw;font-size:1.3cqw;line-height:1.45}
+.list li::before{content:"";position:absolute;left:0;top:.5em;width:.7cqw;height:.7cqw;border:1px solid var(--accent)}
+
+.rows{display:grid;gap:.9cqw}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:1cqw;margin-top:1.4cqw}
+.quad{display:grid;grid-template-columns:1fr 1fr;gap:1cqw}
+.quad--4{grid-template-columns:repeat(4,1fr)}
+.row{
+  border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,.6);
+  padding:.9cqw 1.1cqw;display:grid;grid-template-columns:auto 1fr;gap:1cqw;align-items:start;
+  font-size:1.05cqw;line-height:1.4;
+}
+.row .n{font-family:var(--font-mono);font-size:.9cqw;color:var(--blueprint);letter-spacing:.08em;padding-top:.15em}
+.row b{font-weight:600}
+.row i{font-style:normal;color:var(--accent);font-weight:600}
+
+.mark{display:grid;grid-template-columns:auto 1fr;gap:.8cqw;align-items:start;font-size:1.05cqw;line-height:1.4}
+.mark i{font-style:normal;font-family:var(--font-mono);font-weight:500;color:var(--signal)}
+
+/* ---------- слайд 1 ---------- */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:3cqw;align-items:center}
+.hero .shot{aspect-ratio:16/10}
+.hero .list{margin-bottom:1.6cqw}
+
+/* ---------- слайд 2: сравнение ---------- */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:2cqw;margin-top:1.6cqw}
+.panel{border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,.55);overflow:hidden;display:flex;flex-direction:column}
+.panel__head{
+  padding:.7cqw 1.1cqw;font-family:var(--font-mono);font-weight:500;
+  text-transform:uppercase;letter-spacing:.08em;font-size:.9cqw;color:var(--paper);
+}
+.panel--bad .panel__head{background:var(--ink)}
+.panel--good .panel__head{background:var(--blueprint)}
+.panel__body{padding:1cqw;display:grid;gap:.85cqw}
+.panel .shot{aspect-ratio:16/9}
+.panel--bad .mark i{color:var(--accent)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:.8cqw}
+/* Пара снимков вместо одного кадра 16:9 — по высоте выходит примерно то же,
+   поэтому обе колонки сравнения остаются вровень. */
+.duo .shot{aspect-ratio:4/3}
+
+/* ---------- слайды с текстом и фото ---------- */
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:2.4cqw;align-items:center;margin-top:1.4cqw}
+.split--wide{grid-template-columns:1.25fr .75fr}
+.stack{display:grid;gap:1cqw}
+.stack .shot{aspect-ratio:16/9}
+/* Второй, не окантованный снимок — полосой: вдвоём с кадром в рамке пара
+   16:9 не помещается в высоту слайда. */
+.stack > .shot{aspect-ratio:2.7/1}
+
+/* ---------- слайд 3: цепочка платформы ---------- */
+.chain{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:2.4cqw;margin:1.8cqw 0}
+.link{
+  position:relative;border:1px solid var(--line);border-radius:4px;
+  background:rgba(255,255,255,.6);padding:1cqw 1.1cqw;display:grid;gap:.5cqw;align-content:start;
+}
+.link .n{font-family:var(--font-mono);font-size:.9cqw;letter-spacing:.08em;color:var(--blueprint)}
+.link h3{font-size:1.2cqw}
+.link p{font-size:1cqw;color:var(--ink-soft)}
+/* Стрелка живёт в зазоре между звеньями, поэтому рисуется псевдоэлементом,
+   а не отдельной колонкой: так число звеньев можно менять, не трогая сетку. */
+.link + .link::before{
+  content:"→";position:absolute;left:-1.2cqw;top:50%;transform:translate(-50%,-50%);
+  font-family:var(--font-mono);font-size:1.4cqw;color:var(--accent);
+}
+
+/* ---------- слайд 4: направления ---------- */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2cqw;margin-top:1.4cqw}
+.tile{border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,.6);overflow:hidden}
+.tile .shot{aspect-ratio:16/7;border-radius:0}
+.tile__body{padding:.75cqw .9cqw 1cqw}
+.tile h3{font-size:1.2cqw}
+.tile p{font-size:.95cqw;color:var(--ink-soft);margin-top:.3cqw}
+
+/* ---------- слайды 14 и 18: показатели ---------- */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2cqw;margin-top:1.4cqw}
+.kpi{border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,.6);padding:1cqw 1.1cqw}
+.kpi__n{font-family:var(--font-display);font-weight:600;font-size:2.4cqw;line-height:1;color:var(--blueprint)}
+.kpi__n i{font-style:normal;color:var(--accent)}
+.kpi h3{margin-top:.5cqw;font-size:1.15cqw}
+.kpi p{margin-top:.4cqw;font-size:.95cqw;color:var(--ink-soft)}
+
+/* ---------- слайд 13: отрасли ---------- */
+.sectors{display:grid;grid-template-columns:1fr 1fr;gap:1.2cqw;margin-top:1.2cqw}
+.sector{border:1px solid var(--line);border-radius:4px;background:rgba(255,255,255,.6);padding:1cqw 1.2cqw}
+.sector h3{color:var(--blueprint);font-size:1.25cqw}
+.sector ul{display:grid;gap:.45cqw;margin-top:.7cqw}
+.sector li{position:relative;padding-left:1.4cqw;font-size:1cqw;line-height:1.35}
+.sector li::before{content:"";position:absolute;left:0;top:.55em;width:.5cqw;height:.5cqw;border:1px solid var(--accent)}
+
+/* ---------- слайд 16: распознавание ---------- */
+.detect{display:grid;grid-template-columns:1fr 1fr;gap:1.2cqw;margin-top:1.2cqw}
+.det{position:relative;overflow:hidden;border-radius:3px;aspect-ratio:16/5.5;background:var(--paper-2)}
+.det img{width:100%;height:100%;object-fit:cover}
+/* Рамка распознавания рисуется вёрсткой, а не впечатана в снимок: подпись
+   внутри неё переводится вместе с остальным текстом слайда. */
+.det__box{position:absolute;left:10%;top:26%;right:34%;bottom:18%;border:1px solid var(--accent)}
+.det__tag{
+  position:absolute;left:-1px;top:-1.85cqw;background:var(--accent);color:#fff;
+  font-family:var(--font-mono);font-size:.72cqw;letter-spacing:.06em;
+  padding:.2cqw .5cqw;white-space:nowrap;
+}
+.det__conf{
+  position:absolute;right:.7cqw;bottom:.6cqw;
+  font-family:var(--font-mono);font-size:.7cqw;letter-spacing:.08em;color:#fff;
+  text-shadow:0 1px 6px rgba(0,0,0,.8);
+}
+
+/* ---------- слайд 17: дефект в задачу ---------- */
+.om{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:1.2cqw;align-items:center;margin-top:1.4cqw}
+.om__arrow{align-self:center;font-family:var(--font-mono);color:var(--accent);font-size:1.6cqw}
+.om__cell{display:grid;gap:.8cqw}
+.om__cell .shot{aspect-ratio:4/3}
+.om__cap{font-family:var(--font-mono);font-size:.85cqw;letter-spacing:.06em;color:var(--blueprint);text-transform:uppercase}
+.card{border:1px solid var(--line);border-radius:4px;background:#fff;overflow:hidden}
+.card__head{
+  background:var(--blueprint);color:var(--paper);padding:.6cqw 1cqw;
+  font-family:var(--font-mono);font-size:.85cqw;letter-spacing:.08em;text-transform:uppercase;
+}
+.card__row{
+  display:grid;grid-template-columns:auto 1fr;gap:.8cqw;align-items:baseline;
+  padding:.55cqw 1cqw;border-top:1px solid var(--line-soft);font-size:.95cqw;
+}
+.card__row span{color:var(--ink-soft)}
+.card__row b{font-weight:600;text-align:right}
+.card__row i{font-style:normal;font-weight:600;color:var(--accent);text-align:right}
+.card__foot{padding:.7cqw 1cqw;border-top:1px solid var(--line-soft);font-size:.95cqw;font-weight:600;color:var(--blueprint)}
+
+/* ---------- слайд 19: контакты ---------- */
+.contacts{display:grid;gap:.5cqw;margin-top:1.4cqw}
+.contact{display:grid;grid-template-columns:auto 1fr;gap:1cqw;align-items:baseline;font-size:1.15cqw}
+.contact span{font-family:var(--font-mono);font-size:.85cqw;letter-spacing:.08em;text-transform:uppercase;color:var(--blueprint)}
+.contact b{font-weight:600}
+
+@media print{
+  @page{size:1280px 720px;margin:0}
+  body{background:#fff;padding:0}
+  .deck{gap:0;max-width:none}
+  .slide{border:0;border-radius:0;box-shadow:none;break-after:page}
+}
+</style>
+<link rel="stylesheet" href="/css/deck-dark.css?v=1">
+</head>
+<body>
+<header class="dp-bar">
+  <a class="dp-back" href="/">
+    <span aria-hidden="true">←</span>
+    <span data-i18n="deck.back">На сайт</span>
+  </a>
+  <span class="dp-title" data-i18n="meta.short">UNB Group</span>
+  <nav class="dp-langs" aria-label="Language">
+      <a href="/uz/decks/group/" data-lang="uz">UZ</a>
+      <a href="/decks/group/" data-lang="ru" class="is-active">RU</a>
+      <a href="/en/decks/group/" data-lang="en">EN</a>
+      <a href="/zh/decks/group/" data-lang="ch">CH</a>
+  </nav>
+    <button class="dp-icon-btn dp-theme" id="dpTheme" type="button" data-theme-toggle data-i18n-title="theme.toggle" title="Сменить тему" aria-label="Сменить тему" aria-pressed="false">
+      <svg class="dp-theme__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.4A8.5 8.5 0 0 1 9.6 4 8.5 8.5 0 1 0 20 14.4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      <svg class="dp-theme__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 2.5v2.2M12 19.3v2.2M4.2 12H2M22 12h-2.2M6.3 6.3 4.8 4.8M19.2 19.2l-1.5-1.5M17.7 6.3l1.5-1.5M4.8 19.2l1.5-1.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+    <button class="dp-icon-btn dp-full" id="dpFull" type="button" data-i18n-title="deck.fullscreen" title="Во весь экран" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+    </button>
+</header>
+
+<div class="deck">
+
+<!-- ═══════ 1 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="hero">
+      <div>
+        <div class="kicker"><span data-i18n="s01.k01">01 / Титул</span></div>
+        <h1 data-i18n="s01.k02">Интеллектуальная платформа мониторинга инфраструктуры</h1>
+        <ul class="list">
+          <li data-i18n="s01.k03">Дроны, искусственный интеллект, цифровые модели и автоматизация эксплуатации — в одном контуре.</li>
+          <li data-i18n="s01.k04">Энергетика, города, дороги, строительство, сельское хозяйство и логистика на общей платформе.</li>
+        </ul>
+        <p class="badge" data-i18n="s01.k05">От автономного облёта<br>до задачи бригаде</p>
+      </div>
+      <div class="frame">
+        <div class="shot">
+          <img src="foto/01-hero.webp" alt="Промышленный дрон на облёте электросетевой подстанции" data-i18n-alt="s01.k06" fetchpriority="high">
+          <div class="hud">PLATFORM: ONLINE<br>AI ACCURACY: 95%<br>MODE: AUTONOMOUS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">01 / 19</div>
+</section>
+
+<!-- ═══════ 2 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s02.k01">02 / Позиционирование</span></div>
+    <h2 data-i18n="s02.k02">Переход от ручного контроля<br>к цифровому управлению</h2>
+    <div class="compare">
+      <div class="panel panel--bad">
+        <div class="panel__head" data-i18n="s02.k03">Традиционный подход</div>
+        <div class="panel__body">
+          <div class="duo">
+            <div class="shot"><img src="foto/02-climber.webp" alt="Монтёр поднимается на опору для ручного осмотра" data-i18n-alt="s02.k04" loading="lazy"></div>
+            <div class="shot"><img src="foto/02-paper.webp" alt="Инженер размечает бумажные карты объекта вручную" data-i18n-alt="s02.k05" loading="lazy"></div>
+          </div>
+          <div class="mark"><i>!</i><span data-i18n="s02.k06"><b>Дорогие и медленные инспекции:</b> выезды бригад, автовышки и вертолёты.</span></div>
+          <div class="mark"><i>!</i><span data-i18n="s02.k07"><b>Высокий человеческий фактор:</b> результат зависит от внимания осмотрщика.</span></div>
+          <div class="mark"><i>!</i><span data-i18n="s02.k08"><b>Слепые зоны:</b> данные разрознены по отчётам, таблицам и бумажным картам.</span></div>
+        </div>
+      </div>
+      <div class="panel panel--good">
+        <div class="panel__head" data-i18n="s02.k09">Единая платформа</div>
+        <div class="panel__body">
+          <div class="shot">
+            <img src="foto/02-control.webp" alt="Единый центр контроля: карты, телеметрия и видео с дронов на общей стене мониторов" data-i18n-alt="s02.k10" loading="lazy">
+          </div>
+          <div class="mark"><i>✓</i><span data-i18n="s02.k11"><b>Автономные дроны:</b> облёт и сканирование инфраструктуры по заданным маршрутам.</span></div>
+          <div class="mark"><i>✓</i><span data-i18n="s02.k12"><b>2D/3D визуализация:</b> детализированные цифровые двойники объектов для анализа.</span></div>
+          <div class="mark"><i>✓</i><span data-i18n="s02.k13"><b>Единый центр контроля:</b> управление данными и решения в реальном времени.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">02 / 19</div>
+</section>
+
+<!-- ═══════ 3 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s03.k01">03 / Архитектура</span></div>
+    <h2 data-i18n="s03.k02">Архитектура платформы:<br>от сбора данных до устранения дефекта</h2>
+    <div class="chain">
+      <div class="link">
+        <span class="n">01</span>
+        <h3 data-i18n="s03.k03">Сбор данных</h3>
+        <p data-i18n="s03.k04">Автономные дроны, полёты по заданным маршрутам, фото и видео, LiDAR и сенсоры.</p>
+      </div>
+      <div class="link">
+        <span class="n">02</span>
+        <h3 data-i18n="s03.k05">Передача данных</h3>
+        <p data-i18n="s03.k06">Бесшовная передача телеметрии и материалов съёмки в единую систему.</p>
+      </div>
+      <div class="link">
+        <span class="n">03</span>
+        <h3 data-i18n="s03.k07">AI-анализ</h3>
+        <p data-i18n="s03.k08">Автоматическое распознавание дефектов алгоритмами Computer Vision.</p>
+      </div>
+      <div class="link">
+        <span class="n">04</span>
+        <h3 data-i18n="s03.k09">Визуализация</h3>
+        <p data-i18n="s03.k10">Построение точных 2D/3D моделей и создание цифрового двойника объекта.</p>
+      </div>
+      <div class="link">
+        <span class="n">05</span>
+        <h3 data-i18n="s03.k11">O&amp;M управление</h3>
+        <p data-i18n="s03.k12">Генерация алертов, назначение задач бригадам и контроль выполнения.</p>
+      </div>
+    </div>
+    <div class="bar wide" data-i18n="s03.k13">Закрытый цикл управления: инспекция, анализ и ремонт живут в одном цифровом контуре</div>
+  </div>
+  <div class="pager">03 / 19</div>
+</section>
+
+<!-- ═══════ 4 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s04.k01">04 / Охват</span></div>
+    <h2 data-i18n="s04.k02">Единый цифровой контур для всей инфраструктуры</h2>
+    <div class="tiles">
+      <div class="tile">
+        <div class="shot"><img src="foto/04-solar.webp" alt="Солнечная электростанция с дроном на облёте" data-i18n-alt="s04.k03" loading="lazy"></div>
+        <div class="tile__body">
+          <h3 data-i18n="s04.k04">Солнечные станции</h3>
+          <p data-i18n="s04.k05">Предотвращение потерь генерации</p>
+        </div>
+      </div>
+      <div class="tile">
+        <div class="shot"><img src="foto/04-power.webp" alt="Высоковольтная линия в горах и маршруты облёта дронов" data-i18n-alt="s04.k06" loading="lazy"></div>
+        <div class="tile__body">
+          <h3 data-i18n="s04.k07">Инспекция ЛЭП</h3>
+          <p data-i18n="s04.k08">Стабильность электросети</p>
+        </div>
+      </div>
+      <div class="tile">
+        <div class="shot"><img src="foto/04-city.webp" alt="Оператор работает с трёхмерной моделью городской застройки" data-i18n-alt="s04.k09" loading="lazy"></div>
+        <div class="tile__body">
+          <h3 data-i18n="s04.k10">Умный город</h3>
+          <p data-i18n="s04.k11">Безопасность городской среды</p>
+        </div>
+      </div>
+      <div class="tile">
+        <div class="shot"><img src="foto/04-roads.webp" alt="Транспортная развязка с высоты и дрон на маршруте" data-i18n-alt="s04.k12" loading="lazy"></div>
+        <div class="tile__body">
+          <h3 data-i18n="s04.k13">Дороги</h3>
+          <p data-i18n="s04.k14">Аналитика состояния покрытий</p>
+        </div>
+      </div>
+      <div class="tile">
+        <div class="shot"><img src="foto/04-build.webp" alt="Дрон на облёте строительной площадки с башенными кранами" data-i18n-alt="s04.k15" loading="lazy"></div>
+        <div class="tile__body">
+          <h3 data-i18n="s04.k16">Строительство</h3>
+          <p data-i18n="s04.k17">BIM-контроль и прогресс работ</p>
+        </div>
+      </div>
+      <div class="tile">
+        <div class="shot"><img src="foto/04-farm.webp" alt="Агродрон обрабатывает поле" data-i18n-alt="s04.k18" loading="lazy"></div>
+        <div class="tile__body">
+          <h3 data-i18n="s04.k19">Сельское хозяйство</h3>
+          <p data-i18n="s04.k20">Точное земледелие и автопилот</p>
+        </div>
+      </div>
+    </div>
+    <div class="bar wide" style="margin-top:1.4cqw" data-i18n="s04.k21">Универсальное масштабирование: ниже затраты, выше скорость инспекций и безопасность</div>
+  </div>
+  <div class="pager">04 / 19</div>
+</section>
+
+<!-- ═══════ 5 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s05.k01">05 / Направление 01</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s05.k02">AI-инспекция солнечных станций</h2>
+        <span class="tagline" data-i18n="s05.k03">60% станций теряют до 15% генерации из-за скрытых дефектов</span>
+        <div class="rows" style="margin-top:1.4cqw">
+          <div class="row"><span class="n">01</span><span data-i18n="s05.k04"><b>Hot spots:</b> перегрев ячеек и соединений находится по тепловизионной съёмке.</span></div>
+          <div class="row"><span class="n">02</span><span data-i18n="s05.k05"><b>Микротрещины:</b> скрытые повреждения панелей, невидимые при обходе.</span></div>
+          <div class="row"><span class="n">03</span><span data-i18n="s05.k06"><b>Загрязнение и песок:</b> участки с падением выработки из-за налёта.</span></div>
+          <div class="row"><span class="n">04</span><span data-i18n="s05.k07"><b>Затенение:</b> растительность и конструкции, закрывающие модули.</span></div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="frame">
+          <div class="shot">
+            <img src="foto/05-drone.webp" alt="Дрон обследует ряды солнечных панелей" data-i18n-alt="s05.k08" loading="lazy">
+            <div class="hud">THERMAL: ON<br>SCAN: 100 HA/DAY</div>
+          </div>
+        </div>
+        <div class="shot"><img src="foto/05-map.webp" alt="Карта облёта станции с покрытием снимками" data-i18n-alt="s05.k09" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="bars">
+      <div class="bar" data-i18n="s05.k10">↑ выработка энергии</div>
+      <div class="bar alt" data-i18n="s05.k11">↓ потери генерации</div>
+      <div class="bar" data-i18n="s05.k12">↓ расходы на O&amp;M</div>
+    </div>
+  </div>
+  <div class="pager">05 / 19</div>
+</section>
+
+<!-- ═══════ 6 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s06.k01">06 / Направление 02</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s06.k02">Интеллектуальная инспекция ЛЭП</h2>
+        <span class="tagline" data-i18n="s06.k03">Точность распознавания AI-моделей — до 90%+</span>
+        <div class="rows" style="margin-top:1.4cqw">
+          <div class="row"><span class="n">01</span><span data-i18n="s06.k04"><b>Дефекты изоляторов:</b> сколы, трещины и перегрев гирлянд.</span></div>
+          <div class="row"><span class="n">02</span><span data-i18n="s06.k05"><b>Коррозия металла:</b> износ элементов опор и арматуры.</span></div>
+          <div class="row"><span class="n">03</span><span data-i18n="s06.k06"><b>Обрывы проводов:</b> повреждения и расплетение жил.</span></div>
+          <div class="row"><span class="n">04</span><span data-i18n="s06.k07"><b>Опасная растительность:</b> габариты до проводов считаются по облаку точек.</span></div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="frame">
+          <div class="shot">
+            <img src="foto/06-thermal.webp" alt="Тепловизионный кадр охранной зоны линии" data-i18n-alt="s06.k08" loading="lazy">
+            <div class="hud">IR SCAN<br>DEFECTS: AUTO</div>
+          </div>
+        </div>
+        <div class="shot"><img src="foto/06-lidar.webp" alt="Облако точек LiDAR: опора, провода и растительность под линией" data-i18n-alt="s06.k09" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="bars">
+      <div class="bar" data-i18n="s06.k10">↓ аварийность</div>
+      <div class="bar alt" data-i18n="s06.k11">↑ стабильность сети</div>
+      <div class="bar" data-i18n="s06.k12">↓ downtime</div>
+    </div>
+  </div>
+  <div class="pager">06 / 19</div>
+</section>
+
+<!-- ═══════ 7 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s07.k01">07 / Направление 03</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s07.k02">Цифровой двойник города</h2>
+        <p class="lead" data-i18n="s07.k03">Ликвидация слепых зон и объединение разрозненных данных о городской среде.</p>
+        <div class="rows" style="margin-top:1.4cqw">
+          <div class="row"><span class="n">01</span><span data-i18n="s07.k04"><b>Транспортные аномалии:</b> заторы, аварии и нарушения на дорогах города.</span></div>
+          <div class="row"><span class="n">02</span><span data-i18n="s07.k05"><b>Скопления людей:</b> контроль массовых мероприятий и общественных пространств.</span></div>
+          <div class="row"><span class="n">03</span><span data-i18n="s07.k06"><b>Экология:</b> несанкционированные свалки и стихийный мусор.</span></div>
+          <div class="row"><span class="n">04</span><span data-i18n="s07.k07"><b>Чрезвычайные ситуации:</b> быстрый облёт места происшествия и оценка обстановки.</span></div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="frame">
+          <div class="shot">
+            <img src="foto/07-twin.webp" alt="План облёта городского района на экране оператора" data-i18n-alt="s07.k08" loading="lazy">
+            <div class="hud">CITY TWIN<br>LAYERS: 12</div>
+          </div>
+        </div>
+        <div class="shot"><img src="foto/07-detect.webp" alt="Автоматическое распознавание объектов на кадре с дрона" data-i18n-alt="s07.k09" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="bars">
+      <div class="bar" data-i18n="s07.k10">↑ безопасность</div>
+      <div class="bar alt" data-i18n="s07.k11">↑ скорость реакции</div>
+      <div class="bar" data-i18n="s07.k12">data-driven управление</div>
+    </div>
+  </div>
+  <div class="pager">07 / 19</div>
+</section>
+
+<!-- ═══════ 8 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s08.k01">08 / Направление 04</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s08.k02">AI-аналитика дорожной сети</h2>
+        <p class="lead" data-i18n="s08.k03">Переход от долгих ручных проверок к интерактивной карте дефектов покрытия.</p>
+        <div class="rows" style="margin-top:1.4cqw">
+          <div class="row"><span class="n">01</span><span data-i18n="s08.k04"><b>Ямы и выбоины:</b> с привязкой к координатам и оценкой площади.</span></div>
+          <div class="row"><span class="n">02</span><span data-i18n="s08.k05"><b>Трещины покрытия:</b> сетка трещин и раскрытие швов.</span></div>
+          <div class="row"><span class="n">03</span><span data-i18n="s08.k06"><b>Износ разметки:</b> участки, требующие обновления.</span></div>
+          <div class="row"><span class="n">04</span><span data-i18n="s08.k07"><b>Повреждения ограждений:</b> барьеры, знаки и элементы обустройства.</span></div>
+        </div>
+      </div>
+      <div class="frame">
+        <div class="shot">
+          <img src="foto/08-crack.webp" alt="Сетка трещин на асфальтобетонном покрытии" data-i18n-alt="s08.k08" loading="lazy">
+          <div class="hud">PAVEMENT SCAN<br>CRACK: 0.94</div>
+        </div>
+      </div>
+    </div>
+    <div class="bars">
+      <div class="bar" data-i18n="s08.k09">↓ аварийность</div>
+      <div class="bar alt" data-i18n="s08.k10">↑ скорость ремонта</div>
+      <div class="bar" data-i18n="s08.k11">↓ затраты на содержание</div>
+    </div>
+  </div>
+  <div class="pager">08 / 19</div>
+</section>
+
+<!-- ═══════ 9 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s09.k01">09 / Направление 05</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s09.k02">Автопилот для сельхозтехники</h2>
+        <p class="lead" data-i18n="s09.k03">NX610 — автоматизированная система управления техникой для точного земледелия: снижает влияние человеческого фактора и повышает эффективность полевых работ.</p>
+        <div class="rows" style="margin-top:1.4cqw">
+          <div class="row"><span class="n">01</span><span data-i18n="s09.k04"><b>Точность до <i>±2.5 см</i>:</b> минимум перекрытий и пропусков на проходах.</span></div>
+          <div class="row"><span class="n">02</span><span data-i18n="s09.k05"><b>Любая скорость:</b> стабильная работа от 0.1 до 30 км/ч.</span></div>
+          <div class="row"><span class="n">03</span><span data-i18n="s09.k06"><b>Универсальность:</b> тракторы, опрыскиватели и сеялки.</span></div>
+          <div class="row"><span class="n">04</span><span data-i18n="s09.k07"><b>Умная навигация:</b> интеллектуальные маршруты для полей любой формы.</span></div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="frame">
+          <div class="shot">
+            <img src="foto/09-guidance.webp" alt="Экран планирования маршрута по контуру поля" data-i18n-alt="s09.k08" loading="lazy">
+          </div>
+        </div>
+        <div class="shot"><img src="foto/09-ndvi.webp" alt="Съёмка поля в NDVI рядом с обычным изображением" data-i18n-alt="s09.k09" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="bar wide" style="margin-top:1.4cqw" data-i18n="s09.k10">NX610 превращает обычную технику в автономную систему обработки полей</div>
+  </div>
+  <div class="pager">09 / 19</div>
+</section>
+
+<!-- ═══════ 10 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s10.k01">10 / Направление 05</span></div>
+    <h2 data-i18n="s10.k02">Единая экосистема Smart Farming</h2>
+    <p class="lead" data-i18n="s10.k03">Комплексное решение для цифровизации сельского хозяйства: интеграция дрон-сервиса и наземной техники.</p>
+    <div class="split split--wide" style="margin-top:1.2cqw">
+      <div class="rows">
+        <div class="row"><span class="n">01</span><span data-i18n="s10.k04"><b>Воздух — дроны:</b> обработка, мониторинг и анализ состояния полей.</span></div>
+        <div class="row"><span class="n">02</span><span data-i18n="s10.k05"><b>Земля — автопилот NX610:</b> точное выполнение работ наземной техникой.</span></div>
+        <div class="row"><span class="n">03</span><span data-i18n="s10.k06"><b>Центр — цифровая платформа:</b> единое управление, контроль и аналитика данных.</span></div>
+      </div>
+      <div class="stack">
+        <div class="shot"><img src="foto/10-air.webp" alt="Агродрон вносит препараты на поле" data-i18n-alt="s10.k07" loading="lazy"></div>
+        <div class="shot"><img src="foto/10-data.webp" alt="Обработка материалов съёмки поля на ноутбуке" data-i18n-alt="s10.k08" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="quad quad--4" style="margin-top:1.2cqw">
+      <div class="row"><span class="n">01</span><span data-i18n="s10.k09"><b>Снижение затрат:</b> экономия топлива, удобрений и рабочего времени.</span></div>
+      <div class="row"><span class="n">02</span><span data-i18n="s10.k10"><b>Рост урожайности:</b> за счёт точного внесения материалов.</span></div>
+      <div class="row"><span class="n">03</span><span data-i18n="s10.k11"><b>Сокращение сроков:</b> оптимизация времени всех агроопераций.</span></div>
+      <div class="row"><span class="n">04</span><span data-i18n="s10.k12"><b>Точность:</b> человеческий фактор исключён на всех этапах.</span></div>
+    </div>
+  </div>
+  <div class="pager">10 / 19</div>
+</section>
+
+<!-- ═══════ 11 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s11.k01">11 / Направление 06</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s11.k02">Автоматизированная доставка БПЛА</h2>
+        <p class="lead" data-i18n="s11.k03">Интеллектуальная платформа для автономной логистики и управления парком дронов.</p>
+        <div class="rows" style="margin-top:1.4cqw">
+          <div class="row"><span class="n">01</span><span data-i18n="s11.k04"><b>Автоматизация:</b> автономный взлёт и посадка, работа <i>24/7</i> через станции Drone Dock без пилота.</span></div>
+          <div class="row"><span class="n">02</span><span data-i18n="s11.k05"><b>Управление полётами:</b> Mission Planning на базе AI Dispatch и маршруты вне зоны прямой видимости (BVLOS).</span></div>
+          <div class="row"><span class="n">03</span><span data-i18n="s11.k06"><b>Контроль:</b> централизованный Fleet Management, телеметрия и мониторинг в реальном времени.</span></div>
+          <div class="row"><span class="n">04</span><span data-i18n="s11.k07"><b>Навигация и интеграция:</b> позиционирование GNSS и RTK, обмен данными с ERP-системами предприятия.</span></div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="frame">
+          <div class="shot">
+            <img src="foto/11-dock.webp" alt="Станция автоматического взлёта и посадки дрона" data-i18n-alt="s11.k08" loading="lazy">
+            <div class="hud">DOCK: READY<br>MISSION: AUTO</div>
+          </div>
+        </div>
+        <div class="shot"><img src="foto/11-drone.webp" alt="Грузовой дрон с контейнером на маршруте в горах" data-i18n-alt="s11.k09" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">11 / 19</div>
+</section>
+
+<!-- ═══════ 12 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s12.k01">12 / Логистика</span></div>
+    <h2 data-i18n="s12.k02">Доставка товаров последней мили</h2>
+    <p class="lead" data-i18n="s12.k03">Городская логистика без влияния дорожного трафика.</p>
+    <div class="split" style="margin-top:1.2cqw">
+      <div class="rows">
+        <div class="row"><span class="n">01</span><span data-i18n="s12.k04"><b>Сценарии:</b> готовая еда, продукты, интернет-заказы, документы и малогабаритные грузы.</span></div>
+        <div class="row"><span class="n">02</span><span data-i18n="s12.k05"><b>Сокращение времени:</b> доставка по прямой линии и нулевое влияние пробок.</span></div>
+        <div class="row"><span class="n">03</span><span data-i18n="s12.k06"><b>Автоматизация:</b> выполнение миссий по расписанию без участия оператора.</span></div>
+      </div>
+      <div class="frame">
+        <div class="shot">
+          <img src="foto/12-route.webp" alt="Выполнение полётного задания по маршруту на экране" data-i18n-alt="s12.k07" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <div class="chain" style="margin:1.2cqw 0 0">
+      <div class="link"><span class="n">01</span><h3 data-i18n="s12.k09">Заказ</h3></div>
+      <div class="link"><span class="n">02</span><h3 data-i18n="s12.k10">Центр обработки</h3></div>
+      <div class="link"><span class="n">03</span><h3 data-i18n="s12.k11">UAV + Route Planning</h3></div>
+      <div class="link"><span class="n">04</span><h3 data-i18n="s12.k12">Клиент</h3></div>
+    </div>
+  </div>
+  <div class="pager">12 / 19</div>
+</section>
+
+<!-- ═══════ 13 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s13.k01">13 / Логистика</span></div>
+    <h2 data-i18n="s13.k02">Промышленная и специализированная доставка</h2>
+    <p class="lead" data-i18n="s13.k03">Интеграция Payload Management для сложных и критически важных объектов.</p>
+    <div class="split split--wide" style="margin-top:1.2cqw">
+      <div class="sectors">
+        <div class="sector">
+          <h3 data-i18n="s13.k04">Строительство</h3>
+          <ul>
+            <li data-i18n="s13.k05">Строительные материалы и инструмент</li>
+            <li data-i18n="s13.k06">Оборудование и комплектующие</li>
+            <li data-i18n="s13.k07">Средства индивидуальной защиты</li>
+          </ul>
+        </div>
+        <div class="sector">
+          <h3 data-i18n="s13.k08">Здравоохранение</h3>
+          <ul>
+            <li data-i18n="s13.k09">Медикаменты и препараты крови</li>
+            <li data-i18n="s13.k10">Лабораторные образцы</li>
+            <li data-i18n="s13.k11">Компактное медицинское оборудование</li>
+          </ul>
+        </div>
+        <div class="sector">
+          <h3 data-i18n="s13.k12">Промышленность</h3>
+          <ul>
+            <li data-i18n="s13.k13">Оснащение удалённых объектов</li>
+            <li data-i18n="s13.k14">Аварийные материалы и запчасти</li>
+            <li data-i18n="s13.k15">Специализированное оборудование</li>
+          </ul>
+        </div>
+        <div class="sector">
+          <h3 data-i18n="s13.k16">Государственные службы</h3>
+          <ul>
+            <li data-i18n="s13.k17">Аварийно-спасательное оборудование</li>
+            <li data-i18n="s13.k18">Гуманитарные грузы</li>
+            <li data-i18n="s13.k19">Обеспечение труднодоступных территорий</li>
+          </ul>
+        </div>
+      </div>
+      <div class="frame">
+        <div class="shot">
+          <img src="foto/13-industry.webp" alt="Доставка груза дроном на судно в порту" data-i18n-alt="s13.k20" loading="lazy">
+          <div class="hud">PAYLOAD: 10 KG<br>MODE: BVLOS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">13 / 19</div>
+</section>
+
+<!-- ═══════ 14 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s14.k01">14 / Эффект</span></div>
+    <div class="split split--wide">
+      <div>
+        <h2 data-i18n="s14.k02">Эффект от внедрения логистики</h2>
+        <p class="lead" data-i18n="s14.k03">Трансформация операционной модели и масштабирование парка.</p>
+        <div class="rows" style="margin-top:1.2cqw">
+          <div class="row"><span class="n">01</span><span data-i18n="s14.k04"><b>Единый контур:</b> централизованный Fleet Management всего парка.</span></div>
+          <div class="row"><span class="n">02</span><span data-i18n="s14.k05"><b>Масштабирование:</b> поддержка сотен одновременно выполняемых миссий.</span></div>
+          <div class="row"><span class="n">03</span><span data-i18n="s14.k06"><b>Аналитика:</b> полный журнал полётов и запись телеметрии.</span></div>
+        </div>
+      </div>
+      <div class="frame">
+        <div class="shot">
+          <img src="foto/14-cloud.webp" alt="Облачная панель управления парком дронов на мониторе" data-i18n-alt="s14.k07" loading="lazy">
+          <div class="hud">FLEET: 132<br>MISSIONS: 2 340</div>
+        </div>
+      </div>
+    </div>
+    <div class="kpis">
+      <div class="kpi">
+        <div class="kpi__n">↓ 60%</div>
+        <h3 data-i18n="s14.k08">Затрат</h3>
+        <p data-i18n="s14.k09">Снижение O&amp;M за счёт отказа от наземного транспорта и ручного труда.</p>
+      </div>
+      <div class="kpi">
+        <div class="kpi__n"><i>× 10</i></div>
+        <h3 data-i18n="s14.k10">Скорость</h3>
+        <p data-i18n="s14.k11">Ускорение логистических цепочек против традиционной доставки.</p>
+      </div>
+      <div class="kpi">
+        <div class="kpi__n">100%</div>
+        <h3 data-i18n="s14.k12">Безопасность</h3>
+        <p data-i18n="s14.k13">Отсутствие рисков для персонала на маршруте.</p>
+      </div>
+      <div class="kpi">
+        <div class="kpi__n"><i>95%+</i></div>
+        <h3 data-i18n="s14.k14">Точность</h3>
+        <p data-i18n="s14.k15">Безошибочное распределение миссий алгоритмами AI Dispatch.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pager">14 / 19</div>
+</section>
+
+<!-- ═══════ 15 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s15.k01">15 / Направление 07</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s15.k02">Цифровой контроль строительства</h2>
+        <span class="tagline" data-i18n="s15.k03">Интеграция с BIM/CAD против ошибок данных и задержек</span>
+        <div class="rows" style="margin-top:1.4cqw">
+          <div class="row"><span class="n">01</span><span data-i18n="s15.k04"><b>Прогресс строительства:</b> регулярный облёт и сравнение план/факт по этапам.</span></div>
+          <div class="row"><span class="n">02</span><span data-i18n="s15.k05"><b>Нарушения техники безопасности:</b> автоматический контроль площадки.</span></div>
+          <div class="row"><span class="n">03</span><span data-i18n="s15.k06"><b>Контроль объёмов и качества:</b> подсчёт земляных масс и материалов по модели.</span></div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="frame">
+          <div class="shot">
+            <img src="foto/15-site.webp" alt="Трёхмерная модель площадки на экране инженера" data-i18n-alt="s15.k07" loading="lazy">
+            <div class="hud">AS-BUILT<br>BIM-READY</div>
+          </div>
+        </div>
+        <div class="shot"><img src="foto/15-change.webp" alt="Автоматическое сравнение двух съёмок площадки" data-i18n-alt="s15.k08" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="bars">
+      <div class="bar" data-i18n="s15.k09">↓ перерасход бюджета</div>
+      <div class="bar alt" data-i18n="s15.k10">↑ контроль сроков</div>
+      <div class="bar" data-i18n="s15.k11">↑ прозрачность проекта</div>
+    </div>
+  </div>
+  <div class="pager">15 / 19</div>
+</section>
+
+<!-- ═══════ 16 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s16.k01">16 / Технология</span></div>
+    <h2 data-i18n="s16.k02">Умная аналитика: выявление угроз и классификация</h2>
+    <p class="lead" data-i18n="s16.k03">До 80% элементов сети платформа классифицирует полностью автоматически. Алгоритмы не просто собирают фото — они сами находят угрозы в сложных условиях освещения и геометрии.</p>
+    <div class="detect">
+      <div class="det">
+        <img src="foto/16-insulator.webp" alt="Гирлянда изоляторов и провода на опоре" data-i18n-alt="s16.k04" loading="lazy">
+        <div class="det__box"><span class="det__tag" data-i18n="s16.k05">ИЗОЛЯТОР · 0.95</span></div>
+        <div class="det__conf">AI DETECTION</div>
+      </div>
+      <div class="det">
+        <img src="foto/16-pothole.webp" alt="Разрушение дорожного покрытия с выбоиной" data-i18n-alt="s16.k06" loading="lazy">
+        <div class="det__box"><span class="det__tag" data-i18n="s16.k07">ВЫБОИНА · 0.96</span></div>
+        <div class="det__conf">AI DETECTION</div>
+      </div>
+      <div class="det">
+        <img src="foto/16-vegetation.webp" alt="Разросшаяся растительность вдоль дороги и линии" data-i18n-alt="s16.k08" loading="lazy">
+        <div class="det__box"><span class="det__tag" data-i18n="s16.k09">РАСТИТЕЛЬНОСТЬ · 0.92</span></div>
+        <div class="det__conf">AI DETECTION</div>
+      </div>
+      <div class="det">
+        <img src="foto/16-marking.webp" alt="Стёртая дорожная разметка на проезжей части" data-i18n-alt="s16.k10" loading="lazy">
+        <div class="det__box"><span class="det__tag" data-i18n="s16.k11">ИЗНОС РАЗМЕТКИ · 0.93</span></div>
+        <div class="det__conf">AI DETECTION</div>
+      </div>
+    </div>
+  </div>
+  <div class="pager">16 / 19</div>
+</section>
+
+<!-- ═══════ 17 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s17.k01">17 / Эксплуатация</span></div>
+    <h2 data-i18n="s17.k02">От выявленного дефекта к задаче O&amp;M</h2>
+    <div class="om">
+      <div class="om__cell">
+        <div class="shot"><img src="foto/17-defect.webp" alt="Тепловизионный анализ дефекта изолятора в программе" data-i18n-alt="s17.k03" loading="lazy"></div>
+        <div class="om__cap" data-i18n="s17.k04">01 / Автоматическое создание задачи</div>
+      </div>
+      <div class="om__arrow" aria-hidden="true">→</div>
+      <div class="om__cell">
+        <div class="card">
+          <div class="card__head" data-i18n="s17.k05">Work order</div>
+          <div class="card__row"><span data-i18n="s17.k06">Номер задачи</span><b>23392727</b></div>
+          <div class="card__row"><span data-i18n="s17.k07">Тип дефекта</span><b data-i18n="s17.k08">Повреждённый изолятор</b></div>
+          <div class="card__row"><span data-i18n="s17.k09">Приоритет</span><i data-i18n="s17.k10">Высокий</i></div>
+          <div class="card__row"><span data-i18n="s17.k11">Местоположение</span><b data-i18n="s17.k12">Опора 123, ЛЭП 500 кВ</b></div>
+        </div>
+        <div class="om__cap" data-i18n="s17.k13">02 / Приоритизация дефектов</div>
+      </div>
+      <div class="om__arrow" aria-hidden="true">→</div>
+      <div class="om__cell">
+        <div class="card">
+          <div class="card__head" data-i18n="s17.k14">Мобильное приложение бригады</div>
+          <div class="card__row"><span data-i18n="s17.k15">Бригада</span><b data-i18n="s17.k16">№ 4</b></div>
+          <div class="card__row"><span data-i18n="s17.k17">Объект</span><b data-i18n="s17.k18">Опора 123 · ЛЭП 500 кВ</b></div>
+          <div class="card__row"><span data-i18n="s17.k19">Выезд</span><b data-i18n="s17.k20">Сегодня, 14:00</b></div>
+          <div class="card__foot" data-i18n="s17.k21">Принять задачу →</div>
+        </div>
+        <div class="om__cap" data-i18n="s17.k22">03 / Назначение бригады</div>
+      </div>
+    </div>
+    <div class="bar wide" style="margin-top:1.4cqw" data-i18n="s17.k23">Закрытый цикл: инспекция → анализ → задача → ремонт</div>
+  </div>
+  <div class="pager">17 / 19</div>
+</section>
+
+<!-- ═══════ 18 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s18.k01">18 / Бизнес-эффект</span></div>
+    <h2 data-i18n="s18.k02">Бизнес-эффект: трансформация операционной модели</h2>
+    <div class="kpis" style="margin-top:1.8cqw">
+      <div class="kpi">
+        <div class="kpi__n">↓ 60%</div>
+        <h3 data-i18n="s18.k03">Снижение затрат</h3>
+        <p data-i18n="s18.k04">Отказ от дорогих ручных инспекций и облётов на вертолётах.</p>
+      </div>
+      <div class="kpi">
+        <div class="kpi__n"><i>× 10</i></div>
+        <h3 data-i18n="s18.k05">Рост эффективности</h3>
+        <p data-i18n="s18.k06">Полная автоматизация рутинных проверок: охват 100–500 км линий в день.</p>
+      </div>
+      <div class="kpi">
+        <div class="kpi__n">95%</div>
+        <h3 data-i18n="s18.k07">Прозрачность</h3>
+        <p data-i18n="s18.k08">Онлайн-доступ к истории дефектов и цифровому двойнику объекта.</p>
+      </div>
+      <div class="kpi">
+        <div class="kpi__n"><i>0</i></div>
+        <h3 data-i18n="s18.k09">Надёжность</h3>
+        <p data-i18n="s18.k10">Ноль рисков для людей: раннее выявление дефектов и предотвращение инцидентов.</p>
+      </div>
+    </div>
+    <div class="bars bars--2" style="margin-top:1.8cqw">
+      <div class="bar alt" data-i18n="s18.k11">Инспекции без остановки объекта и без работ на высоте</div>
+      <div class="bar" data-i18n="s18.k12">Единая история объекта вместо разрозненных отчётов</div>
+    </div>
+  </div>
+  <div class="pager">18 / 19</div>
+</section>
+
+<!-- ═══════ 19 ═══════ -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker"><span data-i18n="s19.k01">19 / Масштаб</span></div>
+    <div class="split">
+      <div>
+        <h2 data-i18n="s19.k02">Масштабируемость: от пилота до всей сети</h2>
+        <p class="lead" data-i18n="s19.k03">Платформа уже работает на сотнях объектов: начните с пилота на одном участке и разверните её на всю сеть без смены инструментов.</p>
+        <div class="contacts">
+          <div class="contact"><span data-i18n="s19.k04">Email</span><b>info@unbgroup.uz</b></div>
+          <div class="contact"><span data-i18n="s19.k05">Сайт</span><b>unbgroup.uz</b></div>
+          <div class="contact"><span data-i18n="s19.k06">Контактное лицо</span><b data-i18n="s19.k07">Каримов Акмал</b></div>
+          <div class="contact"><span data-i18n="s19.k08">Телефон</span><b>+998 94 388 88 82</b></div>
+        </div>
+      </div>
+      <div class="frame">
+        <div class="shot">
+          <img src="foto/19-final.webp" alt="Инфраструктурный объект с высоты птичьего полёта" data-i18n-alt="s19.k09" loading="lazy">
+          <div class="hud">OBJECTS: 500+<br>CONTROL: CENTRAL</div>
+        </div>
+      </div>
+    </div>
+    <div class="bar wide" style="margin-top:1.4cqw" data-i18n="s19.k10">Централизованное управление всеми объектами из одного центра</div>
+  </div>
+  <div class="pager">19 / 19</div>
+</section>
+
+</div>
+
+<button class="dp-nav dp-nav--prev" id="dpPrev" type="button" data-i18n-title="deck.prev" title="Назад" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 L7 12 L15 20" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+</button>
+<button class="dp-nav dp-nav--next" id="dpNext" type="button" data-i18n-title="deck.next" title="Вперёд" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 L17 12 L9 20" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+</button>
+
+<div class="dp-progress" id="dpProgress" aria-hidden="true" hidden><span id="dpProgressBar"></span></div>
+
+<footer class="dp-foot" id="dpFoot" hidden>
+  <div class="dp-counter"><span id="dpCurrent">1</span><span class="dp-counter-sep">/</span><span id="dpTotal">1</span></div>
+  <div class="dp-thumbs" id="dpThumbs" role="tablist" aria-label="Slides"></div>
+  <button class="dp-icon-btn dp-thumbs-toggle" id="dpThumbsToggle" type="button" data-i18n-title="deck.thumbs" title="Миниатюры">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="5" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="14" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="14" width="7" height="6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+  </button>
+</footer>
+
+<script src="/js/deck-page.js?v=1" defer></script>
+</body>
+</html>

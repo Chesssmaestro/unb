@@ -263,3 +263,21 @@
   .dp-on .deck{display:block;padding:0;container-type:normal;}
   .dp-on .slide{display:block;width:100%;max-width:none;}
 }
+
+/* ==========================================================================
+   Тёмная тема
+
+   Шапка и рамка листалки и так синие; в тёмной теме они уходят почти в
+   чёрный, чтобы слайд оставался самым светлым пятном на экране.
+   Палитра самих слайдов — в css/deck-dark.css и в конце css/deck-theme.css.
+   ========================================================================== */
+
+:root[data-theme="dark"] .dp-bar{background:#061321;}
+:root[data-theme="dark"] .dp-on{background:#050F19;}
+:root[data-theme="dark"] .dp-nav{background:rgba(6,19,33,0.78);}
+:root[data-theme="dark"] .dp-langs a.is-active{color:#061321;}
+
+/* Показывается та иконка, на которую переключит нажатие. */
+.dp-theme .dp-theme__sun{display:none;}
+:root[data-theme="dark"] .dp-theme .dp-theme__sun{display:block;}
+:root[data-theme="dark"] .dp-theme .dp-theme__moon{display:none;}

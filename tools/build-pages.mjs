@@ -113,6 +113,16 @@ function translate(doc, dict) {
     else el.set_content(escapeHtml(value));
     n++;
   }
+  // Подписи иконочных кнопок (переключатель темы). aria-label ставится тем же
+  // значением: внутри кнопки только иконка, и без него скринридер прочитает
+  // пустоту.
+  for (const el of doc.querySelectorAll('[data-i18n-title]')) {
+    const value = dict[el.getAttribute('data-i18n-title')];
+    if (value === undefined) continue;
+    el.setAttribute('title', escapeAttr(value));
+    el.setAttribute('aria-label', escapeAttr(value));
+    n++;
+  }
   return n;
 }
 
