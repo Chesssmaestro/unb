@@ -36,7 +36,7 @@
   align-items:center;
   gap:16px;
   padding:12px 20px;
-  border-bottom:1px solid rgba(245,246,244,0.12);
+  border-bottom:1px solid rgba(255,255,255,0.12);
   min-height:56px;
 }
 
@@ -48,14 +48,14 @@
   font-size:11px;
   letter-spacing:0.08em;
   text-transform:uppercase;
-  color:rgba(245,246,244,0.72);
+  color:rgba(255,255,255,0.72);
   padding:8px 12px;
   margin-left:-12px;
-  border-radius:2px;
+  border-radius:8px;
   transition:color .18s ease, background .18s ease;
   white-space:nowrap;
 }
-.deck__back:hover{color:var(--white);background:rgba(245,246,244,0.08);}
+.deck__back:hover{color:var(--white);background:rgba(255,255,255,0.08);}
 
 .deck__ident{
   display:flex;
@@ -78,7 +78,7 @@
   font-size:14px;
   font-weight:500;
   letter-spacing:-0.01em;
-  color:rgba(245,246,244,0.9);
+  color:rgba(255,255,255,0.9);
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -93,7 +93,7 @@
   text-transform:uppercase;
   color:var(--alert);
   border:1px solid currentColor;
-  border-radius:2px;
+  border-radius:8px;
   padding:2px 6px;
   white-space:nowrap;
   flex-shrink:0;
@@ -107,10 +107,10 @@
 }
 
 .lang-switch--deck{
-  border-color:rgba(245,246,244,0.2);
+  border-color:rgba(255,255,255,0.2);
 }
 .lang-switch--deck .lang-btn{
-  color:rgba(245,246,244,0.65);
+  color:rgba(255,255,255,0.65);
   background:transparent;
 }
 .lang-switch--deck .lang-btn:hover:not(:disabled){color:var(--white);}
@@ -130,10 +130,10 @@
   width:34px;
   height:34px;
   padding:0;
-  border:1px solid rgba(245,246,244,0.25);
-  border-radius:2px;
+  border:1px solid rgba(255,255,255,0.25);
+  border-radius:8px;
   background:transparent;
-  color:rgba(245,246,244,0.8);
+  color:rgba(255,255,255,0.8);
   cursor:pointer;
   transition:border-color .18s ease, color .18s ease;
 }
@@ -168,8 +168,8 @@
   width:auto;
   height:auto;
   object-fit:contain;
-  background:#0b1013;
-  border:1px solid rgba(245,246,244,0.1);
+  background:#131313;
+  border:1px solid rgba(255,255,255,0.1);
   /* aspect-ratio reserves the slot before the first image decodes, so the
      stage does not jolt on load or when stepping to a slide not yet cached. */
   aspect-ratio:16/9;
@@ -192,7 +192,7 @@
 .deck__loader span{
   width:26px;
   height:26px;
-  border:2px solid rgba(245,246,244,0.25);
+  border:2px solid rgba(255,255,255,0.25);
   border-top-color:var(--signal);
   border-radius:50%;
   animation:deck-spin .7s linear infinite;
@@ -209,15 +209,15 @@
   display:flex;
   align-items:center;
   justify-content:center;
-  border:1px solid rgba(245,246,244,0.18);
-  border-radius:2px;
-  background:rgba(16,23,27,0.6);
-  color:rgba(245,246,244,0.8);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:8px;
+  background:rgba(19,19,19,0.6);
+  color:rgba(255,255,255,0.8);
   cursor:pointer;
   z-index:2;
   transition:border-color .18s ease, color .18s ease, background .18s ease, opacity .18s ease;
 }
-.deck__nav:hover:not(:disabled){border-color:var(--signal);color:var(--white);background:rgba(16,23,27,0.9);}
+.deck__nav:hover:not(:disabled){border-color:var(--signal);color:var(--white);background:rgba(19,19,19,0.9);}
 .deck__nav:disabled{opacity:.22;cursor:default;}
 .deck__nav svg{width:22px;height:22px;}
 .deck__nav--prev{left:10px;}
@@ -226,7 +226,7 @@
 /* ---------- Progress ---------- */
 .deck__progress{
   height:2px;
-  background:rgba(245,246,244,0.12);
+  background:rgba(255,255,255,0.12);
 }
 .deck__progress span{
   display:block;
@@ -242,7 +242,7 @@
   align-items:center;
   gap:14px;
   padding:10px 20px;
-  border-top:1px solid rgba(245,246,244,0.12);
+  border-top:1px solid rgba(255,255,255,0.12);
   min-height:60px;
 }
 
@@ -250,7 +250,7 @@
   font-family:var(--font-mono);
   font-size:12px;
   letter-spacing:0.06em;
-  color:rgba(245,246,244,0.75);
+  color:rgba(255,255,255,0.75);
   flex-shrink:0;
   min-width:52px;
 }
@@ -264,18 +264,18 @@
   flex:1;
   padding:2px 0;
   scrollbar-width:thin;
-  scrollbar-color:rgba(245,246,244,0.3) transparent;
+  scrollbar-color:rgba(255,255,255,0.3) transparent;
 }
 .deck__thumbs::-webkit-scrollbar{height:4px;}
-.deck__thumbs::-webkit-scrollbar-thumb{background:rgba(245,246,244,0.3);}
+.deck__thumbs::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.3);}
 
 .deck__thumb{
   flex:0 0 auto;
   width:72px;
   padding:0;
-  border:1px solid rgba(245,246,244,0.2);
-  border-radius:2px;
-  background:#0b1013;
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:8px;
+  background:#131313;
   cursor:pointer;
   overflow:hidden;
   line-height:0;
@@ -309,7 +309,7 @@
 .deck__missing p{
   font-family:var(--font-display);
   font-size:20px;
-  color:rgba(245,246,244,0.9);
+  color:rgba(255,255,255,0.9);
 }
 
 .deck__noscript{
@@ -364,8 +364,8 @@
     left:0;
     right:0;
     bottom:50px;
-    background:rgba(16,23,27,0.96);
-    border-top:1px solid rgba(245,246,244,0.12);
+    background:rgba(19,19,19,0.96);
+    border-top:1px solid rgba(255,255,255,0.12);
     padding:10px 12px;
     z-index:4;
   }

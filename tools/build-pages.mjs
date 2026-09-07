@@ -28,6 +28,38 @@ const HREFLANG = { ru: 'ru', en: 'en', uz: 'uz', ch: 'zh' };
 
 const LANGS = Object.keys(DIRS);
 
+// Локали для Open Graph: у него свой формат, не hreflang.
+const OG_LOCALE = { ru: 'ru_RU', en: 'en_US', uz: 'uz_UZ', ch: 'zh_CN' };
+
+/**
+ * Официальные профили компании — LinkedIn, Crunchbase, отраслевые каталоги.
+ * Это единственное, что связывает сайт с записями о компании снаружи, поэтому
+ * поисковик по ним и опознаёт организацию. Пока список пуст, sameAs не
+ * выводится: пустой или выдуманный тег хуже отсутствующего.
+ */
+const SAME_AS = [];
+
+const CONTACT = {
+  phone: '+998943888882',
+  email: 'info@unbgroup.uz',
+  // Города в контактах на сайте нет; страна взята из домена и кода телефона.
+  country: 'UZ',
+};
+
+/** Темы, по которым компанию должен опознавать поиск, включая AI-поиск. */
+const KNOWS_ABOUT = [
+  'Drone mapping',
+  'LiDAR survey',
+  'Photogrammetry',
+  'Digital twin',
+  'AI-based infrastructure inspection',
+  'Solar plant inspection',
+  'Power line inspection',
+  'Smart city monitoring',
+  'Precision agriculture',
+  'Drone delivery',
+];
+
 function loadDict() {
   const src = fs.readFileSync(path.join(ROOT, 'js', 'i18n.js'), 'utf8');
   const m = src.match(/const I18N\s*=\s*(\{[\s\S]*\});\s*$/);
@@ -89,6 +121,124 @@ const escapeHtml = (s) =>
 
 const escapeAttr = (s) => escapeHtml(s).replace(/"/g, '&quot;');
 
+/** Слаги направлений — прямо из карточек, чтобы список не заводить дважды. */
+function directionSlugs(doc) {
+  return doc
+    .querySelectorAll('.direction-card[data-product]')
+    .map((el) => el.getAttribute('data-product'));
+}
+
+/**
+ * Разметка организации для поисковиков и AI-поиска.
+ *
+ * Один граф на страницу: организация, сайт и сама страница. Направления
+ * попадают в него услугами — их названия и описания уже переведены в словаре,
+ * поэтому каждая языковая копия описывает компанию на своём языке, а ссылается
+ * на один и тот же @id организации.
+ */
+function jsonLd(lang, dict, slugs) {
+  const home = urlFor(lang);
+  const orgId = ORIGIN + '/#organization';
+
+  const org = {
+    '@type': 'Organization',
+    '@id': orgId,
+    name: 'UNB Group',
+    url: ORIGIN + '/',
+    logo: ORIGIN + '/assets/logo.png',
+    image: ORIGIN + '/assets/og-cover.png',
+    description: dict['meta.description'],
+    telephone: CONTACT.phone,
+    email: CONTACT.email,
+    address: { '@type': 'PostalAddress', addressCountry: CONTACT.country },
+    areaServed: { '@type': 'Country', name: 'Uzbekistan' },
+    knowsAbout: KNOWS_ABOUT,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      telephone: CONTACT.phone,
+      email: CONTACT.email,
+      availableLanguage: ['ru', 'uz', 'en', 'zh'],
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: dict['directions.title'],
+      itemListElement: slugs.map((slug) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: dict[`dir.${slug}.title`],
+          description: dict[`dir.${slug}.text`],
+          serviceType: dict[`dir.${slug}.title`],
+          url: home + '#dir-' + slug,
+          provider: { '@id': orgId },
+          areaServed: { '@type': 'Country', name: 'Uzbekistan' },
+        },
+      })),
+    },
+  };
+  if (SAME_AS.length) org.sameAs = SAME_AS;
+
+  return JSON.stringify(
+    {
+      '@context': 'https://schema.org',
+      '@graph': [
+        org,
+        {
+          '@type': 'WebSite',
+          '@id': ORIGIN + '/#website',
+          url: ORIGIN + '/',
+          name: 'UNB Group',
+          publisher: { '@id': orgId },
+          inLanguage: LANGS.map((l) => HREFLANG[l]),
+        },
+        {
+          '@type': 'WebPage',
+          '@id': home + '#webpage',
+          url: home,
+          name: dict['meta.title'],
+          description: dict['meta.description'],
+          inLanguage: HREFLANG[lang],
+          isPartOf: { '@id': ORIGIN + '/#website' },
+          about: { '@id': orgId },
+        },
+      ],
+    },
+    null,
+    2
+  );
+}
+
+/** Что видит соцсеть или мессенджер в превью ссылки. */
+function socialMeta(lang, dict) {
+  const tags = [
+    ['og:title', dict['meta.title']],
+    ['og:description', dict['meta.description']],
+    ['og:url', urlFor(lang)],
+    ['og:locale', OG_LOCALE[lang]],
+    ...LANGS.filter((l) => l !== lang).map((l) => ['og:locale:alternate', OG_LOCALE[l]]),
+  ];
+  return tags;
+}
+
+function setSocialMeta(doc, lang, dict) {
+  // og:locale:alternate — по тегу на язык, и их число зависит от копии,
+  // поэтому блок переписывается целиком, а не правится по месту.
+  for (const el of doc.querySelectorAll('meta[property^="og:locale"], meta[property="og:title"], meta[property="og:description"], meta[property="og:url"]')) {
+    el.remove();
+  }
+  const html = socialMeta(lang, dict)
+    .map(([p, c]) => `<meta property="${p}" content="${escapeAttr(c)}">`)
+    .join('\n');
+  doc.querySelector('meta[property="og:type"]').insertAdjacentHTML('afterend', '\n' + html);
+}
+
+function setJsonLd(doc, lang, dict, slugs) {
+  doc.querySelector('script[type="application/ld+json"]').set_content(
+    '\n' + jsonLd(lang, dict, slugs) + '\n'
+  );
+}
+
 function buildPage(template, lang, dict) {
   const doc = parse(template, { comment: true });
 
@@ -108,6 +258,8 @@ function buildPage(template, lang, dict) {
     if (active) el.classList.add('is-active');
   }
 
+  setSocialMeta(doc, lang, dict);
+  setJsonLd(doc, lang, dict, directionSlugs(doc));
   absolutizePaths(doc);
   setHeadLinks(doc, lang);
 
@@ -125,28 +277,49 @@ function buildPage(template, lang, dict) {
 
 /**
  * index.html не генерируется — это шаблон, и переписывать его же выводом
- * парсера значит рисковать исходником ради нуля пользы. Но список hreflang
- * в нём написан руками, поэтому сверяем, что он не разошёлся с остальными.
+ * парсера значит рисковать исходником ради нуля пользы. Но hreflang, теги
+ * Open Graph и разметка schema.org в нём написаны руками, а копиям они
+ * проставляются генератором. Сверяем, что русская страница не разошлась с
+ * остальными: молча она разойдётся так, что заметит это только поисковик.
  */
-function checkTemplateHeadLinks(template) {
+function checkTemplate(template, dict) {
   const missing = [
     `<link rel="canonical" href="${urlFor('ru')}">`,
     ...LANGS.map((l) => `<link rel="alternate" hreflang="${HREFLANG[l]}" href="${urlFor(l)}">`),
     `<link rel="alternate" hreflang="x-default" href="${urlFor('ru')}">`,
+    ...socialMeta('ru', dict).map(
+      ([p, c]) => `<meta property="${p}" content="${escapeAttr(c)}">`
+    ),
   ].filter((tag) => !template.includes(tag));
 
   if (missing.length) {
     throw new Error(
-      'В index.html не хватает ссылок в <head> — добавьте их вручную:\n  ' +
-        missing.join('\n  ')
+      'В index.html не хватает тегов в <head> — добавьте их вручную:\n  ' + missing.join('\n  ')
+    );
+  }
+
+  const doc = parse(template, { comment: true });
+  const script = doc.querySelector('script[type="application/ld+json"]');
+  if (!script) {
+    throw new Error('В index.html нет разметки schema.org — добавьте вручную:\n' + expectedLd(dict, doc));
+  }
+  const expected = jsonLd('ru', dict, directionSlugs(doc));
+  // Переводы строк нормализуем: index.html может лежать и с CRLF.
+  if (script.text.replace(/\r\n/g, '\n').trim() !== expected.trim()) {
+    throw new Error(
+      'schema.org в index.html разошлась с генератором. Замените содержимое\n' +
+        '<script type="application/ld+json"> на:\n\n' + expected + '\n'
     );
   }
 }
 
+const expectedLd = (dict, doc) =>
+  '<script type="application/ld+json">\n' + jsonLd('ru', dict, directionSlugs(doc)) + '\n</script>';
+
 function main() {
   const I18N = loadDict();
   const template = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-  checkTemplateHeadLinks(template);
+  checkTemplate(template, I18N.ru);
 
   for (const lang of LANGS) {
     const dict = I18N[lang];

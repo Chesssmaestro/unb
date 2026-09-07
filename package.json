@@ -9,7 +9,9 @@
     "build:decks": "node tools/build-decks.mjs",
     "build:pages": "node tools/build-pages.mjs",
     "build:deck-pages": "node tools/build-deck-pages.mjs",
-    "build:sitemap": "node tools/build-sitemap.mjs"
+    "build:sitemap": "node tools/build-sitemap.mjs",
+    "build:og": "node tools/build-og.mjs",
+    "build:hero": "node tools/build-hero.mjs"
   },
   "devDependencies": {
     "mupdf": "^1.28.0",

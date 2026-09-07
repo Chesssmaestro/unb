@@ -13,43 +13,48 @@
    ========================================================================== */
 
 :root{
-  /* Палитра сайта — те же значения, что в css/style.css. */
-  --paper:#F5F6F4;
-  --paper-2:#EDEFEB;
-  --blueprint:#123C55;
-  --blueprint-2:#1B4E6E;
-  --signal:#2FA8A0;
-  --alert:#E2963A;
-  --accent:#FF6B2C;
-  --site-line:#D7DBD8;
-  --site-line-strong:#AEB6B1;
+  /* Палитра сайта — те же значения, что в css/style.css (брендбук, 3.1). */
+  --paper:#BAE1FF;
+  --paper-2:#FFFFFF;
+  --blueprint:#00579A;
+  --blueprint-2:#086EBC;
+  --signal:#5BB8FF;
+  --accent:#2BA3FF;
+  /* Второй акцент: у бренда только синий и серый, поэтому там, где вёрстка
+     слайда разводила два цвета (оранжевый и янтарный), теперь разводятся две
+     ступени синего — иначе акценты на слайде слились бы в один. */
+  --accent-2:#1889DD;
+  --alert:#086EBC;
+  --site-line:#8ACDFF;
+  --site-line-strong:#5BB8FF;
 
   /* Токены презентаций -> палитра сайта. */
   --navy:var(--blueprint);
   --navy-2:var(--blueprint-2);
   --blue:var(--blueprint-2);
   --cyan:var(--signal);
-  /* Сигнальный по светлому фону берём темнее: #2FA8A0 в мелком тексте
+  /* Сигнальный по светлому фону берём темнее: светлый синий в мелком тексте
      недобирает контраста. */
-  --cyan-d:#1B7A74;
+  --cyan-d:#086EBC;
   --orange:var(--accent);
-  --amber:var(--alert);
-  --ink:#10171B;
-  --muted:#4A5459;
-  --line:#D7DBD8;
-  --bg:#EDEFEB;
+  --amber:var(--accent-2);
+  --ink:#00579A;
+  --muted:#525050;
+  --line:#8ACDFF;
+  --bg:#BAE1FF;
   --card:#FFFFFF;
 
-  /* Стек ровно тот же, что в css/style.css, и это важно: в Space Grotesk нет
-     кириллицы, поэтому русские заголовки и на сайте, и здесь должны падать на
-     один и тот же системный sans-serif — иначе шрифт разойдётся. */
-  --font-display:'Space Grotesk',sans-serif;
-  --font-body:'IBM Plex Sans',sans-serif;
-  --font-mono:'IBM Plex Mono',monospace;
+  /* Стек ровно тот же, что в css/style.css. Rubik заменяет брендовый Google
+     Sans, который на сторонние сайты не лицензируется, и заодно закрывает
+     кириллицу: прежний Space Grotesk её не содержал, и русские заголовки
+     проваливались в системный шрифт. */
+  --font-display:'Rubik',sans-serif;
+  --font-body:'Rubik',sans-serif;
+  --font-mono:'Rubik',sans-serif;
 
   /* Чертёжная сетка слайда — тот же приём, что у .hero__grid на сайте. */
-  --grid-line:rgba(18,60,85,.06);
-  --grid-line-dark:rgba(245,246,244,.05);
+  --grid-line:rgba(0,68,119,.06);
+  --grid-line-dark:rgba(255,255,255,.05);
 }
 
 /* ---------- Типографика ---------- */
@@ -85,7 +90,7 @@ h1,h2,h3{
 }
 
 .slide.dark{
-  background-color:#10171B;
+  background-color:#00579A;
   background-image:
     linear-gradient(var(--grid-line-dark) 1px,transparent 1px),
     linear-gradient(90deg,var(--grid-line-dark) 1px,transparent 1px);
@@ -198,7 +203,7 @@ td.b i{color:var(--cyan-d);}
 
 /* city: тёмный блок сценариев. */
 .scen{
-  background:#10171B;
+  background:#00579A;
   border:1px solid rgba(47,168,160,.35);
   border-radius:6px;
 }
@@ -207,16 +212,16 @@ td.b i{color:var(--cyan-d);}
   background:radial-gradient(circle,rgba(47,168,160,.7) 0%,rgba(47,168,160,.16) 45%,transparent 70%);
   border-color:rgba(47,168,160,.5);
 }
-.hub div{background:var(--signal);box-shadow:0 0 3cqw rgba(47,168,160,.85);}
+.hub div{background:var(--signal);box-shadow:0 0 3cqw rgba(91,184,255,.85);}
 
 /* roads: лестница на слайде 3 — светлые ступени из бумажных тонов. */
 .step.s1{background:var(--paper-2);}
-.step.s2{background:#DCDFDA;}
+.step.s2{background:#8ACDFF;}
 .step.s3{background:var(--blueprint);}
 .step.s3 p{color:rgba(245,246,244,.72);}
 
 /* roads: карточки распознавания поверх фото. */
-.cvc{background:#10171B;border-width:1px;}
+.cvc{background:#00579A;border-width:1px;}
 /* Красной рамки в палитре сайта нет — тревожную категорию ведём янтарным. */
 .cvc.r{border-color:var(--alert);}
 .cvc.r .chip{border-color:rgba(226,150,58,.75);}

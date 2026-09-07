@@ -204,5 +204,161 @@
     if(e.key === 'Escape' && modalOpen) closeModal();
   });
 
+  // ---------- Заявка ----------
+  // Сайт статический, своего сервера нет, поэтому форма стучится в веб-приложение
+  // Google Apps Script, а оно кладёт строку в таблицу. Адрес приложения лежит
+  // в data-endpoint разметки: там он на виду и сам попадает в языковые копии.
+  //
+  // Content-Type: text/plain — не прихоть. С ним запрос считается «простым», и
+  // браузер не шлёт preflight-запрос OPTIONS, на который Apps Script не отвечает.
+  const form = document.getElementById('requestForm');
+  if(form){
+    const requestModal = document.getElementById('requestModal');
+    const requestPanel = requestModal.querySelector('.request-modal__panel');
+    const closeBtn = document.getElementById('requestModalClose');
+    let requestOpen = false;
+    // Окно открывают две кнопки — в шапке и в герое. Запоминаем, какая именно:
+    // на закрытии фокус должен вернуться туда, откуда посетитель ушёл.
+    let lastTrigger = null;
+
+    function openRequest(){
+      requestOpen = true;
+      requestModal.classList.add('is-open');
+      requestModal.setAttribute('aria-hidden', 'false');
+      lockScroll();
+      document.getElementById('requestName').focus();
+    }
+
+    function closeRequest(){
+      requestOpen = false;
+      requestModal.classList.remove('is-open');
+      requestModal.setAttribute('aria-hidden', 'true');
+      unlockScroll();
+      if(lastTrigger) lastTrigger.focus();
+    }
+
+    document.querySelectorAll('[data-request-open]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        lastTrigger = btn;
+        openRequest();
+      });
+    });
+    closeBtn.addEventListener('click', closeRequest);
+    requestModal.addEventListener('click', (e)=>{
+      if(e.target === requestModal) closeRequest();
+    });
+
+    document.addEventListener('keydown', (e)=>{
+      if(!requestOpen) return;
+      if(e.key === 'Escape'){ closeRequest(); return; }
+      if(e.key !== 'Tab') return;
+      // Табом из окна не уйти: под затемнением лежит вся страница, и без этого
+      // фокус уходит на её ссылки, которых посетитель уже не видит.
+      const items = Array.prototype.slice
+        .call(requestPanel.querySelectorAll('button, input, select, textarea, a[href]'))
+        .filter(el=> !el.disabled && el.tabIndex >= 0);
+      if(!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    });
+
+    const statusEl = document.getElementById('requestStatus');
+    const submitBtn = document.getElementById('requestSubmit');
+    const submitLabel = submitBtn.querySelector('[data-i18n="request.submit"]');
+    const direction = document.getElementById('requestDirection');
+
+    const fields = [
+      { el: document.getElementById('requestName'),
+        err: document.getElementById('requestNameError'),
+        ok: (v) => v.trim().length >= 2 },
+      // Номер сверяем по числу цифр, а не по маске: у нас пишут и +998 90 123 45 67,
+      // и 8-90-123-45-67, и с иностранным кодом — маска отсекла бы половину.
+      { el: document.getElementById('requestPhone'),
+        err: document.getElementById('requestPhoneError'),
+        ok: (v) => (v.match(/\d/g) || []).length >= 9 },
+      { el: direction,
+        err: document.getElementById('requestDirectionError'),
+        ok: (v) => v !== '' }
+    ];
+
+    const t = (key)=>{
+      const dict = I18N[currentLang] || I18N.ru;
+      return dict[key] || I18N.ru[key] || '';
+    };
+
+    function showStatus(key, kind){
+      statusEl.textContent = t(key);
+      statusEl.className = 'request__status request__status--' + kind;
+      statusEl.hidden = false;
+    }
+
+    function validate(){
+      let firstBad = null;
+      fields.forEach(f=>{
+        const good = f.ok(f.el.value);
+        f.el.classList.toggle('is-invalid', !good);
+        f.err.hidden = good;
+        if(!good && !firstBad) firstBad = f.el;
+      });
+      if(firstBad) firstBad.focus();
+      return !firstBad;
+    }
+
+    // Ошибка гаснет по мере исправления, а не ждёт следующей отправки.
+    fields.forEach(f=> f.el.addEventListener('input', ()=>{
+      if(!f.el.classList.contains('is-invalid')) return;
+      if(!f.ok(f.el.value)) return;
+      f.el.classList.remove('is-invalid');
+      f.err.hidden = true;
+    }));
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      // Ловушка: поле спрятано за край экрана, человек его не заполняет.
+      if(form.uz_ref.value) return;
+      if(!validate()) return;
+
+      const endpoint = (form.getAttribute('data-endpoint') || '').trim();
+      if(!endpoint){
+        showStatus('request.err_send', 'fail');
+        return;
+      }
+
+      const payload = {
+        name: document.getElementById('requestName').value.trim(),
+        phone: document.getElementById('requestPhone').value.trim(),
+        direction: direction.value,
+        // Слаг в таблице не читается — кладём рядом и подпись, как её видел клиент.
+        directionLabel: direction.options[direction.selectedIndex].textContent.trim(),
+        lang: currentLang,
+        page: location.href
+      };
+
+      const idleLabel = submitLabel.textContent;
+      submitBtn.disabled = true;
+      submitLabel.textContent = t('request.sending');
+      statusEl.hidden = true;
+
+      fetch(endpoint, {
+        method: 'POST',
+        headers: {'Content-Type': 'text/plain;charset=utf-8'},
+        body: JSON.stringify(payload)
+      })
+        .then(res=> res.ok ? res.json() : Promise.reject(new Error('HTTP ' + res.status)))
+        .then(data=>{
+          if(!data || data.ok !== true) throw new Error('rejected');
+          form.reset();
+          showStatus('request.ok', 'ok');
+        })
+        .catch(()=> showStatus('request.err_send', 'fail'))
+        .then(()=>{
+          submitBtn.disabled = false;
+          submitLabel.textContent = idleLabel;
+        });
+    });
+  }
+
   applyLang(initial);
 })();

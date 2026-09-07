@@ -6,6 +6,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UNB Group — infratuzilma monitoringining intellektual platformasi</title>
 <meta name="description" content="UNB Group: quyosh stansiyalari, EUT, yo'llar, qurilish va aqlli shaharlarni tekshirish uchun dronlar + AI + raqamli modellar.">
+<!-- Превью ссылки в мессенджерах и соцсетях. Заголовок, описание, адрес и
+     локали генератор переписывает для каждой языковой копии; остальное общее. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="UNB Group — infratuzilma monitoringining intellektual platformasi">
+<meta property="og:description" content="UNB Group: quyosh stansiyalari, EUT, yo'llar, qurilish va aqlli shaharlarni tekshirish uchun dronlar + AI + raqamli modellar.">
+<meta property="og:url" content="https://unbgroup.uz/uz/">
+<meta property="og:locale" content="uz_UZ">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:site_name" content="UNB Group">
+<meta property="og:image" content="https://unbgroup.uz/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="UNB Group">
+<meta name="twitter:card" content="summary_large_image">
 <!-- canonical/alternate переписываются генератором для каждой языковой копии -->
 <link rel="canonical" href="https://unbgroup.uz/uz/">
 <link rel="alternate" hreflang="ru" href="https://unbgroup.uz/">
@@ -16,8 +32,249 @@
 <link rel="icon" href="/assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=12">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=18">
+<!-- Организация, сайт и услуги для поисковиков и AI-поиска. Блок написан
+     руками, копиям его собирает tools/build-pages.mjs из того же словаря —
+     и он же падает, если этот блок с генератором разошёлся. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://unbgroup.uz/#organization",
+      "name": "UNB Group",
+      "url": "https://unbgroup.uz/",
+      "logo": "https://unbgroup.uz/assets/logo.png",
+      "image": "https://unbgroup.uz/assets/og-cover.png",
+      "description": "UNB Group: quyosh stansiyalari, EUT, yo'llar, qurilish va aqlli shaharlarni tekshirish uchun dronlar + AI + raqamli modellar.",
+      "telephone": "+998943888882",
+      "email": "info@unbgroup.uz",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "UZ"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Uzbekistan"
+      },
+      "knowsAbout": [
+        "Drone mapping",
+        "LiDAR survey",
+        "Photogrammetry",
+        "Digital twin",
+        "AI-based infrastructure inspection",
+        "Solar plant inspection",
+        "Power line inspection",
+        "Smart city monitoring",
+        "Precision agriculture",
+        "Drone delivery"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "telephone": "+998943888882",
+        "email": "info@unbgroup.uz",
+        "availableLanguage": [
+          "ru",
+          "uz",
+          "en",
+          "zh"
+        ]
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Butun infratuzilma uchun yagona raqamli kontur",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Kartografiya",
+              "description": "Aerofotosurat, ortofotoplanlar, relyefning 3D-modellarini yaratish va RTK aniqligida topografik surat olish. Kadastr ishlari, bosh rejalar va loyihalash uchun asos.",
+              "serviceType": "Kartografiya",
+              "url": "https://unbgroup.uz/uz/#dir-mapping",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Quyosh stansiyalari",
+              "description": "AI-inspeksiya qizib ketish, mikroyoriqlar, ifloslanish va soya tushishini aniqlaydi. Stansiyalarning 60% qismi yashirin nuqsonlar sababli generatsiyani yo'qotadi.",
+              "serviceType": "Quyosh stansiyalari",
+              "url": "https://unbgroup.uz/uz/#dir-solar",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "EUT",
+              "description": "Elektr uzatish tarmoqlarining intellektual inspeksiyasi: izolyatorlar nuqsoni, metall korroziyasi, simlar uzilishi, xavfli o'simliklar.",
+              "serviceType": "EUT",
+              "url": "https://unbgroup.uz/uz/#dir-power",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Aqlli shahar",
+              "description": "Shaharning raqamli egizagi: ekologiya va ruxsat etilmagan chiqindilar, transport anomaliyalari, odamlar to'planishi, favqulodda vaziyatlar.",
+              "serviceType": "Aqlli shahar",
+              "url": "https://unbgroup.uz/uz/#dir-city",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yo'llar",
+              "description": "Yo'l tarmog'ining AI-tahlili: qo'lda tekshirishlardan nuqsonlarning interaktiv xaritalariga o'tish.",
+              "serviceType": "Yo'llar",
+              "url": "https://unbgroup.uz/uz/#dir-roads",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Qurilish",
+              "description": "BIM/CAD integratsiyasi bilan qurilishning raqamli nazorati: ish jarayoni, xavfsizlik texnikasi qoidabuzarliklari, materiallar sifatini nazorat qilish.",
+              "serviceType": "Qurilish",
+              "url": "https://unbgroup.uz/uz/#dir-construction",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Smart Farming",
+              "description": "Qishloq xo'jaligi texnikasi uchun NX610 intellektual avtopiloti + dalalarni monitoring qiluvchi dronlar — aniq dehqonchilik uchun yagona ekotizim.",
+              "serviceType": "Smart Farming",
+              "url": "https://unbgroup.uz/uz/#dir-farming",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Drone Delivery",
+              "description": "UAV yordamida avtonom yetkazib berish tizimi: 24/7 dock-stansiyalar, so'nggi milya va qurilish, tibbiyot, sanoat uchun ixtisoslashtirilgan yuklarni yetkazish.",
+              "serviceType": "Drone Delivery",
+              "url": "https://unbgroup.uz/uz/#dir-delivery",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Dronlar va energiya uskunalari",
+              "description": "Sanoat va qishloq xo'jaligi dronlari, dok-stansiyalar, akkumulyator energoblok va zaryadlash komplekslarini yetkazib berish. Mijoz vazifasiga mos konfiguratsiyani tanlash va servis xizmati.",
+              "serviceType": "Dronlar va energiya uskunalari",
+              "url": "https://unbgroup.uz/uz/#dir-hardware",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://unbgroup.uz/#website",
+      "url": "https://unbgroup.uz/",
+      "name": "UNB Group",
+      "publisher": {
+        "@id": "https://unbgroup.uz/#organization"
+      },
+      "inLanguage": [
+        "ru",
+        "en",
+        "uz",
+        "zh"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://unbgroup.uz/uz/#webpage",
+      "url": "https://unbgroup.uz/uz/",
+      "name": "UNB Group — infratuzilma monitoringining intellektual platformasi",
+      "description": "UNB Group: quyosh stansiyalari, EUT, yo'llar, qurilish va aqlli shaharlarni tekshirish uchun dronlar + AI + raqamli modellar.",
+      "inLanguage": "uz",
+      "isPartOf": {
+        "@id": "https://unbgroup.uz/#website"
+      },
+      "about": {
+        "@id": "https://unbgroup.uz/#organization"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -26,18 +283,18 @@
 
 <div class="ticker" aria-hidden="true">
   <div class="ticker__track">
-    <span>GRID HEALTH 98%</span><span>·</span>
-    <span>ROAD INTEGRITY 95%</span><span>·</span>
-    <span>AI ACCURACY 95%+</span><span>·</span>
-    <span>SAFETY SCORE 100%</span><span>·</span>
-    <span>DEFECT DETECTION ↑</span><span>·</span>
-    <span>O&amp;M COST ↓60%</span><span>·</span>
-    <span>GRID HEALTH 98%</span><span>·</span>
-    <span>ROAD INTEGRITY 95%</span><span>·</span>
-    <span>AI ACCURACY 95%+</span><span>·</span>
-    <span>SAFETY SCORE 100%</span><span>·</span>
-    <span>DEFECT DETECTION ↑</span><span>·</span>
-    <span>O&amp;M COST ↓60%</span><span>·</span>
+    <span data-i18n="ticker.grid">TARMOQ HOLATI 98%</span><span>·</span>
+    <span data-i18n="ticker.roads">YO'L QOPLAMASI 95%</span><span>·</span>
+    <span data-i18n="ticker.ai">AI ANIQLIGI 95%+</span><span>·</span>
+    <span data-i18n="ticker.safety">XAVFSIZLIK 100%</span><span>·</span>
+    <span data-i18n="ticker.defects">NUQSONLARNI ANIQLASH ↑</span><span>·</span>
+    <span data-i18n="ticker.cost">O&amp;M XARAJATLARI ↓60%</span><span>·</span>
+    <span data-i18n="ticker.grid">TARMOQ HOLATI 98%</span><span>·</span>
+    <span data-i18n="ticker.roads">YO'L QOPLAMASI 95%</span><span>·</span>
+    <span data-i18n="ticker.ai">AI ANIQLIGI 95%+</span><span>·</span>
+    <span data-i18n="ticker.safety">XAVFSIZLIK 100%</span><span>·</span>
+    <span data-i18n="ticker.defects">NUQSONLARNI ANIQLASH ↑</span><span>·</span>
+    <span data-i18n="ticker.cost">O&amp;M XARAJATLARI ↓60%</span><span>·</span>
   </div>
 </div>
 
@@ -55,9 +312,9 @@
     <div class="nav__right">
       <!-- Ссылки, а не кнопки: у каждого языка свой URL, и робот должен по ним пройти -->
       <nav class="lang-switch" aria-label="Language">
+        <a href="/uz/" hreflang="uz" data-lang="uz" class="lang-btn is-active">UZ</a>
         <a href="/" hreflang="ru" data-lang="ru" class="lang-btn">RU</a>
         <a href="/en/" hreflang="en" data-lang="en" class="lang-btn">EN</a>
-        <a href="/uz/" hreflang="uz" data-lang="uz" class="lang-btn is-active">UZ</a>
         <a href="/zh/" hreflang="zh" data-lang="ch" class="lang-btn">CH</a>
       </nav>
       <a class="nav__phone" href="tel:+998943888882">+998 94 388 88 82</a>
@@ -75,7 +332,7 @@
         <h1 data-i18n="hero.title" data-i18n-html>Infratuzilmani monitoring qilishning <span class="accent-word">intellektual</span> platformasi</h1>
         <p class="hero__subhead" data-i18n="hero.subhead" data-i18n-html>Dronlar <span class="accent-mark">+</span> AI <span class="accent-mark">+</span> raqamli modellar <span class="accent-mark">+</span> ekspluatatsiyani avtomatlashtirish — quyosh stansiyalari, EUT, yo'llar, qurilish va aqlli shaharlar uchun yagona kontur.</p>
         <div class="hero__actions">
-          <a href="#directions" class="btn btn--primary">
+          <a href="#directions" class="btn btn--ghost">
             <span data-i18n="hero.cta_primary">Yo'nalishlarni ko'rish</span>
             <span class="btn__icon" aria-hidden="true">→</span>
           </a>
@@ -83,6 +340,9 @@
             <span class="btn__icon btn__icon--play" aria-hidden="true">▶</span>
             <span data-i18n="hero.cta_secondary">Prezentatsiyani ko'rish</span>
           </a>
+          <!-- Единственная заливка среди кнопок героя: это действие, ради
+               которого страница и написана. Остальные — контурные. -->
+          <button class="btn btn--primary btn--lg" type="button" data-request-open data-i18n="request.cta">Bog'lanish</button>
         </div>
         <ul class="trust">
           <li class="trust__item">
@@ -129,7 +389,8 @@
 
           <ellipse cx="240" cy="212" rx="152" ry="88" fill="url(#droneGlow)"></ellipse>
 
-          <image href="/assets/matrice_400.webp" x="30" y="8" width="420" height="420" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"></image>
+          <!-- Дрон с подвешенным L3; кадр собирает tools/build-hero.mjs -->
+          <image href="/assets/matrice_400_l3.webp" x="30" y="8" width="420" height="420" preserveAspectRatio="xMidYMid meet"></image>
 
           <!-- Рамка визора -->
           <g class="hud-visor">
@@ -160,7 +421,7 @@
 
           <text x="20" y="24" class="hud-label">LAT <tspan class="hud-label--accent">41.31</tspan> · LON <tspan class="hud-label--accent">69.28</tspan></text>
           <text x="20" y="452" class="hud-label">SCAN MODE · <tspan class="hud-label--accent">AUTONOMOUS</tspan></text>
-          <text x="464" y="452" class="hud-label" text-anchor="end">ALT 120 M · MATRICE 400</text>
+          <text x="464" y="452" class="hud-label" text-anchor="end">ALT 120 M · MATRICE 400 · ZENMUSE L3</text>
         </svg>
       </div>
     </div>
@@ -432,6 +693,80 @@
 
 </main>
 
+<!-- Окно заявки. Форма живёт отдельным окном, а не секцией на странице:
+     кнопка «Обратиться» прибита к шапке и должна открываться с любого места,
+     не уводя человека с карточки, которую он читает.
+
+     Заявки уходят в Google-таблицу через веб-приложение Apps Script: сайт
+     статический, своего сервера у него нет. Адрес приложения лежит в
+     data-endpoint — как его получить, написано в README. Пока он пустой,
+     форма не делает вид, что отправила: показывает телефон. -->
+<div class="request-modal" id="requestModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="requestModalTitle">
+  <div class="request-modal__panel">
+    <div class="request-modal__bar">
+      <span class="request-modal__title" id="requestModalTitle" data-i18n="request.title">Biz bilan bog'laning</span>
+      <button class="request-modal__close" id="requestModalClose" type="button" data-i18n="modal.close">✕ Yopish</button>
+    </div>
+    <div class="request-modal__body">
+      <p class="request__text" data-i18n="request.text">Telefon raqamingizni qoldiring — qo'ng'iroq qilamiz, savollarga javob beramiz va vazifangizga yechim tanlaymiz.</p>
+
+      <form class="request__form" id="requestForm" data-endpoint="" novalidate>
+        <div class="request__grid">
+          <div class="request__field">
+            <label class="request__label" for="requestName" data-i18n="request.name">Ism</label>
+            <input class="request__input" id="requestName" name="name" type="text" autocomplete="name" maxlength="80" required>
+            <p class="request__error" id="requestNameError" data-i18n="request.err_name" hidden>Sizni qanday chaqirishimizni yozing</p>
+          </div>
+
+          <div class="request__field">
+            <label class="request__label" for="requestPhone" data-i18n="request.phone">Telefon</label>
+            <input class="request__input" id="requestPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998 90 123 45 67" maxlength="24" required>
+            <p class="request__error" id="requestPhoneError" data-i18n="request.err_phone" hidden>Telefon raqamini tekshiring</p>
+          </div>
+
+          <div class="request__field">
+            <label class="request__label" for="requestDirection" data-i18n="request.direction">Yo'nalish</label>
+            <!-- value — слаг, а не перевод: в таблице заявка должна читаться
+                 одинаково, с какого языка её ни отправили -->
+            <select class="request__input request__select" id="requestDirection" name="direction" required>
+              <option value="" data-i18n="request.direction_empty">Yo'nalishni tanlang</option>
+              <option value="mapping" data-i18n="dir.mapping.title">Kartografiya</option>
+              <option value="solar" data-i18n="dir.solar.title">Quyosh stansiyalari</option>
+              <option value="power" data-i18n="dir.power.title">EUT</option>
+              <option value="city" data-i18n="dir.city.title">Aqlli shahar</option>
+              <option value="roads" data-i18n="dir.roads.title">Yo'llar</option>
+              <option value="construction" data-i18n="dir.construction.title">Qurilish</option>
+              <option value="farming" data-i18n="dir.farming.title">Smart Farming</option>
+              <option value="delivery" data-i18n="dir.delivery.title">Drone Delivery</option>
+              <option value="hardware" data-i18n="dir.hardware.title">Dronlar va energiya uskunalari</option>
+              <option value="other" data-i18n="request.direction_other">Boshqa</option>
+            </select>
+            <p class="request__error" id="requestDirectionError" data-i18n="request.err_direction" hidden>Yo'nalishni tanlang</p>
+          </div>
+        </div>
+
+        <!-- Ловушка для ботов: человек этого поля не видит и не заполняет.
+             Имя намеренно бессмысленное: поле с названием вроде company
+             автозаполнение браузера принимает за настоящее и вписывает туда
+             данные само — и живая заявка молча отбрасывалась бы. -->
+        <div class="request__trap" aria-hidden="true">
+          <label>uz-ref<input type="text" name="uz_ref" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <div class="request__actions">
+          <button class="btn btn--primary request__submit" id="requestSubmit" type="submit">
+            <span data-i18n="request.submit">Arizani yuborish</span>
+            <span class="btn__icon" aria-hidden="true">→</span>
+          </button>
+          <p class="request__note" data-i18n="request.note">Ish vaqtida, 9:00 dan 18:00 gacha qo'ng'iroq qilamiz.</p>
+        </div>
+
+        <p class="request__status" id="requestStatus" role="status" aria-live="polite" hidden></p>
+      </form>
+    </div>
+  </div>
+</div>
+
 <footer class="footer" id="contacts">
   <div class="section__inner footer__inner">
     <div class="footer__brand">
@@ -472,8 +807,8 @@
   </div>
 </div>
 
-<script src="/js/i18n.js?v=12"></script>
+<script src="/js/i18n.js?v=13"></script>
 <script src="/js/decks-index.js?v=12"></script>
-<script src="/js/script.js?v=12"></script>
+<script src="/js/script.js?v=13"></script>
 </body>
 </html>

@@ -6,6 +6,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UNB Group — 基础设施监测智能平台</title>
 <meta name="description" content="UNB Group：无人机 + AI + 数字模型，用于太阳能电站、输电线路、道路、建筑工地和智慧城市的巡检。">
+<!-- Превью ссылки в мессенджерах и соцсетях. Заголовок, описание, адрес и
+     локали генератор переписывает для каждой языковой копии; остальное общее. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="UNB Group — 基础设施监测智能平台">
+<meta property="og:description" content="UNB Group：无人机 + AI + 数字模型，用于太阳能电站、输电线路、道路、建筑工地和智慧城市的巡检。">
+<meta property="og:url" content="https://unbgroup.uz/zh/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="uz_UZ">
+<meta property="og:site_name" content="UNB Group">
+<meta property="og:image" content="https://unbgroup.uz/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="UNB Group">
+<meta name="twitter:card" content="summary_large_image">
 <!-- canonical/alternate переписываются генератором для каждой языковой копии -->
 <link rel="canonical" href="https://unbgroup.uz/zh/">
 <link rel="alternate" hreflang="ru" href="https://unbgroup.uz/">
@@ -16,8 +32,249 @@
 <link rel="icon" href="/assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=12">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=18">
+<!-- Организация, сайт и услуги для поисковиков и AI-поиска. Блок написан
+     руками, копиям его собирает tools/build-pages.mjs из того же словаря —
+     и он же падает, если этот блок с генератором разошёлся. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://unbgroup.uz/#organization",
+      "name": "UNB Group",
+      "url": "https://unbgroup.uz/",
+      "logo": "https://unbgroup.uz/assets/logo.png",
+      "image": "https://unbgroup.uz/assets/og-cover.png",
+      "description": "UNB Group：无人机 + AI + 数字模型，用于太阳能电站、输电线路、道路、建筑工地和智慧城市的巡检。",
+      "telephone": "+998943888882",
+      "email": "info@unbgroup.uz",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "UZ"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Uzbekistan"
+      },
+      "knowsAbout": [
+        "Drone mapping",
+        "LiDAR survey",
+        "Photogrammetry",
+        "Digital twin",
+        "AI-based infrastructure inspection",
+        "Solar plant inspection",
+        "Power line inspection",
+        "Smart city monitoring",
+        "Precision agriculture",
+        "Drone delivery"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "telephone": "+998943888882",
+        "email": "info@unbgroup.uz",
+        "availableLanguage": [
+          "ru",
+          "uz",
+          "en",
+          "zh"
+        ]
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "覆盖全部基础设施的统一数字系统",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "测绘制图",
+              "description": "航空摄影测量、正射影像图制作、地形3D建模及RTK精度地形测量。为地籍工作、总体规划和设计提供基础数据。",
+              "serviceType": "测绘制图",
+              "url": "https://unbgroup.uz/zh/#dir-mapping",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "太阳能电站",
+              "description": "AI巡检可识别热斑、微裂纹、积尘和遮挡。高达60%的电站因隐藏缺陷而损失发电量。",
+              "serviceType": "太阳能电站",
+              "url": "https://unbgroup.uz/zh/#dir-solar",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "输电线路",
+              "description": "智能巡检输电线路：绝缘子缺陷、金属腐蚀、导线断裂、危险植被。",
+              "serviceType": "输电线路",
+              "url": "https://unbgroup.uz/zh/#dir-power",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "智慧城市",
+              "description": "城市数字孪生：环境与非法倾倒垃圾监测、交通异常、人群密集、突发事件。",
+              "serviceType": "智慧城市",
+              "url": "https://unbgroup.uz/zh/#dir-city",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "道路",
+              "description": "道路网AI分析：从耗时的人工检查转向路面缺陷的交互式地图。",
+              "serviceType": "道路",
+              "url": "https://unbgroup.uz/zh/#dir-roads",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "建筑工地",
+              "description": "集成BIM/CAD的数字化施工管控：进度跟踪、安全违规、材料质量控制。",
+              "serviceType": "建筑工地",
+              "url": "https://unbgroup.uz/zh/#dir-construction",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "智慧农业",
+              "description": "面向农机的NX610智能自动驾驶系统，配合田间监测无人机——打造精准农业一体化生态系统。",
+              "serviceType": "智慧农业",
+              "url": "https://unbgroup.uz/zh/#dir-farming",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "无人机配送",
+              "description": "自主无人机配送系统：24/7自动机场、最后一公里配送，以及面向建筑、医疗和工业的专项货物运输。",
+              "serviceType": "无人机配送",
+              "url": "https://unbgroup.uz/zh/#dir-delivery",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "无人机与电力设备",
+              "description": "提供工业及农业无人机、自动机场、电池储能模块和充电系统。根据客户需求定制配置并提供售后服务支持。",
+              "serviceType": "无人机与电力设备",
+              "url": "https://unbgroup.uz/zh/#dir-hardware",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://unbgroup.uz/#website",
+      "url": "https://unbgroup.uz/",
+      "name": "UNB Group",
+      "publisher": {
+        "@id": "https://unbgroup.uz/#organization"
+      },
+      "inLanguage": [
+        "ru",
+        "en",
+        "uz",
+        "zh"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://unbgroup.uz/zh/#webpage",
+      "url": "https://unbgroup.uz/zh/",
+      "name": "UNB Group — 基础设施监测智能平台",
+      "description": "UNB Group：无人机 + AI + 数字模型，用于太阳能电站、输电线路、道路、建筑工地和智慧城市的巡检。",
+      "inLanguage": "zh",
+      "isPartOf": {
+        "@id": "https://unbgroup.uz/#website"
+      },
+      "about": {
+        "@id": "https://unbgroup.uz/#organization"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -26,18 +283,18 @@
 
 <div class="ticker" aria-hidden="true">
   <div class="ticker__track">
-    <span>GRID HEALTH 98%</span><span>·</span>
-    <span>ROAD INTEGRITY 95%</span><span>·</span>
-    <span>AI ACCURACY 95%+</span><span>·</span>
-    <span>SAFETY SCORE 100%</span><span>·</span>
-    <span>DEFECT DETECTION ↑</span><span>·</span>
-    <span>O&amp;M COST ↓60%</span><span>·</span>
-    <span>GRID HEALTH 98%</span><span>·</span>
-    <span>ROAD INTEGRITY 95%</span><span>·</span>
-    <span>AI ACCURACY 95%+</span><span>·</span>
-    <span>SAFETY SCORE 100%</span><span>·</span>
-    <span>DEFECT DETECTION ↑</span><span>·</span>
-    <span>O&amp;M COST ↓60%</span><span>·</span>
+    <span data-i18n="ticker.grid">电网健康度 98%</span><span>·</span>
+    <span data-i18n="ticker.roads">路面完好率 95%</span><span>·</span>
+    <span data-i18n="ticker.ai">AI准确率 95%+</span><span>·</span>
+    <span data-i18n="ticker.safety">安全评分 100%</span><span>·</span>
+    <span data-i18n="ticker.defects">缺陷检出 ↑</span><span>·</span>
+    <span data-i18n="ticker.cost">运维成本 ↓60%</span><span>·</span>
+    <span data-i18n="ticker.grid">电网健康度 98%</span><span>·</span>
+    <span data-i18n="ticker.roads">路面完好率 95%</span><span>·</span>
+    <span data-i18n="ticker.ai">AI准确率 95%+</span><span>·</span>
+    <span data-i18n="ticker.safety">安全评分 100%</span><span>·</span>
+    <span data-i18n="ticker.defects">缺陷检出 ↑</span><span>·</span>
+    <span data-i18n="ticker.cost">运维成本 ↓60%</span><span>·</span>
   </div>
 </div>
 
@@ -55,9 +312,9 @@
     <div class="nav__right">
       <!-- Ссылки, а не кнопки: у каждого языка свой URL, и робот должен по ним пройти -->
       <nav class="lang-switch" aria-label="Language">
+        <a href="/uz/" hreflang="uz" data-lang="uz" class="lang-btn">UZ</a>
         <a href="/" hreflang="ru" data-lang="ru" class="lang-btn">RU</a>
         <a href="/en/" hreflang="en" data-lang="en" class="lang-btn">EN</a>
-        <a href="/uz/" hreflang="uz" data-lang="uz" class="lang-btn">UZ</a>
         <a href="/zh/" hreflang="zh" data-lang="ch" class="lang-btn is-active">CH</a>
       </nav>
       <a class="nav__phone" href="tel:+998943888882">+998 94 388 88 82</a>
@@ -75,7 +332,7 @@
         <h1 data-i18n="hero.title" data-i18n-html>基础设施监测<span class="accent-word">智能</span>平台</h1>
         <p class="hero__subhead" data-i18n="hero.subhead" data-i18n-html>无人机 <span class="accent-mark">+</span> AI <span class="accent-mark">+</span> 数字模型 <span class="accent-mark">+</span> 运维自动化——为太阳能电站、输电线路、道路、建筑工地和智慧城市打造统一的数字闭环。</p>
         <div class="hero__actions">
-          <a href="#directions" class="btn btn--primary">
+          <a href="#directions" class="btn btn--ghost">
             <span data-i18n="hero.cta_primary">查看解决方案</span>
             <span class="btn__icon" aria-hidden="true">→</span>
           </a>
@@ -83,6 +340,9 @@
             <span class="btn__icon btn__icon--play" aria-hidden="true">▶</span>
             <span data-i18n="hero.cta_secondary">查看演示文稿</span>
           </a>
+          <!-- Единственная заливка среди кнопок героя: это действие, ради
+               которого страница и написана. Остальные — контурные. -->
+          <button class="btn btn--primary btn--lg" type="button" data-request-open data-i18n="request.cta">联系我们</button>
         </div>
         <ul class="trust">
           <li class="trust__item">
@@ -129,7 +389,8 @@
 
           <ellipse cx="240" cy="212" rx="152" ry="88" fill="url(#droneGlow)"></ellipse>
 
-          <image href="/assets/matrice_400.webp" x="30" y="8" width="420" height="420" preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"></image>
+          <!-- Дрон с подвешенным L3; кадр собирает tools/build-hero.mjs -->
+          <image href="/assets/matrice_400_l3.webp" x="30" y="8" width="420" height="420" preserveAspectRatio="xMidYMid meet"></image>
 
           <!-- Рамка визора -->
           <g class="hud-visor">
@@ -160,7 +421,7 @@
 
           <text x="20" y="24" class="hud-label">LAT <tspan class="hud-label--accent">41.31</tspan> · LON <tspan class="hud-label--accent">69.28</tspan></text>
           <text x="20" y="452" class="hud-label">SCAN MODE · <tspan class="hud-label--accent">AUTONOMOUS</tspan></text>
-          <text x="464" y="452" class="hud-label" text-anchor="end">ALT 120 M · MATRICE 400</text>
+          <text x="464" y="452" class="hud-label" text-anchor="end">ALT 120 M · MATRICE 400 · ZENMUSE L3</text>
         </svg>
       </div>
     </div>
@@ -432,6 +693,80 @@
 
 </main>
 
+<!-- Окно заявки. Форма живёт отдельным окном, а не секцией на странице:
+     кнопка «Обратиться» прибита к шапке и должна открываться с любого места,
+     не уводя человека с карточки, которую он читает.
+
+     Заявки уходят в Google-таблицу через веб-приложение Apps Script: сайт
+     статический, своего сервера у него нет. Адрес приложения лежит в
+     data-endpoint — как его получить, написано в README. Пока он пустой,
+     форма не делает вид, что отправила: показывает телефон. -->
+<div class="request-modal" id="requestModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="requestModalTitle">
+  <div class="request-modal__panel">
+    <div class="request-modal__bar">
+      <span class="request-modal__title" id="requestModalTitle" data-i18n="request.title">联系我们</span>
+      <button class="request-modal__close" id="requestModalClose" type="button" data-i18n="modal.close">✕ 关闭</button>
+    </div>
+    <div class="request-modal__body">
+      <p class="request__text" data-i18n="request.text">留下您的电话——我们会回电、解答问题并为您的需求匹配方案。</p>
+
+      <form class="request__form" id="requestForm" data-endpoint="" novalidate>
+        <div class="request__grid">
+          <div class="request__field">
+            <label class="request__label" for="requestName" data-i18n="request.name">姓名</label>
+            <input class="request__input" id="requestName" name="name" type="text" autocomplete="name" maxlength="80" required>
+            <p class="request__error" id="requestNameError" data-i18n="request.err_name" hidden>请填写您的称呼</p>
+          </div>
+
+          <div class="request__field">
+            <label class="request__label" for="requestPhone" data-i18n="request.phone">电话</label>
+            <input class="request__input" id="requestPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998 90 123 45 67" maxlength="24" required>
+            <p class="request__error" id="requestPhoneError" data-i18n="request.err_phone" hidden>请检查电话号码</p>
+          </div>
+
+          <div class="request__field">
+            <label class="request__label" for="requestDirection" data-i18n="request.direction">业务方向</label>
+            <!-- value — слаг, а не перевод: в таблице заявка должна читаться
+                 одинаково, с какого языка её ни отправили -->
+            <select class="request__input request__select" id="requestDirection" name="direction" required>
+              <option value="" data-i18n="request.direction_empty">请选择方向</option>
+              <option value="mapping" data-i18n="dir.mapping.title">测绘制图</option>
+              <option value="solar" data-i18n="dir.solar.title">太阳能电站</option>
+              <option value="power" data-i18n="dir.power.title">输电线路</option>
+              <option value="city" data-i18n="dir.city.title">智慧城市</option>
+              <option value="roads" data-i18n="dir.roads.title">道路</option>
+              <option value="construction" data-i18n="dir.construction.title">建筑工地</option>
+              <option value="farming" data-i18n="dir.farming.title">智慧农业</option>
+              <option value="delivery" data-i18n="dir.delivery.title">无人机配送</option>
+              <option value="hardware" data-i18n="dir.hardware.title">无人机与电力设备</option>
+              <option value="other" data-i18n="request.direction_other">其他</option>
+            </select>
+            <p class="request__error" id="requestDirectionError" data-i18n="request.err_direction" hidden>请选择方向</p>
+          </div>
+        </div>
+
+        <!-- Ловушка для ботов: человек этого поля не видит и не заполняет.
+             Имя намеренно бессмысленное: поле с названием вроде company
+             автозаполнение браузера принимает за настоящее и вписывает туда
+             данные само — и живая заявка молча отбрасывалась бы. -->
+        <div class="request__trap" aria-hidden="true">
+          <label>uz-ref<input type="text" name="uz_ref" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <div class="request__actions">
+          <button class="btn btn--primary request__submit" id="requestSubmit" type="submit">
+            <span data-i18n="request.submit">提交申请</span>
+            <span class="btn__icon" aria-hidden="true">→</span>
+          </button>
+          <p class="request__note" data-i18n="request.note">我们在工作时间 9:00–18:00 回电。</p>
+        </div>
+
+        <p class="request__status" id="requestStatus" role="status" aria-live="polite" hidden></p>
+      </form>
+    </div>
+  </div>
+</div>
+
 <footer class="footer" id="contacts">
   <div class="section__inner footer__inner">
     <div class="footer__brand">
@@ -472,8 +807,8 @@
   </div>
 </div>
 
-<script src="/js/i18n.js?v=12"></script>
+<script src="/js/i18n.js?v=13"></script>
 <script src="/js/decks-index.js?v=12"></script>
-<script src="/js/script.js?v=12"></script>
+<script src="/js/script.js?v=13"></script>
 </body>
 </html>

@@ -5,6 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UNB Group — интеллектуальная платформа мониторинга инфраструктуры</title>
 <meta name="description" content="UNB Group: дроны + AI + цифровые модели для инспекции солнечных станций, ЛЭП, дорог, строек и умных городов.">
+<!-- Превью ссылки в мессенджерах и соцсетях. Заголовок, описание, адрес и
+     локали генератор переписывает для каждой языковой копии; остальное общее. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="UNB Group — интеллектуальная платформа мониторинга инфраструктуры">
+<meta property="og:description" content="UNB Group: дроны + AI + цифровые модели для инспекции солнечных станций, ЛЭП, дорог, строек и умных городов.">
+<meta property="og:url" content="https://unbgroup.uz/">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="uz_UZ">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:site_name" content="UNB Group">
+<meta property="og:image" content="https://unbgroup.uz/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="UNB Group">
+<meta name="twitter:card" content="summary_large_image">
 <!-- canonical/alternate переписываются генератором для каждой языковой копии -->
 <link rel="canonical" href="https://unbgroup.uz/">
 <link rel="alternate" hreflang="ru" href="https://unbgroup.uz/">
@@ -15,8 +31,249 @@
 <link rel="icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=12">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=18">
+<!-- Организация, сайт и услуги для поисковиков и AI-поиска. Блок написан
+     руками, копиям его собирает tools/build-pages.mjs из того же словаря —
+     и он же падает, если этот блок с генератором разошёлся. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://unbgroup.uz/#organization",
+      "name": "UNB Group",
+      "url": "https://unbgroup.uz/",
+      "logo": "https://unbgroup.uz/assets/logo.png",
+      "image": "https://unbgroup.uz/assets/og-cover.png",
+      "description": "UNB Group: дроны + AI + цифровые модели для инспекции солнечных станций, ЛЭП, дорог, строек и умных городов.",
+      "telephone": "+998943888882",
+      "email": "info@unbgroup.uz",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "UZ"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Uzbekistan"
+      },
+      "knowsAbout": [
+        "Drone mapping",
+        "LiDAR survey",
+        "Photogrammetry",
+        "Digital twin",
+        "AI-based infrastructure inspection",
+        "Solar plant inspection",
+        "Power line inspection",
+        "Smart city monitoring",
+        "Precision agriculture",
+        "Drone delivery"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "telephone": "+998943888882",
+        "email": "info@unbgroup.uz",
+        "availableLanguage": [
+          "ru",
+          "uz",
+          "en",
+          "zh"
+        ]
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Единый цифровой контур для всей инфраструктуры",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Картография",
+              "description": "Аэрофотосъёмка, построение ортофотопланов, 3D-моделей рельефа и топографическая съёмка с точностью RTK. Основа для кадастровых работ, генпланов и проектирования.",
+              "serviceType": "Картография",
+              "url": "https://unbgroup.uz/#dir-mapping",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Солнечные станции",
+              "description": "AI-инспекция выявляет перегрев, микротрещины, загрязнение и затенение панелей. До 60% станций теряют часть генерации из-за скрытых дефектов.",
+              "serviceType": "Солнечные станции",
+              "url": "https://unbgroup.uz/#dir-solar",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "ЛЭП",
+              "description": "Интеллектуальная инспекция линий электропередач: дефекты изоляторов, коррозия металла, обрывы проводов, опасная растительность.",
+              "serviceType": "ЛЭП",
+              "url": "https://unbgroup.uz/#dir-power",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Смарт-сити",
+              "description": "Цифровой двойник города: экология и несанкционированный мусор, транспортные аномалии, скопления людей, чрезвычайные ситуации.",
+              "serviceType": "Смарт-сити",
+              "url": "https://unbgroup.uz/#dir-city",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Дороги",
+              "description": "AI-аналитика дорожной сети: переход от долгих ручных проверок к интерактивным картам дефектов покрытия.",
+              "serviceType": "Дороги",
+              "url": "https://unbgroup.uz/#dir-roads",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Стройка",
+              "description": "Цифровой контроль строительства с интеграцией BIM/CAD: прогресс работ, нарушения техники безопасности, контроль качества материалов.",
+              "serviceType": "Стройка",
+              "url": "https://unbgroup.uz/#dir-construction",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Smart Farming",
+              "description": "Интеллектуальный автопилот NX610 для сельхозтехники + дроны для мониторинга полей — единая экосистема точного земледелия.",
+              "serviceType": "Smart Farming",
+              "url": "https://unbgroup.uz/#dir-farming",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Drone Delivery",
+              "description": "Автономная система доставки БПЛА: докинг-станции 24/7, доставка последней мили и специализированных грузов для стройки, медицины и промышленности.",
+              "serviceType": "Drone Delivery",
+              "url": "https://unbgroup.uz/#dir-delivery",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Дроны и энергооборудование",
+              "description": "Поставка промышленных и сельскохозяйственных дронов, докинг-станций, аккумуляторных энергоблоков и зарядных комплексов. Подбор конфигурации под задачу клиента и сервисная поддержка.",
+              "serviceType": "Дроны и энергооборудование",
+              "url": "https://unbgroup.uz/#dir-hardware",
+              "provider": {
+                "@id": "https://unbgroup.uz/#organization"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Uzbekistan"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://unbgroup.uz/#website",
+      "url": "https://unbgroup.uz/",
+      "name": "UNB Group",
+      "publisher": {
+        "@id": "https://unbgroup.uz/#organization"
+      },
+      "inLanguage": [
+        "ru",
+        "en",
+        "uz",
+        "zh"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://unbgroup.uz/#webpage",
+      "url": "https://unbgroup.uz/",
+      "name": "UNB Group — интеллектуальная платформа мониторинга инфраструктуры",
+      "description": "UNB Group: дроны + AI + цифровые модели для инспекции солнечных станций, ЛЭП, дорог, строек и умных городов.",
+      "inLanguage": "ru",
+      "isPartOf": {
+        "@id": "https://unbgroup.uz/#website"
+      },
+      "about": {
+        "@id": "https://unbgroup.uz/#organization"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -25,18 +282,18 @@
 
 <div class="ticker" aria-hidden="true">
   <div class="ticker__track">
-    <span>GRID HEALTH 98%</span><span>·</span>
-    <span>ROAD INTEGRITY 95%</span><span>·</span>
-    <span>AI ACCURACY 95%+</span><span>·</span>
-    <span>SAFETY SCORE 100%</span><span>·</span>
-    <span>DEFECT DETECTION ↑</span><span>·</span>
-    <span>O&amp;M COST ↓60%</span><span>·</span>
-    <span>GRID HEALTH 98%</span><span>·</span>
-    <span>ROAD INTEGRITY 95%</span><span>·</span>
-    <span>AI ACCURACY 95%+</span><span>·</span>
-    <span>SAFETY SCORE 100%</span><span>·</span>
-    <span>DEFECT DETECTION ↑</span><span>·</span>
-    <span>O&amp;M COST ↓60%</span><span>·</span>
+    <span data-i18n="ticker.grid">СОСТОЯНИЕ СЕТИ 98%</span><span>·</span>
+    <span data-i18n="ticker.roads">ЦЕЛОСТНОСТЬ ДОРОГ 95%</span><span>·</span>
+    <span data-i18n="ticker.ai">ТОЧНОСТЬ AI 95%+</span><span>·</span>
+    <span data-i18n="ticker.safety">БЕЗОПАСНОСТЬ 100%</span><span>·</span>
+    <span data-i18n="ticker.defects">ВЫЯВЛЕНИЕ ДЕФЕКТОВ ↑</span><span>·</span>
+    <span data-i18n="ticker.cost">ЗАТРАТЫ O&amp;M ↓60%</span><span>·</span>
+    <span data-i18n="ticker.grid">СОСТОЯНИЕ СЕТИ 98%</span><span>·</span>
+    <span data-i18n="ticker.roads">ЦЕЛОСТНОСТЬ ДОРОГ 95%</span><span>·</span>
+    <span data-i18n="ticker.ai">ТОЧНОСТЬ AI 95%+</span><span>·</span>
+    <span data-i18n="ticker.safety">БЕЗОПАСНОСТЬ 100%</span><span>·</span>
+    <span data-i18n="ticker.defects">ВЫЯВЛЕНИЕ ДЕФЕКТОВ ↑</span><span>·</span>
+    <span data-i18n="ticker.cost">ЗАТРАТЫ O&amp;M ↓60%</span><span>·</span>
   </div>
 </div>
 
@@ -54,9 +311,9 @@
     <div class="nav__right">
       <!-- Ссылки, а не кнопки: у каждого языка свой URL, и робот должен по ним пройти -->
       <nav class="lang-switch" aria-label="Language">
+        <a href="/uz/" hreflang="uz" data-lang="uz" class="lang-btn">UZ</a>
         <a href="/" hreflang="ru" data-lang="ru" class="lang-btn is-active">RU</a>
         <a href="/en/" hreflang="en" data-lang="en" class="lang-btn">EN</a>
-        <a href="/uz/" hreflang="uz" data-lang="uz" class="lang-btn">UZ</a>
         <a href="/zh/" hreflang="zh" data-lang="ch" class="lang-btn">CH</a>
       </nav>
       <a class="nav__phone" href="tel:+998943888882">+998 94 388 88 82</a>
@@ -74,7 +331,7 @@
         <h1 data-i18n="hero.title" data-i18n-html><span class="accent-word">Интеллектуальная</span> платформа мониторинга инфраструктуры</h1>
         <p class="hero__subhead" data-i18n="hero.subhead" data-i18n-html>Дроны <span class="accent-mark">+</span> AI <span class="accent-mark">+</span> цифровые модели <span class="accent-mark">+</span> автоматизация эксплуатации — единый контур для солнечных станций, ЛЭП, дорог, строек и умных городов.</p>
         <div class="hero__actions">
-          <a href="#directions" class="btn btn--primary">
+          <a href="#directions" class="btn btn--ghost">
             <span data-i18n="hero.cta_primary">Смотреть направления</span>
             <span class="btn__icon" aria-hidden="true">→</span>
           </a>
@@ -82,6 +339,9 @@
             <span class="btn__icon btn__icon--play" aria-hidden="true">▶</span>
             <span data-i18n="hero.cta_secondary">Смотреть презентацию</span>
           </a>
+          <!-- Единственная заливка среди кнопок героя: это действие, ради
+               которого страница и написана. Остальные — контурные. -->
+          <button class="btn btn--primary btn--lg" type="button" data-request-open data-i18n="request.cta">Обратиться</button>
         </div>
         <ul class="trust">
           <li class="trust__item">
@@ -128,8 +388,9 @@
 
           <ellipse cx="240" cy="212" rx="152" ry="88" fill="url(#droneGlow)"/>
 
-          <image href="assets/matrice_400.webp" x="30" y="8" width="420" height="420"
-                 preserveAspectRatio="xMidYMid meet" style="mix-blend-mode:multiply"/>
+          <!-- Дрон с подвешенным L3; кадр собирает tools/build-hero.mjs -->
+          <image href="assets/matrice_400_l3.webp" x="30" y="8" width="420" height="420"
+                 preserveAspectRatio="xMidYMid meet"/>
 
           <!-- Рамка визора -->
           <g class="hud-visor">
@@ -160,7 +421,7 @@
 
           <text x="20" y="24" class="hud-label">LAT <tspan class="hud-label--accent">41.31</tspan> · LON <tspan class="hud-label--accent">69.28</tspan></text>
           <text x="20" y="452" class="hud-label">SCAN MODE · <tspan class="hud-label--accent">AUTONOMOUS</tspan></text>
-          <text x="464" y="452" class="hud-label" text-anchor="end">ALT 120 M · MATRICE 400</text>
+          <text x="464" y="452" class="hud-label" text-anchor="end">ALT 120 M · MATRICE 400 · ZENMUSE L3</text>
         </svg>
       </div>
     </div>
@@ -432,6 +693,80 @@
 
 </main>
 
+<!-- Окно заявки. Форма живёт отдельным окном, а не секцией на странице:
+     кнопка «Обратиться» прибита к шапке и должна открываться с любого места,
+     не уводя человека с карточки, которую он читает.
+
+     Заявки уходят в Google-таблицу через веб-приложение Apps Script: сайт
+     статический, своего сервера у него нет. Адрес приложения лежит в
+     data-endpoint — как его получить, написано в README. Пока он пустой,
+     форма не делает вид, что отправила: показывает телефон. -->
+<div class="request-modal" id="requestModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="requestModalTitle">
+  <div class="request-modal__panel">
+    <div class="request-modal__bar">
+      <span class="request-modal__title" id="requestModalTitle" data-i18n="request.title">Обратиться к нам</span>
+      <button class="request-modal__close" id="requestModalClose" type="button" data-i18n="modal.close">✕ Закрыть</button>
+    </div>
+    <div class="request-modal__body">
+      <p class="request__text" data-i18n="request.text">Оставьте телефон — перезвоним, ответим на вопросы и подберём решение под задачу.</p>
+
+      <form class="request__form" id="requestForm" data-endpoint="" novalidate>
+        <div class="request__grid">
+          <div class="request__field">
+            <label class="request__label" for="requestName" data-i18n="request.name">Имя</label>
+            <input class="request__input" id="requestName" name="name" type="text" autocomplete="name" maxlength="80" required>
+            <p class="request__error" id="requestNameError" data-i18n="request.err_name" hidden>Напишите, как к вам обращаться</p>
+          </div>
+
+          <div class="request__field">
+            <label class="request__label" for="requestPhone" data-i18n="request.phone">Телефон</label>
+            <input class="request__input" id="requestPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998 90 123 45 67" maxlength="24" required>
+            <p class="request__error" id="requestPhoneError" data-i18n="request.err_phone" hidden>Проверьте номер телефона</p>
+          </div>
+
+          <div class="request__field">
+            <label class="request__label" for="requestDirection" data-i18n="request.direction">Направление</label>
+            <!-- value — слаг, а не перевод: в таблице заявка должна читаться
+                 одинаково, с какого языка её ни отправили -->
+            <select class="request__input request__select" id="requestDirection" name="direction" required>
+              <option value="" data-i18n="request.direction_empty">Выберите направление</option>
+              <option value="mapping" data-i18n="dir.mapping.title">Картография</option>
+              <option value="solar" data-i18n="dir.solar.title">Солнечные станции</option>
+              <option value="power" data-i18n="dir.power.title">ЛЭП</option>
+              <option value="city" data-i18n="dir.city.title">Смарт-сити</option>
+              <option value="roads" data-i18n="dir.roads.title">Дороги</option>
+              <option value="construction" data-i18n="dir.construction.title">Стройка</option>
+              <option value="farming" data-i18n="dir.farming.title">Smart Farming</option>
+              <option value="delivery" data-i18n="dir.delivery.title">Drone Delivery</option>
+              <option value="hardware" data-i18n="dir.hardware.title">Дроны и энергооборудование</option>
+              <option value="other" data-i18n="request.direction_other">Другое</option>
+            </select>
+            <p class="request__error" id="requestDirectionError" data-i18n="request.err_direction" hidden>Выберите направление</p>
+          </div>
+        </div>
+
+        <!-- Ловушка для ботов: человек этого поля не видит и не заполняет.
+             Имя намеренно бессмысленное: поле с названием вроде company
+             автозаполнение браузера принимает за настоящее и вписывает туда
+             данные само — и живая заявка молча отбрасывалась бы. -->
+        <div class="request__trap" aria-hidden="true">
+          <label>uz-ref<input type="text" name="uz_ref" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <div class="request__actions">
+          <button class="btn btn--primary request__submit" id="requestSubmit" type="submit">
+            <span data-i18n="request.submit">Отправить заявку</span>
+            <span class="btn__icon" aria-hidden="true">→</span>
+          </button>
+          <p class="request__note" data-i18n="request.note">Перезваниваем в рабочее время, с 9:00 до 18:00.</p>
+        </div>
+
+        <p class="request__status" id="requestStatus" role="status" aria-live="polite" hidden></p>
+      </form>
+    </div>
+  </div>
+</div>
+
 <footer class="footer" id="contacts">
   <div class="section__inner footer__inner">
     <div class="footer__brand">
@@ -472,8 +807,8 @@
   </div>
 </div>
 
-<script src="js/i18n.js?v=12"></script>
+<script src="js/i18n.js?v=13"></script>
 <script src="js/decks-index.js?v=12"></script>
-<script src="js/script.js?v=12"></script>
+<script src="js/script.js?v=13"></script>
 </body>
 </html>

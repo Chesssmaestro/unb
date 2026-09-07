@@ -15,8 +15,8 @@
   gap:16px;
   padding:10px 20px;
   margin:-28px -16px 22px;   /* out of the deck's body padding, edge to edge */
-  background:#10171B;
-  color:rgba(245,246,244,0.72);
+  background:#004477;
+  color:rgba(255,255,255,0.72);
   font-family:"IBM Plex Mono","Segoe UI",Roboto,Arial,sans-serif;
   font-size:11px;
   letter-spacing:0.08em;
@@ -35,17 +35,17 @@
   gap:8px;
   padding:8px 12px;
   margin-left:-12px;
-  border-radius:2px;
+  border-radius:8px;
   white-space:nowrap;
   transition:color .18s ease, background .18s ease;
 }
-.dp-back:hover{color:#FFFFFF;background:rgba(245,246,244,0.08);}
+.dp-back:hover{color:#FFFFFF;background:rgba(255,255,255,0.08);}
 
 .dp-title{
   flex:1;
   min-width:0;
   text-align:center;
-  color:#F5F6F4;
+  color:#FFFFFF;
   font-weight:600;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -61,14 +61,14 @@
 .dp-langs a{
   padding:7px 10px;
   border:1px solid transparent;
-  border-radius:2px;
+  border-radius:8px;
   transition:color .18s ease, background .18s ease, border-color .18s ease;
 }
-.dp-langs a:hover{color:#FFFFFF;background:rgba(245,246,244,0.08);}
+.dp-langs a:hover{color:#FFFFFF;background:rgba(255,255,255,0.08);}
 .dp-langs a.is-active{
-  color:#10171B;
-  background:#F5F6F4;
-  border-color:#F5F6F4;
+  color:#004477;
+  background:#FFFFFF;
+  border-color:#FFFFFF;
 }
 
 .dp-icon-btn{
@@ -79,15 +79,15 @@
   width:34px;
   height:34px;
   padding:0;
-  border:1px solid rgba(245,246,244,0.18);
-  border-radius:2px;
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:8px;
   background:none;
   color:inherit;
   cursor:pointer;
   transition:color .18s ease, background .18s ease, border-color .18s ease;
 }
 .dp-icon-btn svg{width:18px;height:18px;}
-.dp-icon-btn:hover{color:#FFFFFF;background:rgba(245,246,244,0.08);border-color:rgba(245,246,244,0.4);}
+.dp-icon-btn:hover{color:#FFFFFF;background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.4);}
 
 /* ==========================================================================
    Листалка
@@ -104,7 +104,7 @@
   padding:0;
   display:flex;
   flex-direction:column;
-  background:#10171B;
+  background:#004477;
 }
 
 .dp-on .dp-bar{margin:0;}
@@ -151,15 +151,15 @@
   display:flex;
   align-items:center;
   justify-content:center;
-  border:1px solid rgba(245,246,244,0.18);
-  border-radius:2px;
-  background:rgba(16,23,27,0.72);
-  color:rgba(245,246,244,0.72);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:8px;
+  background:rgba(0,68,119,0.72);
+  color:rgba(255,255,255,0.72);
   cursor:pointer;
   transition:border-color .18s ease, color .18s ease, background .18s ease, opacity .18s ease;
 }
 .dp-nav svg{width:22px;height:22px;}
-.dp-nav:hover{color:#FFFFFF;border-color:rgba(245,246,244,0.4);}
+.dp-nav:hover{color:#FFFFFF;border-color:rgba(255,255,255,0.4);}
 .dp-nav:disabled{opacity:.22;cursor:default;}
 .dp-nav--prev{left:8px;}
 .dp-nav--next{right:8px;}
@@ -169,13 +169,13 @@
 .dp-progress{
   flex:none;
   height:2px;
-  background:rgba(245,246,244,0.12);
+  background:rgba(255,255,255,0.12);
 }
 .dp-progress span{
   display:block;
   height:100%;
   width:0;
-  background:#F5F6F4;
+  background:#FFFFFF;
   transition:width .22s ease;
 }
 
@@ -186,7 +186,7 @@
   gap:14px;
   padding:8px 20px;
   min-height:52px;
-  color:rgba(245,246,244,0.72);
+  color:rgba(255,255,255,0.72);
   font-family:"IBM Plex Mono","Segoe UI",Roboto,Arial,sans-serif;
   font-size:11px;
   letter-spacing:0.08em;
@@ -211,7 +211,7 @@
   width:96px;
   padding:0;
   border:1px solid transparent;
-  border-radius:2px;
+  border-radius:8px;
   background:none;
   cursor:pointer;
   opacity:.55;
@@ -219,7 +219,7 @@
   transition:opacity .18s ease, border-color .18s ease;
 }
 .dp-thumb:hover{opacity:.85;}
-.dp-thumb.is-active{opacity:1;border-color:#F5F6F4;}
+.dp-thumb.is-active{opacity:1;border-color:#FFFFFF;}
 
 /* Миниатюра — тот же слайд целиком: он свёрстан в cqw, поэтому в узкой
    коробке сам собирается в уменьшенную копию. Клик по нему ловит кнопка. */
