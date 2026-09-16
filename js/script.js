@@ -213,12 +213,10 @@
   });
 
   // ---------- Заявка ----------
-  // Сайт статический, своего сервера нет, поэтому форма стучится в веб-приложение
-  // Google Apps Script, а оно кладёт строку в таблицу. Адрес приложения лежит
-  // в data-endpoint разметки: там он на виду и сам попадает в языковые копии.
-  //
-  // Content-Type: text/plain — не прихоть. С ним запрос считается «простым», и
-  // браузер не шлёт preflight-запрос OPTIONS, на который Apps Script не отвечает.
+  // Сайт статический, своего сервера нет, поэтому форма стучится в Cloudflare
+  // Worker (исходник — worker/src/index.js), а он кладёт строку в базу D1.
+  // Адрес воркера лежит в data-endpoint разметки: там он на виду и сам
+  // попадает в языковые копии.
   const form = document.getElementById('requestForm');
   if(form){
     const requestModal = document.getElementById('requestModal');
@@ -351,7 +349,7 @@
 
       fetch(endpoint, {
         method: 'POST',
-        headers: {'Content-Type': 'text/plain;charset=utf-8'},
+        headers: {'Content-Type': 'application/json;charset=utf-8'},
         body: JSON.stringify(payload)
       })
         .then(res=> res.ok ? res.json() : Promise.reject(new Error('HTTP ' + res.status)))

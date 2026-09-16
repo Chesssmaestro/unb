@@ -11,7 +11,10 @@
     "build:deck-pages": "node tools/build-deck-pages.mjs",
     "build:sitemap": "node tools/build-sitemap.mjs",
     "build:og": "node tools/build-og.mjs",
-    "build:hero": "node tools/build-hero.mjs"
+    "build:hero": "node tools/build-hero.mjs",
+    "schema": "npx wrangler d1 execute unb-leads --remote --config worker/wrangler.toml --file worker/schema.sql",
+    "leads": "npx wrangler d1 execute unb-leads --remote --config worker/wrangler.toml --command \"SELECT id, created_at, name, phone, direction_label, lang, status FROM leads ORDER BY id DESC LIMIT 20\"",
+    "deploy:worker": "npx wrangler deploy --config worker/wrangler.toml"
   },
   "devDependencies": {
     "mupdf": "^1.28.0",

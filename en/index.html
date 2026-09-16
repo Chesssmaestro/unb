@@ -710,10 +710,10 @@
      кнопка «Обратиться» прибита к шапке и должна открываться с любого места,
      не уводя человека с карточки, которую он читает.
 
-     Заявки уходят в Google-таблицу через веб-приложение Apps Script: сайт
-     статический, своего сервера у него нет. Адрес приложения лежит в
-     data-endpoint — как его получить, написано в README. Пока он пустой,
-     форма не делает вид, что отправила: показывает телефон. -->
+     Заявки уходят в базу Cloudflare D1 через воркер (worker/src/index.js):
+     сайт статический, своего сервера у него нет. Адрес воркера лежит в
+     data-endpoint — так он на виду и сам попадает в языковые копии. Уберёте
+     адрес — форма не станет делать вид, что отправила: покажет телефон. -->
 <div class="request-modal" id="requestModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="requestModalTitle">
   <div class="request-modal__panel">
     <div class="request-modal__bar">
@@ -723,7 +723,7 @@
     <div class="request-modal__body">
       <p class="request__text" data-i18n="request.text">Leave your phone number — we will call back, answer your questions and put together a fit for your task.</p>
 
-      <form class="request__form" id="requestForm" data-endpoint="" novalidate>
+      <form class="request__form" id="requestForm" data-endpoint="https://unb-leads.bdunb.workers.dev/" novalidate>
         <div class="request__grid">
           <div class="request__field">
             <label class="request__label" for="requestName" data-i18n="request.name">Name</label>

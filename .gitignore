@@ -3,6 +3,7 @@ __MACOSX/
 Thumbs.db
 node_modules/
 tools/.check/
+worker/.wrangler/
 .claude/
 
 # Source decks: build input only. They are not served — the site shows the

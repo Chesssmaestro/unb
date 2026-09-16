@@ -1,0 +1,15 @@
+name = "unb-leads"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+
+# Домен сайта (unbgroup.uz) в этом аккаунте Cloudflare не заведён — он на
+# GitHub Pages, DNS у регистратора, — поэтому воркер живёт на служебном
+# поддомене workers.dev. Заведёте зону в Cloudflare — можно будет повесить
+# его на leads.unbgroup.uz: workers_dev = false и блок
+# [[routes]] с pattern = "leads.unbgroup.uz", custom_domain = true.
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"           # под этим именем база видна в коде: env.DB
+database_name = "unb-leads"
+database_id = "c9e7285f-5239-4089-8511-af19804f5614"
