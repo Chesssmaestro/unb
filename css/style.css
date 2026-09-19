@@ -75,7 +75,11 @@
   --r-card:20px;
   --r-input:12px;
 
-  --maxw:1180px;
+  /* Раскладка идёт во всю ширину окна — коробки 1180px больше нет.
+     Поля держит --gutter: он растёт вместе с экраном, поэтому на широком
+     мониторе текст не липнет к кромке, а на телефоне даёт прежние 18px. */
+  --maxw:100%;
+  --gutter:clamp(18px,3.5vw,72px);
   --header-h:96px;
 }
 
@@ -98,11 +102,7 @@ ul,ol{list-style:none;margin:0;padding:0;}
 h1,h2,h3{font-family:var(--font-display);margin:0;font-weight:500;letter-spacing:-0.01em;}
 p{margin:0;}
 
-.section__inner{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
-
-@media (max-width:480px){
-  .section__inner{padding:0 18px;}
-}
+.section__inner{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);}
 
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto;}
@@ -146,7 +146,7 @@ body{padding-top:var(--header-h);}
   border-bottom:1px solid var(--line);
 }
 .nav__inner{
-  max-width:var(--maxw);margin:0 auto;padding:14px 32px;
+  max-width:var(--maxw);margin:0 auto;padding:14px var(--gutter);
   display:flex;align-items:center;justify-content:space-between;gap:24px;
 }
 .nav__logo{height:38px;width:auto;}
@@ -218,7 +218,7 @@ body{padding-top:var(--header-h);}
   mask-image:linear-gradient(to bottom, black, transparent 90%);
 }
 .hero__inner{
-  position:relative;max-width:var(--maxw);margin:0 auto;padding:24px 32px 64px;
+  position:relative;max-width:var(--maxw);margin:0 auto;padding:24px var(--gutter) 64px;
   display:grid;grid-template-columns:1.05fr 0.95fr;gap:48px;align-items:center;
 }
 .hero__title, .hero h1{font-size:clamp(36px,5vw,62px);line-height:1.04;margin:0 0 24px;}
@@ -275,13 +275,21 @@ body{padding-top:var(--header-h);}
 @keyframes hudPulse{0%,100%{opacity:0.95;}50%{opacity:0.4;}}
 @keyframes hudRing{0%,100%{opacity:0.18;}50%{opacity:0.55;}}
 
+/* Без коробки 1180px правая колонка героя растёт вместе с окном, а визуал
+   почти квадратный — на широком мониторе герой уходил бы на весь экран в
+   высоту. За 1600px текст забирает долю у картинки: полоса остаётся во всю
+   ширину, но пропорция героя держится. */
+@media (min-width:1600px){
+  .hero__inner{grid-template-columns:1.25fr 0.75fr;}
+}
+
 @media (max-width:900px){
-  .hero__inner{grid-template-columns:1fr;padding:20px 24px 48px;}
+  .hero__inner{grid-template-columns:1fr;padding:20px var(--gutter) 48px;}
   .hero__visual{order:-1;max-width:340px;margin:0 auto;}
 }
 
 @media (max-width:480px){
-  .hero__inner{padding:16px 18px 36px;}
+  .hero__inner{padding:16px var(--gutter) 36px;}
   .hero__subhead{font-size:16px;}
   .hero__actions{flex-direction:column;align-items:stretch;}
   .hero__actions .btn{width:100%;}
@@ -525,6 +533,17 @@ body{padding-top:var(--header-h);}
 .effect > .section__inner,
 .presentations > .section__inner{width:100%;}
 
+/* ---------- Мера строки на широких экранах ----------
+   Колонки тянутся вместе с окном, а строка — нет: за 1440px абзацы в 13–15px
+   уходили бы на 700–1100px в строку и переставали читаться. Сетка остаётся
+   во всю ширину, ограничен только текст внутри ячейки. */
+@media (min-width:1440px){
+  .transition__list li,
+  .pipeline__step p,
+  .direction-card p{max-width:52ch;}
+  .effect__label{max-width:30ch;}
+}
+
 /* ---------- Footer ---------- */
 .footer{background:var(--ink);color:var(--white);padding-top:64px;}
 .footer__inner{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:48px;}
@@ -535,7 +554,7 @@ body{padding-top:var(--header-h);}
 .footer__label:first-child{margin-top:0;}
 .footer__value{display:block;font-weight:500;margin-top:2px;}
 .footer__bottom{
-  border-top:1px solid rgba(255,255,255,0.18);padding:18px 32px;
+  border-top:1px solid rgba(255,255,255,0.18);padding:18px var(--gutter);
   display:flex;justify-content:space-between;font-size:12.5px;color:rgba(255,255,255,0.6);
   font-family:var(--font-mono);
 }
@@ -559,7 +578,9 @@ body{padding-top:var(--header-h);}
 }
 .pres-modal.is-open{opacity:1;visibility:visible;}
 .pres-modal__panel{
-  width:100%;max-width:960px;height:calc(100vh - 64px);max-height:860px;
+  /* Страница теперь во всю ширину — окно презентации тоже подросло, но
+     остаётся окном: 1440×860 держит слайд близко к 16:9. */
+  width:100%;max-width:1440px;height:calc(100vh - 64px);max-height:860px;
   background:var(--paper);border:1px solid var(--line-strong);border-radius:var(--r-card);
   display:flex;flex-direction:column;overflow:hidden;
   box-shadow:0 24px 64px rgba(0,0,0,0.35);
