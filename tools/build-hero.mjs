@@ -26,8 +26,8 @@ const OUT = path.join(ASSETS, 'matrice_400_l3.webp');
 
 /** Куда вешаем: центр фюзеляжа, площадка подвеса и ширина лидара в пикселях кадра. */
 const MOUNT_X = 505;
-const MOUNT_Y = 494;
-const LIDAR_W = 68;
+const MOUNT_Y = 480;
+const LIDAR_W = 140;
 
 /**
  * Снимает белый фон фотографии.

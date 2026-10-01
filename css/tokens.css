@@ -1,0 +1,135 @@
+/* ===================================================================
+   UNB Group — design tokens («Dala»: созвездие на чёрном бархате)
+   Единственное место, где живут цвета, размеры и отступы.
+   Описание системы — DESIGN.md.
+   =================================================================== */
+
+/* PP Neue Montreal — лицензионные файлы кладутся в assets/fonts/.
+   Пока их нет, браузер молча переходит к Inter из стека ниже. */
+@font-face{
+  font-family:'PP Neue Montreal';
+  src:url('../assets/fonts/PPNeueMontreal-Thin.woff2') format('woff2');
+  font-weight:100 200;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:'PP Neue Montreal';
+  src:url('../assets/fonts/PPNeueMontreal-Light.woff2') format('woff2');
+  font-weight:300;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:'PP Neue Montreal';
+  src:url('../assets/fonts/PPNeueMontreal-Book.woff2') format('woff2');
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:'PP Neue Montreal';
+  src:url('../assets/fonts/PPNeueMontreal-Medium.woff2') format('woff2');
+  font-weight:500;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:'PP Neue Montreal';
+  src:url('../assets/fonts/PPNeueMontreal-SemiBold.woff2') format('woff2');
+  font-weight:600;
+  font-style:normal;
+  font-display:swap;
+}
+
+:root{
+  /* ---------- Colour ---------- */
+  --c-void:#000000;          /* фон всех секций */
+  --c-bone:#ffffff;          /* заголовки, основной текст */
+  --c-ash:#9a9a9a;           /* второстепенный текст, неактивная навигация (7.4:1) */
+  --c-silver:#bdbdbd;        /* подписи, третичный текст */
+  --c-iris:#8052ff;          /* только заполненные кнопки и активные индикаторы */
+  --c-iris-hover:#6b3cff;       /* темнее, чтобы белый текст держал 5.6:1 */
+  --c-saffron:#ffb829;       /* лейблы над абзацами, акцентные ссылки */
+  --c-verdant:#15846e;       /* логотип и редкие акцентные поверхности */
+
+  --c-line:rgba(255,255,255,.14);        /* волосяные разделители списков */
+  --c-line-strong:rgba(255,255,255,.32); /* контур тегов */
+  --c-scrim:rgba(0,0,0,.86);             /* подложка модального окна */
+  --c-selection:rgba(128,82,255,.45);
+
+  /* Спектр созвездия в герое (canvas читает их через getComputedStyle) */
+  --c-star-1:#8052ff;
+  --c-star-2:#ffb829;
+  --c-star-3:#2ee6c0;
+  --c-star-4:#ff4fb8;
+  --c-star-5:#4d8dff;
+  --c-dust:rgba(255,255,255,.5);
+
+  /* ---------- Type ---------- */
+  --font-sans:'PP Neue Montreal','Inter',sans-serif;
+
+  --fs-display:clamp(2.5rem, 1.2rem + 5.8vw, 7.0625rem);  /* 113 */
+  --fs-heading-l:clamp(2.25rem, 1.1rem + 4.2vw, 4.875rem); /* 78 */
+  --fs-heading:clamp(2rem, 1.3rem + 2.4vw, 3rem);          /* 48 */
+  --fs-heading-s:clamp(1.75rem, 1.2rem + 1.9vw, 2.625rem); /* 42 */
+  --fs-subheading:clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);  /* 36 */
+  --fs-heading-xs:clamp(1.375rem, 1.2rem + .6vw, 1.6875rem); /* 27 */
+  --fs-heading-2xs:clamp(1.25rem, 1.1rem + .5vw, 1.5rem); /* 24 */
+  --fs-body:1.125rem;        /* 18 */
+  --fs-nav:.875rem;          /* 14 */
+  --fs-caption:.75rem;       /* 12 */
+
+  --fw-thin:200;             /* body — фирменная черта; не ниже 16px */
+  --fw-regular:400;          /* все заголовки */
+  --fw-label:600;            /* nav label */
+
+  --lh-display:1.1;
+  --lh-heading:1.1;
+  --lh-subheading:1.2;
+  --lh-tight:1;
+  --lh-body:1.5;
+
+  --ls-display:-.04em;
+  --ls-heading:-.035em;
+  --ls-heading-2xs:-.02em;
+  --ls-label:.025em;
+
+  /* ---------- Space: шаг 6px (в rem — масштабируется вместе с экраном) ---------- */
+  --s-1:.375rem;   /*   6 */
+  --s-2:.75rem;    /*  12 */
+  --s-3:1.125rem;  /*  18 */
+  --s-4:1.5rem;    /*  24 */
+  --s-5:1.875rem;  /*  30 */
+  --s-6:2.25rem;   /*  36 */
+  --s-7:3.75rem;   /*  60 */
+  --s-8:6rem;      /*  96 */
+  --s-9:7.5rem;    /* 120 */
+
+  --section-gap:clamp(var(--s-7), 10vw, var(--s-9));
+  /* Контент на всю ширину экрана: поля растут вместе с ним,
+     потолок нужен только для сверхшироких мониторов 32:9 */
+  --gutter:clamp(var(--s-3), 4.5vw, var(--s-9));
+  --maxw:160rem;
+  --measure:60ch;
+  --measure-narrow:34rem;
+  --hit:2.75rem;            /* минимальная тач-зона, 44px */
+
+  /* ---------- Shape ---------- */
+  --r-24:1.5rem;
+  --r-pill:9999px;
+  --line-w:1px;
+
+  /* ---------- Focus ---------- */
+  --focus-ring:2px solid var(--c-iris);
+  --focus-offset:3px;
+
+  /* ---------- Motion ---------- */
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --dur-fast:180ms;
+  --dur-base:420ms;
+  --dur-slow:900ms;
+
+  --header-h:5.25rem;        /* уточняется из JS по факту */
+  --screen:calc(100svh - var(--header-h)); /* один экран под шапкой */
+}

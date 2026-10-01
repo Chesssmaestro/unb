@@ -137,7 +137,9 @@ p{margin:0;}
 
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto;}
-  *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  /* Без iteration-count бесконечные анимации (тикер, HUD) крутились бы
+     тысячи раз в секунду — на iPhone с «Уменьшением движения» это мельтешение. */
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
 }
 
 :focus-visible{outline:2px solid var(--blueprint); outline-offset:3px;}
@@ -157,11 +159,20 @@ p{margin:0;}
   display:inline-block;
   white-space:nowrap;
   animation:ticker 38s linear infinite;
+  will-change:transform;
 }
 .ticker__track span{margin:0 var(--sp-2); opacity:0.85;}
 @keyframes ticker{
-  0%{transform:translateX(0);}
-  100%{transform:translateX(-50%);}
+  0%{transform:translate3d(0,0,0);}
+  100%{transform:translate3d(-50%,0,0);}
+}
+/* Длительность — на всю ленту, а лента от ширины экрана не зависит: на
+   телефоне строка пробегала узкий экран втрое быстрее, чем десктопный. */
+@media (max-width:600px){
+  .ticker__track{animation-duration:80s;}
+}
+@media (prefers-reduced-motion: reduce){
+  .ticker__track{animation:none;}
 }
 
 /* ---------- Header (ticker + nav) ---------- */
