@@ -67,6 +67,8 @@
     if (next === index) return;
     index = next;
     render();
+    // На телефоне слайд выше экрана и прокручивается — новый открываем с начала.
+    deckEl.scrollTop = 0;
   }
 
   /**

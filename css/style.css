@@ -348,7 +348,12 @@ body{padding-top:var(--header-h);}
 
 @media (max-width:900px){
   .hero__inner{grid-template-columns:1fr;padding:20px var(--gutter) 48px;}
-  .hero__visual{order:-1;max-width:340px;margin:0 auto;}
+  /* Дрон — главный кадр экрана: на телефоне визуал идёт от края до края,
+     без боковых полей, а на планшете упирается в 520px. */
+  .hero__visual{order:-1;width:100%;max-width:520px;margin:0 auto;}
+}
+@media (max-width:560px){
+  .hero__visual{width:auto;max-width:none;margin:0 calc(var(--gutter) * -1);}
 }
 
 @media (max-width:480px){

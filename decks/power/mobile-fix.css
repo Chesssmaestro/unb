@@ -1,0 +1,7 @@
+/* Правки мобильной вёрстки, которые не выводятся из десктопной автоматически.
+   Дописываются в css/deck-mobile/power.css скриптом tools/build-deck-mobile.mjs. */
+@media (max-width:640px){
+  /* Камеры: миниатюра слева от описания — в cqw она становилась полоской 45px. */
+  .deck>.slide .camrow{grid-template-columns:96px minmax(0,1fr);}
+  .deck>.slide .camrow .ph{height:72px;}
+}

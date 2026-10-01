@@ -1,0 +1,21 @@
+/* Правки мобильной вёрстки, которые не выводятся из десктопной автоматически.
+   Дописываются в css/deck-mobile/roads.css скриптом tools/build-deck-mobile.mjs. */
+@media (max-width:640px){
+  /* Обложки: фото во весь слайд, текст поверх — пелена по всей ширине,
+     а не только слева, как на широком слайде. */
+  .deck>.slide.hero{min-height:420px;}
+  .deck>.slide.hero .veil{
+    background:linear-gradient(180deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.88) 55%,rgba(255,255,255,.35) 100%);
+  }
+  .deck>.slide.hero .pad{min-height:420px;}
+
+  /* Ступени «эволюции»: высота в процентах рисовала лесенку, в колонке
+     она только наезжает блоками друг на друга. */
+  .deck>.slide .stairs .step{height:auto;}
+
+  /* Карточки дефектов: фото лежит под подписью абсолютом, поэтому высоту
+     карточке задаёт пропорция, а не содержимое. */
+  .deck>.slide .cvc{aspect-ratio:16/10;}
+  .deck>.slide .chips{left:6px;right:6px;bottom:6px;gap:4px;}
+  .deck>.slide .chip{white-space:normal;}
+}

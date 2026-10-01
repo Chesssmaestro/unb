@@ -1,0 +1,56 @@
+/* ==========================================================================
+   Презентации на телефоне — вертикальный вид.
+
+   Подключается с media="(max-width:640px)" после всех стилей презентации.
+   Слайд перестаёт держать рамку 16:9: он во всю ширину экрана и растёт по
+   содержимому, а листалка прокручивает его по вертикали. Блоки внутри
+   выстраивает в колонку css/deck-mobile/<slug>.css — его собирает
+   tools/build-deck-mobile.mjs из вёрстки самой презентации.
+
+   Всё привязано к `.deck > .slide`: миниатюры внизу остаются копиями 16:9.
+   ========================================================================== */
+
+.deck>.slide{
+  aspect-ratio:auto;
+  height:auto;
+  min-height:0;
+}
+.deck>.slide .pad{
+  position:relative;
+  inset:auto;
+  padding:26px 18px 34px;
+}
+.deck>.slide .num{right:14px;bottom:10px;}
+
+/* Цепочки «шаг → шаг → шаг» встали в столбик — стрелки смотрят вниз. */
+.deck>.slide :is(.arr,.om__arrow,.flow__arrow){
+  justify-self:center;
+  text-align:center;
+  transform:rotate(90deg);
+  line-height:1;
+}
+/* Цепочка в group: стрелка между звеньями — теперь в зазоре сверху. */
+.deck>.slide .link + .link::before{
+  left:50%;
+  top:-7px;
+  font-size:16px;
+  transform:translate(-50%,-50%) rotate(90deg);
+}
+
+/* Инлайновые размеры из разметки слайдов (style="…cqw"). */
+.deck>.slide [style*="max-width"]{max-width:none !important;}
+.deck>.slide [style*="grid-template-columns"]{grid-template-columns:minmax(0,1fr) !important;}
+.deck>.slide [style*="font-size:5cqw"]{font-size:30px !important;}
+.deck>.slide [style*="font-size:1.9cqw"]{font-size:16px !important;}
+
+/* ---------- Листалка ---------- */
+/* Слайд выше экрана — сцена прокручивается, а не ужимает его по высоте. */
+.dp-on .deck{
+  display:block;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;
+  container-type:normal;
+  padding:10px 10px 16px;
+}
+.dp-on .deck>.slide{width:100%;max-width:none;}
