@@ -101,7 +101,7 @@
   }
 
   // scroll reveal
-  const revealTargets = document.querySelectorAll('.direction-card, .pipeline__step, .effect__stat, .transition__col');
+  const revealTargets = document.querySelectorAll('.direction-card, .pipeline__step, .effect__stat, .transition__col, .project, .about__total, .partner');
   revealTargets.forEach(el=> el.classList.add('reveal'));
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{

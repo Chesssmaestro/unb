@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О компании — UNB Group: геодезия, картография и мониторинг с воздуха</title>
+<meta name="description" content="UNB Group: 11 видов геодезической и картографической деятельности, аэросъёмка с БПЛА, топопланы 1:500 — 1:1 000 000, ГИС. Реализованные объекты в Кашкадарьинской и Ферганской областях.">
+<!-- Языковые копии (/en/about/ и др.) собирает tools/build-pages.mjs из этого
+     файла: заголовок, описание, canonical/alternate и og-теги он переписывает. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="О компании — UNB Group: геодезия, картография и мониторинг с воздуха">
+<meta property="og:description" content="UNB Group: 11 видов геодезической и картографической деятельности, аэросъёмка с БПЛА, топопланы 1:500 — 1:1 000 000, ГИС. Реализованные объекты в Кашкадарьинской и Ферганской областях.">
+<meta property="og:url" content="https://unbgroup.uz/about/">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="UNB Group">
+<meta property="og:image" content="https://unbgroup.uz/assets/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://unbgroup.uz/about/">
+<link rel="alternate" hreflang="ru" href="https://unbgroup.uz/about/">
+<link rel="alternate" hreflang="en" href="https://unbgroup.uz/en/about/">
+<link rel="alternate" hreflang="uz" href="https://unbgroup.uz/uz/about/">
+<link rel="alternate" hreflang="zh" href="https://unbgroup.uz/zh/about/">
+<link rel="alternate" hreflang="x-default" href="https://unbgroup.uz/about/">
+<link rel="icon" href="/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=25">
+<script src="/js/theme.js?v=1"></script>
+</head>
+<body class="page-about">
+
+<!-- Бегущая телеметрия и навигация липнут к верху одним блоком -->
+<header class="site-header" id="top">
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <span data-i18n="ticker.grid">СОСТОЯНИЕ СЕТИ 98%</span><span>·</span>
+    <span data-i18n="ticker.roads">ЦЕЛОСТНОСТЬ ДОРОГ 95%</span><span>·</span>
+    <span data-i18n="ticker.ai">ТОЧНОСТЬ AI 95%+</span><span>·</span>
+    <span data-i18n="ticker.safety">БЕЗОПАСНОСТЬ 100%</span><span>·</span>
+    <span data-i18n="ticker.defects">ВЫЯВЛЕНИЕ ДЕФЕКТОВ ↑</span><span>·</span>
+    <span data-i18n="ticker.cost">ЗАТРАТЫ O&amp;M ↓60%</span><span>·</span>
+    <span data-i18n="ticker.grid">СОСТОЯНИЕ СЕТИ 98%</span><span>·</span>
+    <span data-i18n="ticker.roads">ЦЕЛОСТНОСТЬ ДОРОГ 95%</span><span>·</span>
+    <span data-i18n="ticker.ai">ТОЧНОСТЬ AI 95%+</span><span>·</span>
+    <span data-i18n="ticker.safety">БЕЗОПАСНОСТЬ 100%</span><span>·</span>
+    <span data-i18n="ticker.defects">ВЫЯВЛЕНИЕ ДЕФЕКТОВ ↑</span><span>·</span>
+    <span data-i18n="ticker.cost">ЗАТРАТЫ O&amp;M ↓60%</span><span>·</span>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="nav__inner">
+    <a href="/" class="nav__brand" data-local-href="">
+      <img src="/assets/logo.png" alt="UNB Group" class="nav__logo">
+    </a>
+    <nav class="nav__links" data-i18n-nav>
+      <a href="/#directions" data-local-href="#directions" data-i18n="nav.directions">Направления</a>
+      <a href="/#platform" data-local-href="#platform" data-i18n="nav.platform">Платформа</a>
+      <a href="/#effect" data-local-href="#effect" data-i18n="nav.effect">Эффект</a>
+      <a href="/about/" data-local-href="about/" aria-current="page" data-i18n="nav.about">О нас</a>
+      <a href="#contacts" data-i18n="nav.contacts">Контакты</a>
+    </nav>
+    <div class="nav__right">
+      <!-- Ссылки, а не кнопки: у каждого языка свой URL, и робот должен по ним пройти -->
+      <nav class="lang-switch" aria-label="Language">
+        <a href="/uz/about/" hreflang="uz" data-lang="uz" class="lang-btn">UZ</a>
+        <a href="/about/" hreflang="ru" data-lang="ru" class="lang-btn is-active">RU</a>
+        <a href="/en/about/" hreflang="en" data-lang="en" class="lang-btn">EN</a>
+        <a href="/zh/about/" hreflang="zh" data-lang="ch" class="lang-btn">CH</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle data-i18n-title="theme.toggle" title="Сменить тему" aria-label="Сменить тему" aria-pressed="false">
+        <svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.4A8.5 8.5 0 0 1 9.6 4 8.5 8.5 0 1 0 20 14.4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        <svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 2.5v2.2M12 19.3v2.2M4.2 12H2M22 12h-2.2M6.3 6.3 4.8 4.8M19.2 19.2l-1.5-1.5M17.7 6.3l1.5-1.5M4.8 19.2l1.5-1.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </button>
+      <a class="nav__phone" href="tel:+998943888882">+998 94 388 88 82</a>
+    </div>
+  </div>
+</div>
+</header>
+<main>
+  <!-- HERO: кто мы. Справа — схема съёмки: горизонтали рельефа, пункты
+       геодезической сети и галсы БПЛА. Рисунок декоративный. -->
+  <section class="ahero">
+    <div class="hero__grid" aria-hidden="true"></div>
+    <div class="ahero__inner section__inner">
+      <div class="ahero__copy">
+        <p class="eyebrow"><span class="eyebrow__mark">⌖</span> <span data-i18n="aboutpage.eyebrow">О КОМПАНИИ</span></p>
+        <h1 class="ahero__title" data-i18n="aboutpage.title" data-i18n-html><span class="accent-word">Геодезия</span>, картография и мониторинг с воздуха</h1>
+        <p class="ahero__lead" data-i18n="aboutpage.lead">UNB Group — команда геодезистов, картографов и операторов БПЛА. Снимаем территорию с воздуха и с земли, строим топопланы, ортофотопланы и ГИС, а затем превращаем данные в цифровой контур управления — от поля до города.</p>
+        <div class="hero__actions">
+          <button class="btn btn--primary btn--lg" type="button" data-request-open data-i18n="request.cta">Обратиться</button>
+          <a href="#works" class="btn btn--ghost">
+            <span data-i18n="aboutpage.cta_works">Наши работы</span>
+            <span class="btn__icon" aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </div>
+      <div class="ahero__visual" aria-hidden="true">
+        <svg viewBox="0 0 480 440" class="ahero__svg">
+          <g class="topo">
+            <path d="M62 300c18-70 82-128 160-134 86-6 168 40 196 108 22 54-6 104-70 120-74 18-154 6-214-22-52-24-82-36-72-72z"/>
+            <path d="M104 296c14-52 66-96 124-100 66-4 128 30 148 82 16 40-6 76-54 88-56 14-118 4-162-16-38-18-64-26-56-54z"/>
+            <path d="M146 290c10-36 48-64 88-66 46-2 88 20 102 56 10 28-4 52-40 60-40 8-82 2-114-12-26-12-42-18-36-38z"/>
+            <path d="M190 284c6-20 28-36 50-36 26 0 48 12 54 32 6 16-4 28-24 32-22 4-46 0-62-8-14-6-22-10-18-20z"/>
+            <path d="M28 190c40-60 120-104 210-106 96-2 172 40 210 96"/>
+            <path d="M40 140c46-52 120-84 202-84 84 0 152 30 196 76"/>
+          </g>
+          <g class="swath">
+            <path d="M70 92 H410 V128 H70 V164 H410 V200 H70 V236 H410 V272 H70 V308 H410"/>
+          </g>
+          <g class="gcp">
+            <path d="M120 120 l9 15 h-18z"/><path d="M352 176 l9 15 h-18z"/>
+            <path d="M232 262 l9 15 h-18z"/><path d="M96 338 l9 15 h-18z"/><path d="M392 330 l9 15 h-18z"/>
+          </g>
+          <g class="baseline">
+            <path d="M120 130 L352 186 L232 272 L120 130 M232 272 L96 348 M352 186 L392 340 L232 272"/>
+          </g>
+          <circle class="drone-dot" cx="0" cy="0" r="5"/>
+          <g class="hud-visor">
+            <path d="M 16 46 L 16 18 L 44 18"/><path d="M 436 18 L 464 18 L 464 46"/>
+            <path d="M 464 394 L 464 422 L 436 422"/><path d="M 44 422 L 16 422 L 16 394"/>
+          </g>
+          <text x="22" y="12" class="hud-label">GNSS · RTK · <tspan class="hud-label--accent">CORS</tspan></text>
+          <text x="22" y="438" class="hud-label">ORTHO · DEM · <tspan class="hud-label--accent">1:500</tspan></text>
+          <text x="458" y="438" class="hud-label" text-anchor="end">GSD 1.5 CM · UAV</text>
+        </svg>
+      </div>
+    </div>
+    <div class="section__inner">
+      <ul class="ahero__stats">
+        <li class="about__total">
+          <span class="about__total-num">11</span>
+          <span class="about__total-label" data-i18n="aboutpage.stat_licenses">видов геодезической и картографической деятельности</span>
+        </li>
+        <li class="about__total">
+          <span class="about__total-num">1:500</span>
+          <span class="about__total-label" data-i18n="aboutpage.stat_scale">крупнейший масштаб топопланов</span>
+        </li>
+          <li class="about__total">
+            <span class="about__total-num">2</span>
+            <span class="about__total-label" data-i18n="about.total_objects">объекта в двух регионах</span>
+          </li>
+          <li class="about__total">
+            <span class="about__total-num" data-i18n="about.total_area">31 628,6 га</span>
+            <span class="about__total-label" data-i18n="about.total_area_label">общая площадь объектов</span>
+          </li>
+          <li class="about__total">
+            <span class="about__total-num" data-i18n="about.total_done">21 725,4 га</span>
+            <span class="about__total-label" data-i18n="about.total_done_label">работы завершены</span>
+          </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WORKS: объекты. Итоги в героe считаются руками: при новом объекте
+       пересчитать about.total_area / about.total_done в js/i18n.js. -->
+  <section class="works" id="works">
+    <div class="section__inner">
+      <p class="eyebrow"><span class="eyebrow__mark">⌖</span> <span data-i18n="about.works">Наши работы</span></p>
+      <h2 class="section__title" data-i18n="about.title">Работаем на реальных гектарах</h2>
+      <div class="projects">
+
+        <article class="project">
+          <div class="project__head">
+            <span class="project__region" data-i18n="about.p1.region">Кашкадарьинская область</span>
+            <span class="project__status" data-i18n="about.status_progress">В работе</span>
+          </div>
+          <h4 class="project__name" data-i18n="about.p1.name">ООО «Kashkadarya Golden Valley»</h4>
+          <dl class="project__facts">
+            <div>
+              <dt data-i18n="about.address">Адрес</dt>
+              <dd data-i18n="about.p1.address">ул. Шодлик, д. 7, МСГ «Косон», Косонский район, Кашкадарьинская область</dd>
+            </div>
+            <div>
+              <dt data-i18n="about.person">Ответственное лицо</dt>
+              <dd data-i18n="about.p1.person">Чэнь Чао</dd>
+            </div>
+          </dl>
+          <div class="project__metrics">
+            <div class="project__metric">
+              <span class="project__metric-num" data-i18n="about.p1.total">30 969,1 га</span>
+              <span class="project__metric-label" data-i18n="about.area_total">общая площадь</span>
+            </div>
+            <div class="project__metric project__metric--done">
+              <span class="project__metric-num" data-i18n="about.p1.done">21 065,9 га</span>
+              <span class="project__metric-label" data-i18n="about.area_done">работы завершены</span>
+            </div>
+          </div>
+          <div class="project__progress" role="img" data-i18n-title="about.p1.progress" title="Выполнено 68%" aria-label="68%">
+            <span class="project__bar" style="--p:68%"></span>
+          </div>
+          <p class="project__pct"><span>68%</span> <span data-i18n="about.done_share">площади обработано</span></p>
+        </article>
+
+        <article class="project project--done">
+          <div class="project__head">
+            <span class="project__region" data-i18n="about.p2.region">Ферганская область</span>
+            <span class="project__status" data-i18n="about.status_done">Завершено</span>
+          </div>
+          <h4 class="project__name" data-i18n="about.p2.name">СП ООО «Brilliant Fruit Garden»</h4>
+          <dl class="project__facts">
+            <div>
+              <dt data-i18n="about.address">Адрес</dt>
+              <dd data-i18n="about.p2.address">махалля «Тинчлик», ул. Ильгор, д. 82, Ферганский район, Ферганская область</dd>
+            </div>
+            <div>
+              <dt data-i18n="about.head">Руководитель</dt>
+              <dd data-i18n="about.p2.person">А. А. Комилов</dd>
+            </div>
+          </dl>
+          <div class="project__metrics">
+            <div class="project__metric">
+              <span class="project__metric-num" data-i18n="about.p2.total">659,5 га</span>
+              <span class="project__metric-label" data-i18n="about.area_total">общая площадь</span>
+            </div>
+            <div class="project__metric project__metric--done">
+              <span class="project__metric-num" data-i18n="about.p2.done">659,5 га</span>
+              <span class="project__metric-label" data-i18n="about.area_done">работы завершены</span>
+            </div>
+          </div>
+          <div class="project__progress" role="img" data-i18n-title="about.p2.progress" title="Выполнено 100%" aria-label="100%">
+            <span class="project__bar" style="--p:100%"></span>
+          </div>
+          <p class="project__pct"><span>100%</span> <span data-i18n="about.done_share">площади обработано</span></p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTIVITY: виды деятельности. Номера — как в перечне видов
+       деятельности компании, поэтому идут с пропусками. -->
+  <section class="activity" id="activity">
+    <div class="section__inner">
+      <p class="eyebrow"><span class="eyebrow__mark">⌖</span> <span data-i18n="activity.eyebrow">ВИДЫ ДЕЯТЕЛЬНОСТИ</span></p>
+      <h2 class="section__title" data-i18n="activity.title">Геодезия и картография полного цикла</h2>
+      <p class="activity__text" data-i18n="activity.text">Выполняем работы по 11 видам геодезической и картографической деятельности — от сетей спутниковых станций до государственных топографических карт и ГИС.</p>
+
+      <div class="activity__group">
+        <div class="activity__side">
+          <svg class="activity__icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 L32 30 H8 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="20" cy="22" r="2" fill="currentColor"/><path d="M20 30 V36 M12 36 H28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <h3 class="activity__name" data-i18n="activity.geo">Геодезия</h3>
+          <p class="activity__count" data-i18n="activity.count_geo">7 видов работ</p>
+        </div>
+        <ul class="activity__list">
+          <li class="act">
+            <details class="act__item" open>
+              <summary class="act__sum">
+                <span class="act__num">№ 2</span>
+                <span class="act__title" data-i18n="act.2.title">Сети спутниковых навигационных станций</span>
+                <span class="act__chips"><span>GNSS</span><span data-i18n="chip.sat">Спутник</span></span>
+                <span class="act__toggle" aria-hidden="true"></span>
+              </summary>
+              <p class="act__text" data-i18n="act.2.text">Организация геодезических материалов и данных для работы спутниковых навигационных систем: создание и поддержание в рабочем состоянии сети постоянно действующих станций спутниковых наблюдений.</p>
+            </details>
+          </li>
+          <li class="act">
+            <details class="act__item">
+              <summary class="act__sum">
+                <span class="act__num">№ 4</span>
+                <span class="act__title" data-i18n="act.4.title">Гравиметрия и астрономические определения</span>
+                <span class="act__chips"><span data-i18n="chip.gravity">Гравиметрия</span><span data-i18n="chip.astro">Астрономия</span></span>
+                <span class="act__toggle" aria-hidden="true"></span>
+              </summary>
+              <p class="act__text" data-i18n="act.4.text">Определение формы Земли и параметров её внешнего гравитационного поля: гравиметрические работы по определению абсолютных и относительных значений ускорения силы тяжести на государственных гравиметрических пунктах, астрономическое определение широты, долготы и азимута на геодезических пунктах.</p>
+            </details>
+          </li>
+          <li class="act">
+            <details class="act__item">
+              <summary class="act__sum">
+                <span class="act__num">№ 5</span>
+                <span class="act__title" data-i18n="act.5.title">Картографический мониторинг и ДЗЗ</span>
+                <span class="act__chips"><span data-i18n="chip.uav">БПЛА</span><span data-i18n="chip.ortho">Ортофотоплан</span><span>1:2 000 — 1:1 000 000</span></span>
+                <span class="act__toggle" aria-hidden="true"></span>
+              </summary>
+              <p class="act__text" data-i18n="act.5.text">Картографический мониторинг Земли, дистанционное зондирование и геодинамические исследования: аэрокосмическая съёмка со спутников, самолётов и БПЛА, создание цифровых ортофотопланов масштабов 1:2 000 — 1:1 000 000, высокоточное определение геодезических координат и высот пунктов.</p>
+            </details>
+          </li>
+          <li class="act">
+            <details class="act__item">
+              <summary class="act__sum">
+                <span class="act__num">№ 7</span>
+                <span class="act__title" data-i18n="act.7.title">Специальные геодезические сети</span>
+                <span class="act__chips"><span data-i18n="chip.triang">Триангуляция</span><span data-i18n="chip.levelling">Нивелирование</span></span>
+                <span class="act__toggle" aria-hidden="true"></span>
+              </summary>
+              <p class="act__text" data-i18n="act.7.text">Построение специальных геодезических сетей для инженерных изысканий, строительства и эксплуатации зданий и сооружений: специальная триангуляция и нивелирование без привязки к государственной геодезической сети.</p>
+            </details>
+          </li>
+          <li class="act">
+            <details class="act__item">
+              <summary class="act__sum">
+                <span class="act__num">№ 8</span>
+                <span class="act__title" data-i18n="act.8.title">Топографические планы для градостроительства</span>
+                <span class="act__chips"><span data-i18n="chip.topo">Топоплан</span><span>1:500 — 1:10 000</span></span>
+                <span class="act__toggle" aria-hidden="true"></span>
+              </summary>
+              <p class="act__text" data-i18n="act.8.text">Построение съёмочных геодезических сетей, создание и обновление топографических планов для градостроительной документации населённых пунктов и межселенных территорий; специальные и тематические планы масштабов 1:500 — 1:10 000 на площади до территории одной области.</p>
+            </details>
+          </li>
+          <li class="act">
+            <details class="act__item">
+              <summary class="act__sum">
+                <span class="act__num">№ 9</span>
+                <span class="act__title" data-i18n="act.9.title">Инженерные сети и специальные планы</span>
+                <span class="act__chips"><span data-i18n="chip.networks">Инженерные сети</span><span>1:500 — 1:5 000</span></span>
+                <span class="act__toggle" aria-hidden="true"></span>
+              </summary>
+              <p class="act__text" data-i18n="act.9.text">Плановые и высотные геодезические сети специального назначения в местной системе координат; специальные карты и планы сетей газоснабжения низкого и среднего давления, электроснабжения, канализации и водоснабжения населённых пунктов до 100 тыс. жителей в масштабах 1:500 — 1:5 000; планы телекоммуникационных сетей на территории до 100 га; геодезия и топография при геологических, маркшейдерских и инженерных изысканиях на площади до 10 км².</p>
+            </details>
+          </li>
+          <li class="act">
+            <details class="act__item">
+              <summary class="act__sum">
+                <span class="act__num">№ 10</span>
+                <span class="act__title" data-i18n="act.10.title">Аэросъёмка для инженерных изысканий</span>
+                <span class="act__chips"><span data-i18n="chip.uav">БПЛА</span><span data-i18n="chip.ortho">Ортофотоплан</span><span>1:500 — 1:10 000</span></span>
+                <span class="act__toggle" aria-hidden="true"></span>
+              </summary>
+              <p class="act__text" data-i18n="act.10.text">Дистанционное зондирование Земли для геодезического и картографического обеспечения инженерных изысканий: аэросъёмка со спутников, самолётов и БПЛА с созданием цифровых ортофотопланов масштабов 1:500 — 1:10 000 на площади до территории одной области или Республики Каракалпакстан.</p>
+            </details>
+          </li>
+        </ul>
+      </div>
+
+      <div class="activity__group">
+        <div class="activity__side">
+          <svg class="activity__icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M6 10 L15 6 L25 10 L34 6 V30 L25 34 L15 30 L6 34 Z M15 6 V30 M25 10 V34" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <h3 class="activity__name" data-i18n="activity.carto">Картография</h3>
+          <p class="activity__count" data-i18n="activity.count_carto">4 вида работ</p>
+        </div>
+        <ul class="activity__list">
+          <li class="act">
+            <details class="act__item">
+              <summary class="act__sum">
+                <span class="act__num">№ 15</span>
+                <span class="act__title" data-i18n="act.15.title">Государственные топографические карты и планы</span>
+                <span class="act__chips"><span data-i18n="chip.topo">Топоплан</span><span>1:500 — 1:1 000 000</span></span>
+                <span class="act__toggle" aria-hidden="true"></span>
+              </summary>
+              <p class="act__text" data-i18n="act.15.text">Создание, обновление и издание государственных топографических карт и планов в графической, цифровой, фотографической и иных формах; цифровые топографические планы и карты масштабов 1:500 — 1:1 000 000.</p>
+            </details>
+          </li>
+          <li class="act">
+            <details class="act__item">
+              <summary class="act__sum">
+                <span class="act__num">№ 18</span>
+                <span class="act__title" data-i18n="act.18.title">ГИС специального назначения</span>
+                <span class="act__chips"><span data-i18n="chip.gis">ГИС</span></span>
+                <span class="act__toggle" aria-hidden="true"></span>
+              </summary>
+              <p class="act__text" data-i18n="act.18.text">Создание и ведение географических информационных систем специального назначения.</p>
+            </details>
+          </li>
+          <li class="act">
+            <details class="act__item">
+              <summary class="act__sum">
+                <span class="act__num">№ 19</span>
+                <span class="act__title" data-i18n="act.19.title">Тематические карты, планы и атласы</span>
+                <span class="act__chips"><span data-i18n="chip.atlas">Атласы</span></span>
+                <span class="act__toggle" aria-hidden="true"></span>
+              </summary>
+              <p class="act__text" data-i18n="act.19.text">Составление и издание тематических карт, планов и атласов специального назначения в графической, цифровой, фотографической и иных формах.</p>
+            </details>
+          </li>
+          <li class="act">
+            <details class="act__item">
+              <summary class="act__sum">
+                <span class="act__num">№ 20</span>
+                <span class="act__title" data-i18n="act.20.title">ГИС открытого пользования</span>
+                <span class="act__chips"><span data-i18n="chip.gis">ГИС</span></span>
+                <span class="act__toggle" aria-hidden="true"></span>
+              </summary>
+              <p class="act__text" data-i18n="act.20.text">Создание и ведение географических информационных систем открытого пользования.</p>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="acta">
+    <div class="section__inner acta__inner">
+      <div>
+        <h2 class="acta__title" data-i18n="cta.title">Нужна съёмка, топоплан или ГИС?</h2>
+        <p class="acta__text" data-i18n="cta.text">Расскажите о задаче — подберём метод съёмки, масштаб и сроки.</p>
+      </div>
+      <div class="acta__actions">
+        <button class="btn btn--light btn--lg" type="button" data-request-open data-i18n="request.cta">Обратиться</button>
+        <a class="acta__phone" href="tel:+998943888882">+998 94 388 88 82</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS: логотипы взяты с официальных сайтов (оригиналы — assets/partners/)
+       и вставлены inline с fill="currentColor": так они берут цвет темы и
+       подсвечиваются при наведении. У Drone Service сайта нет — набрано текстом. -->
+  <section class="partners" id="partners" aria-labelledby="partnersTitle">
+    <div class="section__inner">
+      <div class="partners__head">
+        <p class="eyebrow"><span class="eyebrow__mark">⌖</span> <span data-i18n="partners.eyebrow">ПАРТНЁРЫ</span></p>
+        <h2 class="partners__title" id="partnersTitle" data-i18n="partners.title">Работаем вместе с лидерами отрасли</h2>
+      </div>
+      <ul class="partners__grid">
+        <li class="partner"><svg class="partner__logo partner__logo--dji" viewBox="0 0 42 24" role="img" aria-label="DJI"><title>DJI</title><path fill="currentColor" d="M32.5484163 4.8813551c-.7034221 2.6137997-1.4036831 5.2283432-2.0896266 7.8467915-.3430647 1.3090383-.6798073 2.6190062-1.0747501 3.9142846-.3836003 1.2584617-.8547797 2.6017134-1.5414669 3.7447046-.7162521 1.1928239-1.6437355 2.124212-2.9272995 2.720531-.5132025.2381929-1.0390491.4016367-1.5907417.5185948-.7828198.1658611-1.5691724.2341021-2.3646362.2791003-1.9698794.111008-6.1487607.094459-8.1180823.094459l1.2073274-4.4745306c.9139095 0 1.8276331.0031611 2.7413566-.0221272.8817414-.0245444 1.8519916-.0717739 2.720345-.2770549.9509122-.224991 1.6684659-.6110085 2.296953-1.384717.5725183-.7047237.9574201-1.5840478 1.2727794-2.4133533.5760511-1.5145051 1.1658621-3.6829715 1.5816305-5.2424748.4702497-1.7653422.9222769-3.535147 1.3778371-5.304208zm8.1355423-.0000372l-3.51209 13.0169346h-6.5081884l3.5119041-13.0169346h6.5083743zM19.2211801 0h6.5083744c-.6818527 2.5409101-1.3627757 5.0820061-2.052438 7.6208709-.4806625 1.768689-.957978 3.538122-1.4797339 5.2954686-.2275941.7660848-.4548164 1.5299384-.7530688 2.2737101-.2396805.5974346-.5076242 1.1290455-1.0029762 1.5754944-.3700264.3333957-.7735225.540722-1.2434003.6885467-.6045005.1902196-1.2155089.2599482-1.8400912.3110825-.8982903.0736334-1.7967665.0924136-2.6965444.1069172-2.0693588.0332838-5.8272653.0286352-7.8966242.0197099-.7435858-.0033469-1.4871715-.0078096-2.2307573-.0213834-.5390485-.009669-1.0775392-.0230569-1.615844-.0567126-.3594277-.022685-.7160662-.0528078-1.0712172-.1182597-.240982-.0442544-.4730388-.1037562-.6991454-.2024919-.7447014-.3254001-1.124211-.9758284-1.1463382-1.7679453-.01283-.4533289.0660098-.8850883.15675-1.3235418.1288584-.6210493.2893271-1.2335453.4483083-1.8467851.3034589-1.1716264.8588704-3.3333989 1.2917455-4.4713696.33916-.8917823.7870964-1.7792878 1.6381572-2.3438106.475828-.3155451.9758285-.4832656 1.5271493-.5942736.4087025-.0821867.8194505-.1256974 1.2339172-.156564.694125-.0515061 1.3888078-.0676831 2.0842343-.0799554.9882867-.0172927 1.9765733-.0210115 2.96486-.0239866l2.465301-.003347h2.4651616l-.8780225 3.2541872c-1.4652302 0-2.9300886-.0040908-4.3953189.0044626-.4276687.0026032-.8547796-.0005578-1.2820764.0273336-.1517295.009855-.299926.01971-.446635.0710302-.1930087.0669395-.2883975.1881743-.3731874.3622169-.124024.2547418-.195612.5234293-.2746377.7923028-.120677.410562-.2324287.8235412-.3443663 1.2367064-.1723691.6364826-.3447382 1.2729652-.508368 1.9118651-.0604314.2365194-.1197472.4730389-.1706956.7117896-.035887.1673486-.068241.3341394-.0842321.504835-.0174787.1866867-.022871.4109339.0901823.5842327.1149127.175902.309223.2168094.4905174.2430274.2049091.0299368.4101901.0364448.6162149.0425809.3373004.0102269.674601.0117144 1.0119014.0133879.9228347.0044626 1.8456695.0046486 2.7685042-.0011156.4252515-.0026032.8501311-.0055783 1.2750107-.0226851.2926741-.0117144.5816295-.0217553.869841-.0914839.2190408-.0529937.3902942-.1362962.5384907-.3153592.1002232-.1212348.1656752-.2556715.2255488-.3984757.1487543-.3540353.2526964-.7205288.3611011-1.0868364.4159544-1.4051707.7906294-2.821126 1.1734859-4.235408l1.1434095-4.2441473L19.2211801 0h6.5083744z" fill-rule="evenodd"/></svg></li>
+        <li class="partner"><svg class="partner__logo partner__logo--unitree" viewBox="0 0 870.93 196.18" role="img" aria-label="Unitree"><title>Unitree</title><g> <path fill="currentColor" d="M336.28,15.85l-28.22,113.64c-1.5,6.05-2.68,8.25-4.43,10.48c-1.72,2.2-3.89,3.93-6.4,5.13 c-2.51,1.18-4.86,1.81-10.92,1.81h-19.2l32.55-131.06C299.66,15.85,336.28,15.85,336.28,15.85z"/> <path fill="currentColor" d="M144.8,50.55l-18.94,76.29c-1.73,6.98-3.07,9.5-5.1,12.07c-2.01,2.56-4.48,4.55-7.39,5.94 c-2.9,1.35-5.61,2.08-12.58,2.08H29.16c-6.98,0-9.32-0.73-11.55-2.08c-2.22-1.39-3.71-3.37-4.44-5.94 c-0.75-2.56-0.84-5.09,0.9-12.07l18.94-76.29h36.62l-18.11,72.91c-0.69,2.79-0.65,3.8-0.35,4.84c0.29,1.02,0.88,1.81,1.78,2.37 c0.87,0.54,1.82,0.83,4.61,0.83h22.47c2.79,0,3.89-0.29,5.02-0.83c1.18-0.56,2.17-1.35,2.96-2.37c0.82-1.04,1.36-2.04,2.05-4.84 l18.11-72.91C108.17,50.55,144.8,50.55,144.8,50.55z"/> <path fill="currentColor" d="M587.04,147.17h-40.19l-29.7-57.44h30.11c2.79,0,3.87-0.29,5.02-0.83c0.48-0.23,0.93-0.5,1.34-0.81 c0.61-0.44,1.15-0.96,1.62-1.56c0.79-1.02,1.34-2.04,2.03-4.84l1.79-7.21c0.69-2.79,0.65-3.8,0.37-4.82 c-0.18-0.6-0.45-1.14-0.85-1.56c-0.25-0.33-0.56-0.6-0.94-0.81c-0.89-0.54-1.82-0.83-4.61-0.83h-30.11l-19.98,80.45h-36.62 l23.93-96.37h94.23c6.07,0,8.1,0.62,10.02,1.79c1.92,1.19,3.22,2.93,3.85,5.15c0.11,0.35,0.19,0.71,0.25,1.08 c0.39,1.93,0.24,4.3-1.02,9.39l-4.99,20.08c-1.26,5.09-2.3,7.46-3.64,9.39c-0.25,0.37-0.51,0.73-0.79,1.08 c-1.73,2.22-3.89,3.95-6.4,5.15c-2.51,1.18-4.84,1.79-10.91,1.79h-7.79l0,0L587.04,147.17z"/> <path fill="currentColor" d="M647.58,87.17h75.17l-4.31,17.35h-67.13c-2.79,0-3.87,0.29-5.02,0.83c-1.16,0.56-2.17,1.35-2.96,2.37 c-0.81,1.02-1.36,2.04-2.05,4.84l-4.23,17.02h75.17l-4.31,17.35h-91.69c-7,0-9.34-0.73-11.55-2.08c-2.22-1.39-3.73-3.37-4.46-5.94 c-0.73-2.56-0.84-5.09,0.9-12.07l14.62-58.88c1.5-6.05,2.68-8.25,4.43-10.47c1.73-2.22,3.89-3.95,6.4-5.15 c2.51-1.18,4.86-1.79,10.91-1.79h94.36l-4.31,17.35H660.4c-2.79,0-3.87,0.29-5.02,0.83c-1.16,0.56-2.17,1.35-2.96,2.37 c-0.81,1.02-1.36,2.04-2.05,4.84L647.58,87.17z"/> <path fill="currentColor" d="M777.75,87.17h75.17l-4.31,17.35h-67.13c-2.79,0-3.89,0.29-5.04,0.83c-1.16,0.56-2.15,1.35-2.96,2.37 c-0.79,1.02-1.34,2.04-2.03,4.84l-4.23,17.02h75.17l-4.31,17.35h-91.71c-7,0-9.34-0.73-11.55-2.08c-2.22-1.39-3.73-3.37-4.44-5.94 c-0.75-2.56-0.84-5.09,0.9-12.07l14.62-58.88c1.5-6.05,2.67-8.25,4.41-10.47c1.73-2.22,3.89-3.95,6.42-5.15 c2.49-1.18,4.84-1.79,10.89-1.79H862l-4.31,17.35h-67.13c-2.79,0-3.89,0.29-5.04,0.83c-1.16,0.56-2.15,1.35-2.96,2.37 c-0.79,1.02-1.34,2.04-2.03,4.84L777.75,87.17z"/> <g> <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M274.41,50.55l-23.93,96.37h-25.33c-6.07,0-8.09-0.64-10.02-1.81c-0.25-0.15-0.48-0.31-0.7-0.5 c-1.3-0.96-2.27-2.25-2.88-3.78c0.01-0.04,0-0.06-0.02-0.08l-20.92-55.47l-15.31,61.64h-36.62l23.93-96.37h25.33 c6.05,0,8.1,0.62,10.02,1.79c0.25,0.15,0.48,0.31,0.7,0.5c1.32,0.98,2.27,2.25,2.87,3.82c0.01,0.02,0.01,0.02,0.03,0.04 l20.92,55.47l15.3-61.62H274.41z"/> </g> <g> <polygon fill="currentColor" points="473.07,50.55 468.52,68.86 422.27,68.86 394.27,181.61 357.65,181.61 385.64,68.86 339.39,68.86 343.93,50.55 		"/> </g> </g></svg></li>
+        <li class="partner"><svg class="partner__logo partner__logo--ecoflow" viewBox="0 0 117 13" role="img" aria-label="EcoFlow"><title>EcoFlow</title><g clip-path="url(#clip0_33_1778)"><path d="M14.0043 2.07752H0V0H14.0043V2.07752ZM13.9842 7.27358H0V5.19151H13.9842V7.27358ZM13.9842 10.3895V12.4664H0V10.3882L13.9842 10.3895Z" fill="currentColor"></path><path d="M29.0852 2.09506L24.0934 2.10482C20.7522 2.09961 19.182 3.47638 19.182 6.23382C19.182 8.99126 20.7509 10.3739 24.085 10.3739H31.0843V12.4442L24.0921 12.4553C19.4316 12.4627 17.1013 10.3958 17.1013 6.25464C17.1013 2.11349 19.4154 0.0372788 24.0436 0.026001H31.0843V2.09961L29.0852 2.09506Z" fill="currentColor"></path><path d="M41.1417 0.026001C45.8351 0.026001 48.1822 2.09528 48.183 6.23382C48.1839 10.3724 45.8519 12.4462 41.187 12.4553C36.5256 12.4627 34.1951 10.3958 34.1956 6.25464C34.196 2.11349 36.5114 0.0372788 41.1417 0.026001ZM46.0829 6.23252C46.0829 3.47508 44.5192 2.09831 41.1903 2.10352C37.8497 2.09831 36.3054 3.47508 36.3054 6.23252C36.3054 8.98996 37.8477 10.3726 41.1818 10.3726C44.516 10.3726 46.0829 8.99451 46.0829 6.23252Z" fill="currentColor"></path><path d="M114.597 0.0170395V10.3675H110.596V0.0222438V0.0170395H108.593V10.3688H104.593V0.00597765V0.00012207H102.593V12.4652H114.604C116.103 12.4652 116.597 11.6688 116.597 10.4027V0.0170395H114.597Z" fill="currentColor"></path><path d="M82.3973 10.374H71.8891C71.4939 10.374 71.115 10.2164 70.8356 9.93572C70.5562 9.65507 70.3992 9.27444 70.3992 8.87755V0.00402832H68.3982V9.43189C68.3991 10.2345 68.7173 11.004 69.2829 11.571C69.8485 12.138 70.6151 12.4561 71.4142 12.4555H82.3973V10.374Z" fill="currentColor"></path><path d="M92.4281 0.026001C97.1214 0.026001 99.4686 2.09528 99.4694 6.23382C99.4703 10.3724 97.1383 12.4462 92.4734 12.4553C87.812 12.4627 85.4815 10.3958 85.4819 6.25464C85.4824 2.11349 87.7977 0.0372788 92.4281 0.026001ZM97.3693 6.23252C97.3693 3.47508 95.8056 2.09831 92.4766 2.10352C89.136 2.09831 87.5917 3.47508 87.5917 6.23252C87.5917 8.98996 89.1341 10.3726 92.4682 10.3726C95.8023 10.3726 97.3693 8.99451 97.3693 6.23252Z" fill="currentColor"></path><path d="M65.301 0.026001H51.2974V2.09961H65.301V0.026001Z" fill="currentColor"></path><path d="M65.2835 7.2828H53.2964V9.86456V12.4444H51.2974V7.2828V5.20789H65.2835V7.2828Z" fill="currentColor"></path></g><defs><clipPath id="clip0_33_1778"><rect width="116.6" height="12.4651" fill="white"></rect></clipPath></defs></svg></li>
+        <li class="partner"><svg class="partner__logo partner__logo--indorama" viewBox="0 0 287 32" role="img" aria-label="Indorama"><title>Indorama</title><g clip-path="url(#clip0_1499_264)"> <path d="M11.9644 31.1911H0L4.08444 0H16.0489L11.9644 31.1911Z" fill="currentColor"/> <path d="M251.458 31.1911L253.258 0H240.702L231.111 21.0222L227.347 0H214.125L207.725 31.1911H213.867L217.751 9.92L222.836 31.1911H231.209L241.374 9.96444L239.667 31.1911H251.458Z" fill="currentColor"/> <path d="M195.373 31.1911H207.893L200.907 0H187.947L172.516 31.1911H179.422L182.933 23.5778H194.085L195.382 31.1911H195.373ZM184.631 19.8844L191.071 5.91111L193.449 19.8844H184.631Z" fill="currentColor"/> <path d="M274.009 31.1911H286.529L279.542 0H266.582L251.151 31.1911H258.058L261.569 23.5778H272.72L274.018 31.1911H274.009ZM263.267 19.8844L269.707 5.91111L272.085 19.8844H263.267Z" fill="currentColor"/> <path d="M168.267 16.4178C171.52 15.4933 176.929 13.1867 177.565 8.32889C178.476 1.36 171.373 0 163.578 0H145.68L141.596 31.1911H153.56L157.138 3.85333H160.031C162.791 3.85333 165.427 5.72444 164.947 9.36C164.249 14.68 158.142 16.2222 157.08 16.3867C157.151 16.7689 164.116 31.1956 164.116 31.1956H176.671C176.671 31.1956 169.085 18.1067 168.262 16.4222L168.267 16.4178Z" fill="currentColor"/> <path d="M45.72 0L43.3289 18.2578L30.0711 0H20.4311L16.3467 31.1911H22.5511L24.9689 12.7422L38.4267 31.1911H47.84L51.9245 0H45.72Z" fill="currentColor"/> <path d="M88.5823 14.9378C89.1778 10.4044 88.7423 7.22222 87.2089 5.00444C84.16 0.608889 77.3156 0 69.44 0H56.2978L52.2134 31.1911H65.1867C75.1023 31.1289 86.7112 29.2133 88.5823 14.9378ZM67.2445 27.5067H64.6623L67.7823 3.68444H69.7956C74.7512 3.68444 77.0089 6.55556 75.8267 15.5911C74.32 27.1156 69.0045 27.5067 67.2489 27.5067H67.2445Z" fill="currentColor"/> <path d="M111.36 0C97.4491 0 91.418 7.81778 90.3469 16.0133C88.8358 27.5511 92.6047 32 107.169 32C119.365 32 125.827 25.12 127.022 16C128.142 7.45778 125.925 0 111.356 0H111.36ZM107.169 28.3822C104.334 28.3822 102.422 25.4133 103.654 16.04C104.689 8.11111 105.969 3.69778 110.405 3.69778C114.071 3.69778 114.911 8.47556 113.92 16.04C112.6 26.1378 110.005 28.3822 107.169 28.3822Z" fill="currentColor"/> <path d="M125.707 4.99133e-05C124.938 4.99133e-05 124.2 0.0267166 123.48 0.0756055C125.062 0.937828 126.369 2.02227 127.374 3.34227C129.662 6.34672 130.427 10.4889 129.707 16C128.738 23.3912 124.676 28.9512 118.462 31.9201C119.427 31.9689 120.44 31.9956 121.52 31.9956C133.716 31.9956 140.178 25.1156 141.374 15.9956C142.494 7.45338 140.276 -0.00439453 125.707 -0.00439453V4.99133e-05Z" fill="currentColor"/> </g> <defs> <clipPath id="clip0_1499_264"> <rect width="286.529" height="32" fill="white"/> </clipPath> </defs></svg></li>
+        <li class="partner"><span class="partner__mark partner__mark--drone">Drone<b>Service</b></span></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- Окно заявки. Форма живёт отдельным окном, а не секцией на странице:
+     кнопка «Обратиться» прибита к шапке и должна открываться с любого места,
+     не уводя человека с карточки, которую он читает.
+
+     Заявки уходят в базу Cloudflare D1 через воркер (worker/src/index.js):
+     сайт статический, своего сервера у него нет. Адрес воркера лежит в
+     data-endpoint — так он на виду и сам попадает в языковые копии. Уберёте
+     адрес — форма не станет делать вид, что отправила: покажет телефон. -->
+<div class="request-modal" id="requestModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="requestModalTitle">
+  <div class="request-modal__panel">
+    <div class="request-modal__bar">
+      <span class="request-modal__title" id="requestModalTitle" data-i18n="request.title">Обратиться к нам</span>
+      <button class="request-modal__close" id="requestModalClose" type="button" data-i18n="modal.close">✕ Закрыть</button>
+    </div>
+    <div class="request-modal__body">
+      <p class="request__text" data-i18n="request.text">Оставьте телефон — перезвоним, ответим на вопросы и подберём решение под задачу.</p>
+
+      <form class="request__form" id="requestForm" data-endpoint="https://unb-leads.bdunb.workers.dev/" novalidate>
+        <div class="request__grid">
+          <div class="request__field">
+            <label class="request__label" for="requestName" data-i18n="request.name">Имя</label>
+            <input class="request__input" id="requestName" name="name" type="text" autocomplete="name" maxlength="80" required>
+            <p class="request__error" id="requestNameError" data-i18n="request.err_name" hidden>Напишите, как к вам обращаться</p>
+          </div>
+
+          <div class="request__field">
+            <label class="request__label" for="requestPhone" data-i18n="request.phone">Телефон</label>
+            <input class="request__input" id="requestPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998 90 123 45 67" maxlength="24" required>
+            <p class="request__error" id="requestPhoneError" data-i18n="request.err_phone" hidden>Проверьте номер телефона</p>
+          </div>
+
+          <div class="request__field">
+            <label class="request__label" for="requestDirection" data-i18n="request.direction">Направление</label>
+            <!-- value — слаг, а не перевод: в таблице заявка должна читаться
+                 одинаково, с какого языка её ни отправили -->
+            <select class="request__input request__select" id="requestDirection" name="direction" required>
+              <option value="" data-i18n="request.direction_empty">Выберите направление</option>
+              <option value="mapping" data-i18n="dir.mapping.title">Картография</option>
+              <option value="solar" data-i18n="dir.solar.title">Солнечные станции</option>
+              <option value="power" data-i18n="dir.power.title">ЛЭП</option>
+              <option value="city" data-i18n="dir.city.title">Смарт-сити</option>
+              <option value="roads" data-i18n="dir.roads.title">Дороги</option>
+              <option value="construction" data-i18n="dir.construction.title">Стройка</option>
+              <option value="farming" data-i18n="dir.farming.title">Smart Farming</option>
+              <option value="delivery" data-i18n="dir.delivery.title">Drone Delivery</option>
+              <option value="hardware" data-i18n="dir.hardware.title">Дроны и энергооборудование</option>
+              <option value="other" data-i18n="request.direction_other">Другое</option>
+            </select>
+            <p class="request__error" id="requestDirectionError" data-i18n="request.err_direction" hidden>Выберите направление</p>
+          </div>
+        </div>
+
+        <!-- Ловушка для ботов: человек этого поля не видит и не заполняет.
+             Имя намеренно бессмысленное: поле с названием вроде company
+             автозаполнение браузера принимает за настоящее и вписывает туда
+             данные само — и живая заявка молча отбрасывалась бы. -->
+        <div class="request__trap" aria-hidden="true">
+          <label>uz-ref<input type="text" name="uz_ref" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <div class="request__actions">
+          <button class="btn btn--primary request__submit" id="requestSubmit" type="submit">
+            <span data-i18n="request.submit">Отправить заявку</span>
+            <span class="btn__icon" aria-hidden="true">→</span>
+          </button>
+          <p class="request__note" data-i18n="request.note">Перезваниваем в рабочее время, с 9:00 до 18:00.</p>
+        </div>
+
+        <p class="request__status" id="requestStatus" role="status" aria-live="polite" hidden></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer class="footer" id="contacts">
+  <div class="section__inner footer__inner">
+    <div class="footer__brand">
+      <img src="/assets/logo.png" alt="UNB Group" class="footer__logo">
+      <p data-i18n="footer.tagline">Интеллектуальная платформа мониторинга инфраструктуры</p>
+    </div>
+    <div class="footer__contacts">
+      <p class="footer__label" data-i18n="footer.contact_person_label">Контактное лицо</p>
+      <p class="footer__value">Каримов Акмал</p>
+      <p class="footer__label" data-i18n="footer.phone_label">Телефон</p>
+      <a class="footer__value" href="tel:+998943888882">+998 94 388 88 82</a>
+      <p class="footer__label" data-i18n="footer.email_label">Email</p>
+      <a class="footer__value" href="mailto:info@unbgroup.uz">info@unbgroup.uz</a>
+      <p class="footer__label" data-i18n="footer.site_label">Сайт</p>
+      <span class="footer__value">unbgroup.uz</span>
+    </div>
+  </div>
+  <div class="footer__bottom section__inner">
+    <span>© 2026 UNB Group</span>
+    <span data-i18n="footer.rights">Все права защищены</span>
+  </div>
+</footer>
+
+<div class="pres-modal" id="presModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Presentation viewer">
+  <div class="pres-modal__panel">
+    <div class="pres-modal__bar">
+      <span class="pres-modal__label" id="presModalLabel">VIEWING · SOLAR INSPECTION DECK</span>
+      <button class="pres-modal__close" id="presModalClose" type="button">
+        <span data-i18n="modal.close">✕ Закрыть</span>
+      </button>
+    </div>
+    <div class="pres-modal__body">
+      <div class="pres-modal__fallback" id="presModalFallback" hidden>
+        <span class="pres-modal__fallback-mark">⌖</span>
+        <p data-i18n="modal.unavailable">Презентация скоро будет доступна</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/i18n.js?v=15"></script>
+<script src="/js/decks-index.js?v=12"></script>
+<script src="/js/script.js?v=15"></script>
+</body>
+</html>

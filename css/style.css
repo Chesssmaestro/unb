@@ -493,6 +493,303 @@ body{padding-top:var(--header-h);}
   .pres__btn{justify-content:center;}
 }
 
+/* ---------- About ---------- */
+.about{padding:var(--sp-6) 0;border-bottom:1px solid var(--line);}
+.about__intro{
+  display:grid;grid-template-columns:1.15fr 1fr;gap:calc(var(--u) * 3);align-items:end;
+  margin-bottom:calc(var(--u) * 3.5);
+}
+.about__lead{font-size:var(--fs-lg);line-height:1.5;color:var(--ink-soft);max-width:52ch;}
+/* Те же вертикальные засечки, что в полосе доверия героя: итоги читаются
+   как продолжение цифр с первого экрана, а не как новый тип блока. */
+.about__totals{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(var(--u) * 1.375);}
+.about__total{
+  display:flex;flex-direction:column;gap:calc(var(--u) * 0.375);min-width:0;
+  padding-left:calc(var(--u) * 0.8125);border-left:2px solid var(--accent);
+}
+.about__total-num{
+  font-family:var(--font-display);font-weight:500;font-size:clamp(22px, 2.2vw, calc(var(--u) * 2));
+  line-height:1;letter-spacing:-0.02em;color:var(--blueprint);white-space:nowrap;
+}
+.about__total-label{
+  font-family:var(--font-mono);font-size:var(--fs-xs);letter-spacing:0.03em;
+  text-transform:uppercase;color:var(--ink-soft);line-height:1.35;
+}
+.about__sub{
+  display:flex;align-items:center;gap:var(--sp-2);
+  font-family:var(--font-mono);font-size:calc(var(--u) * 0.75);font-weight:500;letter-spacing:0.08em;
+  text-transform:uppercase;color:var(--blueprint);margin-bottom:var(--sp-3);
+}
+/* Волосяная линия после подзаголовка тянется до края — отделяет итоги от карточек */
+.about__sub::after{content:"";flex:1;height:1px;background:var(--line);}
+
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:calc(var(--u) * 1.5);counter-reset:project;}
+.project{
+  position:relative;display:flex;flex-direction:column;
+  background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:calc(var(--u) * 1.875);overflow:hidden;
+  transition:border-color .2s, opacity .6s ease, transform .6s ease;
+}
+.project:hover{border-color:var(--line-strong);}
+/* Порядковый номер — крупной цифрой-водяным знаком в углу, как номер участка на карте */
+.project::before{
+  counter-increment:project;content:"0" counter(project);
+  position:absolute;top:calc(var(--u) * 0.75);right:calc(var(--u) * 1.25);
+  font-family:var(--font-display);font-weight:500;font-size:calc(var(--u) * 5.5);line-height:1;
+  color:var(--paper-2);letter-spacing:-0.04em;pointer-events:none;
+}
+.project > *{position:relative;}
+.project__head{display:flex;align-items:center;gap:var(--sp-2);flex-wrap:wrap;margin-bottom:var(--sp-3);}
+.project__region{
+  font-family:var(--font-mono);font-size:calc(var(--u) * 0.75);letter-spacing:0.06em;
+  text-transform:uppercase;color:var(--blueprint);
+}
+.project__status{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--font-mono);font-size:calc(var(--u) * 0.65625);letter-spacing:0.03em;
+  color:var(--accent);border:1px solid var(--accent);border-radius:var(--r-pill);
+  padding:calc(var(--u) * 0.1875) calc(var(--u) * 0.5625);white-space:nowrap;
+}
+/* Точка статуса: пульсирует, пока объект в работе; у завершённого — ровная */
+.project__status::before{
+  content:"";width:6px;height:6px;border-radius:50%;background:currentColor;
+  animation:hudPulse 2s ease-in-out infinite;
+}
+.project--done .project__status{color:var(--white);background:var(--blueprint);border-color:var(--blueprint);}
+.project--done .project__status::before{animation:none;}
+.project__name{
+  font-family:var(--font-display);font-weight:500;font-size:var(--fs-xl);line-height:1.2;
+  letter-spacing:-0.01em;margin:0 0 var(--sp-3);max-width:80%;
+}
+.project__facts{display:grid;gap:calc(var(--u) * 0.75);margin:0 0 var(--sp-4);}
+.project__facts dt{
+  font-family:var(--font-mono);font-size:var(--fs-xs);letter-spacing:0.04em;
+  text-transform:uppercase;color:var(--ink-soft);opacity:.8;margin-bottom:2px;
+}
+.project__facts dd{margin:0;font-size:calc(var(--u) * 0.90625);line-height:1.45;}
+.project__metrics{
+  display:grid;grid-template-columns:1fr 1fr;margin-top:auto;
+  border-top:1px solid var(--line);
+}
+.project__metric{display:flex;flex-direction:column;gap:4px;padding:var(--sp-3) var(--sp-2) var(--sp-3) 0;}
+.project__metric + .project__metric{border-left:1px solid var(--line);padding-left:var(--sp-3);}
+.project__metric-num{
+  font-family:var(--font-display);font-weight:500;font-size:clamp(22px, 2vw, calc(var(--u) * 1.875));
+  line-height:1;letter-spacing:-0.02em;color:var(--ink);white-space:nowrap;
+}
+.project__metric--done .project__metric-num{color:var(--blueprint);}
+.project__metric-label{font-family:var(--font-mono);font-size:var(--fs-xs);letter-spacing:0.03em;text-transform:uppercase;color:var(--ink-soft);}
+.project__progress{height:8px;border-radius:var(--r-pill);background:var(--paper-2);overflow:hidden;}
+.project__bar{
+  display:block;height:100%;width:var(--p);border-radius:inherit;
+  background:linear-gradient(90deg, var(--blue-600), var(--action));
+  transition:width 1.4s cubic-bezier(.16,1,.3,1) .2s;
+}
+/* Полоса заполняется, когда карточка въезжает в экран. Без JS класса reveal
+   нет — и полоса сразу стоит на своём значении. */
+.project.reveal:not(.is-visible) .project__bar{width:0;}
+.project__pct{margin-top:calc(var(--u) * 0.625);font-size:var(--fs-sm);color:var(--ink-soft);}
+.project__pct span:first-child{font-family:var(--font-display);font-weight:500;color:var(--blueprint);}
+
+@media (max-width:1100px){
+  .about__intro{grid-template-columns:1fr;gap:var(--sp-5);align-items:start;}
+}
+@media (max-width:900px){
+  .projects{grid-template-columns:1fr;}
+}
+@media (max-width:560px){
+  .about__totals{grid-template-columns:1fr 1fr;gap:20px 16px;}
+  .about__total:first-child{grid-column:1 / -1;}
+  .project{padding:22px 18px;}
+  .project::before{font-size:64px;right:14px;}
+  .project__name{max-width:none;padding-right:64px;}
+  .project__metric{padding-right:8px;}
+  .project__metric + .project__metric{padding-left:14px;}
+}
+
+/* ---------- Partners ---------- */
+.partners{padding:calc(var(--u) * 4.5) 0;background:var(--paper-2);border-top:1px solid var(--line);}
+.partners__head{margin-bottom:var(--sp-5);}
+.partners__title{font-size:clamp(24px, 2.4vw, calc(var(--u) * 2));line-height:1.15;max-width:22ch;}
+.partners__grid{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:var(--r-card);overflow:hidden;
+}
+.partner{
+  display:flex;align-items:center;justify-content:center;
+  min-height:calc(var(--u) * 7.5);padding:var(--sp-3);background:var(--white);
+  transition:background .2s;
+}
+.partner:hover{background:var(--paper-2);}
+.partner__mark,
+.partner__logo{
+  color:var(--ink);opacity:.62;
+  transition:opacity .2s, color .2s, transform .3s cubic-bezier(.16,1,.3,1);
+}
+.partner__mark{font-family:var(--font-display);font-size:clamp(22px, 2vw, calc(var(--u) * 1.875));line-height:1;white-space:nowrap;}
+.partner:hover .partner__mark,
+.partner:hover .partner__logo{opacity:1;color:var(--blueprint);transform:scale(1.06);}
+/* Логотипы одноцветные (fill="currentColor"). Высоты подобраны на глаз под
+   пропорции каждого знака, чтобы в ряду они весили одинаково. */
+.partner__logo{display:block;width:auto;max-width:100%;height:calc(var(--u) * 1.5);}
+.partner__logo--dji{height:calc(var(--u) * 2.25);}
+.partner__logo--unitree{height:calc(var(--u) * 1.875);}
+.partner__logo--ecoflow{height:calc(var(--u) * 1.3125);}
+.partner__logo--indorama{height:calc(var(--u) * 1.125);}
+/* У Drone Service файла логотипа нет — название набрано текстом */
+.partner__mark--drone{font-weight:300;letter-spacing:-0.01em;font-size:clamp(18px, 1.6vw, calc(var(--u) * 1.5));}
+.partner__mark--drone b{font-weight:700;}
+
+@media (max-width:900px){
+  .partners__grid{grid-template-columns:repeat(3,1fr);}
+}
+@media (max-width:600px){
+  .partners{padding:48px 0;}
+  .partners__grid{grid-template-columns:1fr 1fr;}
+  .partner{min-height:88px;}
+  .partner:last-child{grid-column:1 / -1;}
+}
+
+/* ===========================================================================
+   Страница «О компании» (about/index.html)
+   =========================================================================== */
+.ahero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);padding-bottom:calc(var(--u) * 3);}
+.ahero__inner{
+  position:relative;display:grid;grid-template-columns:1.1fr 0.9fr;gap:calc(var(--u) * 3);align-items:center;
+  padding-top:calc(var(--u) * 2.5);padding-bottom:calc(var(--u) * 2.5);
+}
+.ahero__title{
+  font-size:clamp(34px, min(4.4vw, 7vh), calc(var(--u) * 3.5));
+  line-height:1.06;margin:0 0 calc(var(--u) * 1.5);max-width:16ch;
+}
+.ahero__lead{font-size:var(--fs-lg);line-height:1.5;color:var(--ink-soft);max-width:calc(var(--u) * 34);margin-bottom:calc(var(--u) * 2);}
+.ahero__svg{width:100%;height:auto;max-height:calc(100svh - var(--header-h) - var(--u) * 10);}
+.ahero__stats{
+  position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:calc(var(--u) * 1.375);
+  padding-top:calc(var(--u) * 1.75);border-top:1px solid var(--line);
+}
+.ahero__stats .about__total-num{font-size:clamp(22px, 2vw, calc(var(--u) * 1.875));}
+
+/* Схема съёмки: горизонтали, галсы, пункты сети */
+.topo path{fill:none;stroke:var(--line-strong);stroke-width:1;}
+.topo path:nth-child(odd){stroke-dasharray:2 4;}
+.swath path{
+  fill:none;stroke:var(--accent);stroke-width:1.4;stroke-linejoin:round;opacity:.75;
+  stroke-dasharray:6 6;animation:swathRun 2.4s linear infinite;
+}
+.baseline path{fill:none;stroke:var(--blueprint);stroke-width:1;opacity:.45;}
+.gcp path{fill:var(--paper);stroke:var(--blueprint);stroke-width:1.6;stroke-linejoin:round;}
+.drone-dot{
+  fill:var(--accent);
+  offset-path:path("M70 92 H410 V128 H70 V164 H410 V200 H70 V236 H410 V272 H70 V308 H410");
+  animation:droneRun 16s linear infinite;
+}
+@keyframes swathRun{to{stroke-dashoffset:-24;}}
+@keyframes droneRun{from{offset-distance:0%;}to{offset-distance:100%;}}
+
+/* Объекты */
+.works{padding:var(--sp-6) 0;border-bottom:1px solid var(--line);}
+
+/* Виды деятельности */
+.activity{padding:var(--sp-6) 0;background:var(--paper-2);border-bottom:1px solid var(--line);}
+.activity__text{color:var(--ink-soft);font-size:var(--fs-base);max-width:calc(var(--u) * 40);margin:calc(var(--u) * -1) 0 calc(var(--u) * 3);}
+.activity__group{
+  display:grid;grid-template-columns:minmax(200px, 1fr) 3fr;gap:calc(var(--u) * 2.5);
+  padding-top:var(--sp-4);border-top:1px solid var(--line-strong);
+}
+.activity__group + .activity__group{margin-top:calc(var(--u) * 3.5);}
+/* Название группы липнет к верху, пока листается её список */
+.activity__side{position:sticky;top:calc(var(--header-h) + var(--u));align-self:start;}
+.activity__icon{width:calc(var(--u) * 2.5);height:calc(var(--u) * 2.5);color:var(--blueprint);margin-bottom:var(--sp-2);}
+.activity__name{font-size:clamp(26px, 2.4vw, calc(var(--u) * 2.25));line-height:1.1;margin-bottom:6px;}
+.activity__count{font-family:var(--font-mono);font-size:var(--fs-xs);letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-soft);}
+
+.activity__list{display:grid;gap:calc(var(--u) * 0.625);}
+.act__item{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);
+  transition:border-color .2s, box-shadow .2s;
+}
+.act__item:hover{border-color:var(--line-strong);}
+.act__item[open]{border-color:var(--blueprint);box-shadow:0 0 0 1px var(--blueprint) inset;}
+.act__sum{
+  display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:var(--sp-2) var(--sp-3);
+  padding:calc(var(--u) * 1.125) calc(var(--u) * 1.375);cursor:pointer;list-style:none;
+}
+.act__sum::-webkit-details-marker{display:none;}
+.act__sum:focus-visible{outline:2px solid var(--blueprint);outline-offset:2px;border-radius:var(--r-card);}
+.act__num{
+  display:inline-flex;align-items:center;justify-content:center;width:calc(var(--u) * 3.5);
+  font-family:var(--font-mono);font-size:calc(var(--u) * 0.75);font-weight:500;letter-spacing:0.04em;
+  color:var(--blueprint);border:1px solid var(--line-strong);border-radius:var(--r-pill);
+  padding:calc(var(--u) * 0.25) calc(var(--u) * 0.625);white-space:nowrap;
+}
+.act__item[open] .act__num{background:var(--blueprint);border-color:var(--blueprint);color:var(--white);}
+.act__title{font-family:var(--font-display);font-weight:500;font-size:calc(var(--u) * 1.0625);line-height:1.3;}
+.act__chips{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:calc(var(--u) * 0.375);}
+.act__chips span{
+  font-family:var(--font-mono);font-size:calc(var(--u) * 0.6875);color:var(--ink-soft);white-space:nowrap;
+  border:1px solid var(--line-strong);border-radius:var(--r-pill);padding:calc(var(--u) * 0.125) calc(var(--u) * 0.5625);
+}
+/* Плюс, превращающийся в минус */
+.act__toggle{position:relative;width:calc(var(--u) * 1.75);height:calc(var(--u) * 1.75);border-radius:50%;border:1px solid var(--line-strong);flex-shrink:0;}
+.act__toggle::before,.act__toggle::after{
+  content:"";position:absolute;left:50%;top:50%;width:40%;height:1.5px;background:var(--blueprint);
+  transform:translate(-50%,-50%);transition:transform .25s ease;
+}
+.act__toggle::after{transform:translate(-50%,-50%) rotate(90deg);}
+.act__item[open] .act__toggle::after{transform:translate(-50%,-50%) rotate(0deg);}
+.act__text{
+  padding:0 calc(var(--u) * 1.375) calc(var(--u) * 1.375) calc(var(--u) * 1.375 + var(--u) * 3.5 + var(--sp-3));
+  color:var(--ink-soft);font-size:calc(var(--u) * 0.9375);line-height:1.6;max-width:calc(var(--u) * 52 + var(--u) * 6);
+}
+
+/* CTA */
+.acta{background:var(--navy);color:var(--white);padding:calc(var(--u) * 4) 0;}
+.acta__inner{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-5);flex-wrap:wrap;}
+.acta__title{font-size:clamp(26px, 2.8vw, calc(var(--u) * 2.5));line-height:1.12;margin-bottom:10px;}
+.acta__text{color:rgba(255,255,255,0.72);font-size:var(--fs-base);max-width:46ch;}
+.acta__actions{display:flex;align-items:center;gap:var(--sp-4);flex-wrap:wrap;}
+.acta__phone{font-family:var(--font-display);font-weight:500;font-size:var(--fs-lg);color:var(--signal);}
+.acta__phone:hover{color:var(--white);}
+.btn--light{background:var(--white);color:var(--blue-900);}
+.btn--light:hover{background:var(--blue-100);}
+
+@media (max-width:1100px){
+  .ahero__stats{grid-template-columns:repeat(3,1fr);row-gap:24px;}
+  .act__sum{grid-template-columns:auto 1fr auto;}
+  .act__chips{grid-column:2 / 3;grid-row:2;justify-content:flex-start;}
+  .act__toggle{grid-column:3;grid-row:1;}
+}
+@media (max-width:900px){
+  .ahero__inner{grid-template-columns:1fr;gap:12px;padding-top:20px;}
+  .ahero__visual{order:-1;max-width:520px;width:100%;margin:0 auto;}
+  .activity__group{grid-template-columns:1fr;gap:var(--sp-3);}
+  .activity__side{position:static;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .activity__icon{margin:0;}
+  .activity__name{margin:0;}
+}
+@media (max-width:560px){
+  .ahero__stats{grid-template-columns:1fr 1fr;gap:20px 16px;}
+  .ahero__stats .about__total:first-child{grid-column:1 / -1;}
+  .ahero .hero__actions{flex-direction:column;align-items:stretch;}
+  .act__sum{grid-template-columns:1fr auto;padding:16px;gap:10px;}
+  .act__num{justify-self:start;}
+  .act__title{grid-column:1 / -1;grid-row:2;}
+  .act__chips{grid-column:1 / -1;grid-row:3;}
+  .act__toggle{grid-column:2;grid-row:1;}
+  .act__text{padding:0 16px 18px;}
+  .works,.activity{padding:48px 0;}
+  .acta__actions{width:100%;flex-direction:column;align-items:stretch;text-align:center;}
+}
+@media (prefers-reduced-motion: reduce){
+  .drone-dot{animation:none;offset-distance:40%;}
+  .swath path{animation:none;}
+}
+
+:root[data-theme="dark"] .act__item{background:var(--surface);}
+:root[data-theme="dark"] .acta{background:var(--navy);}
+:root[data-theme="dark"] .btn--light{color:var(--navy);}
+
 /* ---------- Request form ---------- */
 /* Форма живёт только в модальном окне, поэтому своей подложки у неё нет —
    её роль играет панель окна. */
@@ -592,6 +889,7 @@ body{padding-top:var(--header-h);}
 .platform,
 .directions,
 .effect,
+.about,
 .presentations{
   min-height:calc(100vh - var(--header-h));
   min-height:calc(100svh - var(--header-h));
@@ -603,6 +901,7 @@ body{padding-top:var(--header-h);}
 .platform > .section__inner,
 .directions > .section__inner,
 .effect > .section__inner,
+.about > .section__inner,
 .presentations > .section__inner{width:100%;}
 
 /* ---------- Мера строки на широких экранах ----------
@@ -698,6 +997,7 @@ body{padding-top:var(--header-h);}
   .platform,
   .directions,
   .effect,
+  .about,
   .presentations{padding:48px 0;}
 }
 
@@ -739,7 +1039,13 @@ body{padding-top:var(--header-h);}
 :root[data-theme="dark"] .direction-card,
 :root[data-theme="dark"] .request__input,
 :root[data-theme="dark"] .request__input:focus,
-:root[data-theme="dark"] .request__status{background:var(--surface);}
+:root[data-theme="dark"] .request__status,
+:root[data-theme="dark"] .project,
+:root[data-theme="dark"] .partner{background:var(--surface);}
+:root[data-theme="dark"] .partner:hover{background:var(--surface-2);}
+:root[data-theme="dark"] .project::before{color:var(--surface-2);}
+:root[data-theme="dark"] .project--done .project__status{background:var(--blue-700);border-color:var(--blue-700);}
+:root[data-theme="dark"] .project__bar{background:linear-gradient(90deg, var(--blue-500), var(--blue-300));}
 :root[data-theme="dark"] .direction-card:hover,
 :root[data-theme="dark"] .direction-card--hardware:hover{background:var(--surface-2);}
 :root[data-theme="dark"] .direction-card--hardware{background:var(--paper-2);}

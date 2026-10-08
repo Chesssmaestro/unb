@@ -94,6 +94,22 @@ function main() {
     );
   }
 
+  // Страница «О компании»: /about/, /en/about/ … (тоже из build-pages.mjs).
+  const aboutUrl = (lang) => homeUrl(lang) + 'about/';
+  const aboutAlternates = LANGS.map((l) => [HREFLANG[l], aboutUrl(l)]);
+  aboutAlternates.push(['x-default', aboutUrl('ru')]);
+  for (const lang of LANGS) {
+    entries.push(
+      urlEntry({
+        loc: aboutUrl(lang),
+        mod: lastmod(path.join(DIRS[lang], 'about', 'index.html')),
+        changefreq: 'monthly',
+        priority: lang === 'ru' ? '0.8' : '0.7',
+        alternates: aboutAlternates,
+      })
+    );
+  }
+
   for (const slug of Object.keys(decks)) {
     const langs = LANGS.filter((l) => decks[slug][l]);
     // x-default ведёт на русскую версию, если она есть: это язык по умолчанию.
