@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Страница не найдена — UNB Group</title>
+<!-- GitHub Pages отдаёт этот файл на любой несуществующий адрес с кодом 404 —
+     в том числе на адреса прежнего сайта на этом домене (/product/…, /news/…),
+     которые Google всё ещё помнит. В индекс страница попадать не должна.
+     Адрес у неё любой, поэтому все пути корневые. -->
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20">
+<script src="/js/theme.js?v=1"></script>
+<style>
+  .nf{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--u) * 1.5);padding:calc(var(--u) * 2) 16px;text-align:center;}
+  .nf__logo{height:calc(var(--u) * 2.5);width:auto;}
+  .nf__code{margin:0;font-size:calc(var(--u) * 5);font-weight:700;line-height:1;color:var(--accent);}
+  .nf__title{margin:0;color:var(--ink);}
+  .nf__langs{margin:0;padding:0;list-style:none;color:var(--ink);opacity:.75;line-height:1.6;}
+  .nf__actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+</style>
+</head>
+<body>
+<main class="nf">
+  <a href="/"><img src="/assets/logo.png" alt="UNB Group" class="nf__logo"></a>
+  <p class="nf__code">404</p>
+  <h1 class="section__title nf__title">Страница не найдена</h1>
+  <!-- Язык посетителя неизвестен: адрес не существует, поэтому все четыре сразу -->
+  <ul class="nf__langs">
+    <li lang="en">Page not found</li>
+    <li lang="uz">Sahifa topilmadi</li>
+    <li lang="zh">页面未找到</li>
+  </ul>
+  <div class="nf__actions">
+    <a class="btn btn--primary btn--lg" href="/">На главную <span class="btn__icon">→</span></a>
+    <a class="btn btn--ghost btn--lg" href="/#directions">Направления</a>
+    <a class="btn btn--ghost btn--lg" href="/en/">English</a>
+  </div>
+</main>
+</body>
+</html>

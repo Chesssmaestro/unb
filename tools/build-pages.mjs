@@ -356,7 +356,10 @@ function main() {
   checkTemplate(fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8'), I18N.ru);
 
   for (const page of PAGES) {
-    const template = fs.readFileSync(path.join(ROOT, page.src), 'utf8');
+    // На Windows git с core.autocrlf отдаёт шаблон с CRLF, а сборка ниже ищет
+    // переводы строк как \n — без нормализации теряется баннер и в <head>
+    // остаются пустые строки.
+    const template = fs.readFileSync(path.join(ROOT, page.src), 'utf8').replace(/\r\n/g, '\n');
     for (const lang of LANGS) {
       const dict = I18N[lang];
       if (!dict) throw new Error(`Нет словаря для «${lang}»`);
