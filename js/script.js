@@ -188,6 +188,9 @@
     card.setAttribute('tabindex', '0');
     card.setAttribute('role', 'button');
     card.addEventListener('click', (e)=>{
+      // Заголовок карточки — настоящая ссылка (по ней ходит поисковик),
+      // клик по нему браузер обрабатывает сам, в том числе Ctrl/Cmd.
+      if(e.target.closest('a[href]')) return;
       // Ctrl/Cmd/middle click should still land in a new tab, like a link.
       const href = card.getAttribute('data-href');
       if(href && (e.metaKey || e.ctrlKey)){
