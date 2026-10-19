@@ -9,3 +9,8 @@ worker/.wrangler/
 # Source decks: build input only. They are not served — the site shows the
 # rendered slides — and they still carry the branding that the build strips.
 assets/presentations/
+
+# Исходники презентаций в PowerPoint: вход вёрстки, на сайте не раздаются —
+# в них остаются логотипы, которые сайт снимает.
+pptx/
+pptx.zip
