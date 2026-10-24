@@ -13,7 +13,14 @@
  *
  * Проверка: открыть https://leads.unbgroup.uz/ в браузере — ответит
  * {"ok":true,"rows":N}. Свежие заявки: npm run leads (см. package.json).
+ *
+ * Просмотр заявок: https://unb-leads.bdunb.workers.dev/admin — страница
+ * отдаётся отсюда же, а не с сайта, чтобы её не было на GitHub Pages. Пароль
+ * задаётся секретом, в коде и в репозитории его нет:
+ *   npx wrangler secret put ADMIN_TOKEN --config worker/wrangler.toml
  */
+
+import ADMIN_PAGE from './admin.html';
 
 /** Откуда принимаем заявки. Всё остальное получит отказ ещё на preflight. */
 const ALLOWED_ORIGINS = [
@@ -31,8 +38,25 @@ const RATE_WINDOW = '-10 minutes';
 /** Повтор того же номера по тому же направлению в этом окне — двойной клик. */
 const DEDUPE_WINDOW = '-1 hour';
 
+/** Статусы воронки — те же, что в комментарии к schema.sql. */
+const STATUSES = ['new', 'called', 'won', 'lost'];
+
+/** Столько последних заявок отдаёт страница просмотра за раз. */
+const ADMIN_LIMIT = 1000;
+
 export default {
   async fetch(request, env) {
+    const url = new URL(request.url);
+
+    // Просмотр заявок — отдельная ветка: свой домен (этот же), без CORS, с
+    // паролем. Форма сайта сюда не ходит.
+    if (url.pathname === '/admin' || url.pathname === '/admin/') {
+      return adminPage();
+    }
+    if (url.pathname.startsWith('/admin/')) {
+      return adminApi(request, env, url);
+    }
+
     const cors = corsHeaders(request.headers.get('Origin'));
 
     // Preflight. В отличие от Apps Script, который на OPTIONS не отвечал вовсе
@@ -130,6 +154,87 @@ function corsHeaders(origin) {
     headers['Access-Control-Allow-Origin'] = origin;
   }
   return headers;
+}
+
+/** Страница просмотра. В поисковики не пускаем, в чужие фреймы — тоже. */
+function adminPage() {
+  return new Response(ADMIN_PAGE, {
+    headers: {
+      'Content-Type': 'text/html;charset=utf-8',
+      'Cache-Control': 'no-store',
+      'X-Robots-Tag': 'noindex, nofollow',
+      'X-Frame-Options': 'DENY',
+      'Referrer-Policy': 'no-referrer',
+      'Content-Security-Policy':
+        "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; " +
+        "connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'"
+    }
+  });
+}
+
+/**
+ * GET  /admin/leads        — последние заявки
+ * POST /admin/leads/<id>   — сменить status и/или comment
+ * Всё под заголовком Authorization: Bearer <ADMIN_TOKEN>.
+ */
+async function adminApi(request, env, url) {
+  const headers = { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' };
+
+  // Секрет не задан — закрыто для всех, а не открыто для всех.
+  if (!env.ADMIN_TOKEN) return json({ ok: false, error: 'not_configured' }, 503, headers);
+
+  const auth = request.headers.get('Authorization') || '';
+  const given = auth.startsWith('Bearer ') ? auth.slice(7) : '';
+  if (!(await sameSecret(given, env.ADMIN_TOKEN))) {
+    return json({ ok: false, error: 'auth' }, 401, headers);
+  }
+
+  if (url.pathname === '/admin/leads' && request.method === 'GET') {
+    const { results } = await env.DB.prepare(
+      `SELECT id, created_at, name, phone, direction, direction_label,
+              lang, page, country, status, comment
+         FROM leads ORDER BY id DESC LIMIT ?1`
+    ).bind(ADMIN_LIMIT).all();
+    return json({ ok: true, leads: results }, 200, headers);
+  }
+
+  const m = url.pathname.match(/^\/admin\/leads\/(\d+)$/);
+  if (m && request.method === 'POST') {
+    let data;
+    try {
+      data = await request.json();
+    } catch {
+      return json({ ok: false, error: 'empty' }, 400, headers);
+    }
+    const status = data.status === undefined ? null : String(data.status);
+    if (status !== null && !STATUSES.includes(status)) {
+      return json({ ok: false, error: 'status' }, 400, headers);
+    }
+    const comment = data.comment === undefined ? null : String(data.comment).slice(0, 1000);
+
+    // COALESCE: не переданное поле остаётся как было.
+    const res = await env.DB.prepare(
+      `UPDATE leads SET status = COALESCE(?1, status), comment = COALESCE(?2, comment)
+        WHERE id = ?3`
+    ).bind(status, comment, Number(m[1])).run();
+    if (!res.meta.changes) return json({ ok: false, error: 'not_found' }, 404, headers);
+    return json({ ok: true }, 200, headers);
+  }
+
+  return json({ ok: false, error: 'not_found' }, 404, headers);
+}
+
+/**
+ * Сравнение пароля за постоянное время: обычное === выдаёт по скорости ответа,
+ * сколько первых символов угадано. Хешируем оба, чтобы длины совпадали.
+ */
+async function sameSecret(a, b) {
+  const enc = new TextEncoder();
+  const [ha, hb] = await Promise.all([
+    crypto.subtle.digest('SHA-256', enc.encode(a)),
+    crypto.subtle.digest('SHA-256', enc.encode(b))
+  ]);
+  return crypto.subtle.timingSafeEqual(ha, hb);
 }
 
 function json(obj, status, headers) {

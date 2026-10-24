@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Заявки UNB</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --surface:#fff; --line:#e3e6eb; --text:#16191f; --muted:#69707d;
+    --accent:#1f6feb; --ok:#1a7f37; --warn:#9a6700; --bad:#cf222e;
+    --new-bg:#ddeaff; --called-bg:#fff1c2; --won-bg:#d6f5dd; --lost-bg:#f1f1f3;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e1116; --surface:#161b22; --line:#2a313c; --text:#e6e9ee; --muted:#8b93a1;
+      --accent:#4c8dff; --ok:#3fb950; --warn:#d29922; --bad:#f85149;
+      --new-bg:#15294d; --called-bg:#3a2e0b; --won-bg:#12351d; --lost-bg:#22262d;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  button,input,select,textarea{font:inherit;color:inherit}
+  .wrap{max-width:1280px;margin:0 auto;padding:20px 16px 48px}
+
+  /* Вход */
+  .login{max-width:340px;margin:16vh auto 0;background:var(--surface);border:1px solid var(--line);
+    border-radius:12px;padding:24px}
+  .login h1{margin:0 0 4px;font-size:18px}
+  .login p{margin:0 0 16px;color:var(--muted)}
+  .login input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;
+    background:var(--bg);margin-bottom:12px}
+  .err{color:var(--bad);min-height:1.45em;margin:0 0 8px}
+
+  .btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:8px 14px;cursor:pointer}
+  .btn:hover{border-color:var(--muted)}
+  .btn--primary{background:var(--accent);border-color:var(--accent);color:#fff;width:100%}
+  .btn:disabled{opacity:.6;cursor:default}
+
+  /* Шапка и фильтры */
+  header{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:16px}
+  header h1{margin:0;font-size:20px;flex:1 1 auto}
+  .stats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 12px;
+    cursor:pointer;color:var(--muted)}
+  .stat b{color:var(--text);margin-left:6px;font-variant-numeric:tabular-nums}
+  .stat[aria-pressed="true"]{border-color:var(--accent);color:var(--text)}
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+  .filters input,.filters select{padding:8px 10px;border:1px solid var(--line);border-radius:8px;
+    background:var(--surface)}
+  .filters input{flex:1 1 220px;min-width:0}
+  .muted{color:var(--muted)}
+
+  /* Таблица */
+  .table{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{font-weight:600;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.03em}
+  tr:last-child td{border-bottom:0}
+  td.num{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+  td.when{white-space:nowrap;font-variant-numeric:tabular-nums}
+  .phone{white-space:nowrap;color:var(--accent);text-decoration:none;font-variant-numeric:tabular-nums}
+  .phone:hover{text-decoration:underline}
+  .tag{display:inline-block;font-size:12px;color:var(--muted);border:1px solid var(--line);
+    border-radius:4px;padding:0 5px;margin-left:4px;text-transform:uppercase}
+  .page{color:var(--muted);font-size:12px;word-break:break-all}
+  select.status{border:0;border-radius:6px;padding:4px 8px;cursor:pointer}
+  select.status[data-v="new"]{background:var(--new-bg)}
+  select.status[data-v="called"]{background:var(--called-bg)}
+  select.status[data-v="won"]{background:var(--won-bg)}
+  select.status[data-v="lost"]{background:var(--lost-bg)}
+  textarea.comment{width:100%;min-width:160px;min-height:34px;resize:vertical;padding:6px 8px;
+    border:1px solid transparent;border-radius:6px;background:transparent}
+  textarea.comment:hover,textarea.comment:focus{border-color:var(--line);background:var(--bg)}
+  .saved{font-size:12px;color:var(--ok)}
+  .failed{font-size:12px;color:var(--bad)}
+  .empty{padding:40px;text-align:center;color:var(--muted)}
+
+  /* Телефон: строка таблицы превращается в карточку */
+  @media (max-width:760px){
+    thead{display:none}
+    table,tbody,tr,td{display:block;width:100%}
+    tr{padding:12px;border-bottom:1px solid var(--line)}
+    td{border:0;padding:3px 0}
+    td.num{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="login" id="login" hidden>
+  <h1>Заявки UNB</h1>
+  <p>Введите пароль, чтобы увидеть заявки.</p>
+  <form id="loginForm">
+    <input type="password" id="pass" autocomplete="current-password" placeholder="Пароль" required autofocus>
+    <p class="err" id="loginErr"></p>
+    <button class="btn btn--primary" type="submit" id="loginBtn">Войти</button>
+  </form>
+</div>
+
+<div class="wrap" id="app" hidden>
+  <header>
+    <h1>Заявки</h1>
+    <span class="muted" id="updated"></span>
+    <button class="btn" id="refresh" type="button">Обновить</button>
+    <button class="btn" id="logout" type="button">Выйти</button>
+  </header>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="filters">
+    <input type="search" id="q" placeholder="Поиск: имя, телефон, комментарий">
+    <select id="dir"><option value="">Все направления</option></select>
+  </div>
+
+  <div class="table">
+    <table>
+      <thead><tr>
+        <th>#</th><th>Когда</th><th>Имя</th><th>Телефон</th><th>Направление</th>
+        <th>Статус</th><th>Комментарий</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div class="empty" id="empty" hidden>Заявок нет</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Пароль живёт только до закрытия вкладки: страницу могут открыть на чужом
+  // компьютере, и оставлять его там насовсем нельзя.
+  const KEY = 'unb_admin_token';
+  const STATUS = {new:'Новая', called:'Позвонили', won:'Сделка', lost:'Отказ'};
+  const $ = (id)=> document.getElementById(id);
+
+  let token = '';
+  try { token = sessionStorage.getItem(KEY) || ''; } catch(e) {}
+  let leads = [];
+  let statusFilter = '';
+
+  function api(path, opts){
+    opts = opts || {};
+    opts.headers = Object.assign({'Authorization': 'Bearer ' + token}, opts.headers || {});
+    return fetch(path, opts).then(res=>{
+      if(res.status === 401){ const e = new Error('auth'); e.auth = true; throw e; }
+      return res.json().then(d=>{
+        if(!res.ok || !d.ok) throw new Error(d.error || ('HTTP ' + res.status));
+        return d;
+      });
+    });
+  }
+
+  function showLogin(msg){
+    $('app').hidden = true;
+    $('login').hidden = false;
+    $('loginErr').textContent = msg || '';
+    $('pass').focus();
+  }
+
+  function load(){
+    $('refresh').disabled = true;
+    return api('/admin/leads').then(d=>{
+      leads = d.leads;
+      $('login').hidden = true;
+      $('app').hidden = false;
+      $('updated').textContent = 'обновлено ' + new Date().toLocaleTimeString('ru-RU', {hour:'2-digit', minute:'2-digit'});
+      fillDirections();
+      render();
+    }).finally(()=>{ $('refresh').disabled = false; });
+  }
+
+  // В базе время в UTC без пояса: «2026-10-24 14:16:56».
+  function when(s){
+    const d = new Date(String(s).replace(' ', 'T') + 'Z');
+    if(isNaN(d)) return s;
+    return d.toLocaleString('ru-RU', {day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit'});
+  }
+
+  function el(tag, props, kids){
+    const n = document.createElement(tag);
+    if(props) Object.assign(n, props);
+    (kids || []).forEach(k=> n.append(k));
+    return n;
+  }
+
+  function dirName(l){ return l.direction_label || l.direction; }
+
+  function fillDirections(){
+    const sel = $('dir'), keep = sel.value;
+    const seen = new Map();
+    leads.forEach(l=>{ if(!seen.has(l.direction)) seen.set(l.direction, dirName(l)); });
+    sel.length = 1;
+    seen.forEach((label, slug)=> sel.append(el('option', {value: slug, textContent: label})));
+    sel.value = seen.has(keep) ? keep : '';
+  }
+
+  function renderStats(){
+    const box = $('stats');
+    box.textContent = '';
+    const counts = {'': leads.length};
+    Object.keys(STATUS).forEach(s=> counts[s] = 0);
+    leads.forEach(l=>{ counts[l.status] = (counts[l.status] || 0) + 1; });
+    [['', 'Все']].concat(Object.entries(STATUS)).forEach(([s, label])=>{
+      const b = el('button', {type:'button', className:'stat'}, [label, el('b', {textContent: counts[s] || 0})]);
+      b.setAttribute('aria-pressed', String(statusFilter === s));
+      b.addEventListener('click', ()=>{ statusFilter = s; render(); });
+      box.append(b);
+    });
+  }
+
+  function render(){
+    renderStats();
+    const q = $('q').value.trim().toLowerCase();
+    const qDigits = q.replace(/\D/g, '');
+    const dir = $('dir').value;
+
+    const list = leads.filter(l=>{
+      if(statusFilter && l.status !== statusFilter) return false;
+      if(dir && l.direction !== dir) return false;
+      if(!q) return true;
+      const text = [l.name, l.phone, l.comment, dirName(l)].join(' ').toLowerCase();
+      if(text.includes(q)) return true;
+      return qDigits.length >= 3 && String(l.phone).replace(/\D/g, '').includes(qDigits);
+    });
+
+    const body = $('rows');
+    body.textContent = '';
+    $('empty').hidden = list.length > 0;
+    list.forEach(l=> body.append(row(l)));
+  }
+
+  function row(l){
+    const tel = String(l.phone).replace(/[^\d+]/g, '');
+    const nameCell = el('td', null, [l.name]);
+    if(l.lang) nameCell.append(el('span', {className:'tag', textContent: l.lang}));
+
+    const dirCell = el('td', null, [dirName(l)]);
+    if(l.page) dirCell.append(el('div', {className:'page', textContent: l.page.replace(/^https?:\/\//, '')}));
+
+    // Статус
+    const sel = el('select', {className:'status'});
+    Object.entries(STATUS).forEach(([v, label])=> sel.append(el('option', {value: v, textContent: label})));
+    sel.value = l.status;
+    sel.dataset.v = l.status;
+    const statusNote = el('div');
+    sel.addEventListener('change', ()=>{
+      const prev = l.status;
+      sel.dataset.v = sel.value;
+      save(l, {status: sel.value}, statusNote).then(()=>{ l.status = sel.value; renderStats(); },
+        ()=>{ sel.value = prev; sel.dataset.v = prev; });
+    });
+
+    // Комментарий: сохраняем, когда поле теряет фокус и текст изменился
+    const ta = el('textarea', {className:'comment', value: l.comment || '', placeholder:'—', rows:1});
+    const commentNote = el('div');
+    ta.addEventListener('blur', ()=>{
+      if(ta.value === (l.comment || '')) return;
+      save(l, {comment: ta.value}, commentNote).then(()=>{ l.comment = ta.value; }, ()=>{});
+    });
+
+    return el('tr', null, [
+      el('td', {className:'num', textContent: l.id}),
+      el('td', {className:'when', textContent: when(l.created_at)}),
+      nameCell,
+      el('td', null, [el('a', {className:'phone', href:'tel:' + tel, textContent: l.phone})]),
+      dirCell,
+      el('td', null, [sel, statusNote]),
+      el('td', null, [ta, commentNote])
+    ]);
+  }
+
+  function save(l, patch, note){
+    note.className = 'muted'; note.textContent = '…';
+    return api('/admin/leads/' + l.id, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(patch)
+    }).then(()=>{
+      note.className = 'saved'; note.textContent = 'сохранено';
+      setTimeout(()=>{ note.textContent = ''; }, 1500);
+    }, (e)=>{
+      if(e.auth) showLogin('Сессия истекла, войдите снова');
+      else { note.className = 'failed'; note.textContent = 'не сохранилось'; }
+      throw e;
+    });
+  }
+
+  $('loginForm').addEventListener('submit', (e)=>{
+    e.preventDefault();
+    token = $('pass').value;
+    $('loginBtn').disabled = true;
+    $('loginErr').textContent = '';
+    load().then(()=>{
+      try { sessionStorage.setItem(KEY, token); } catch(e) {}
+      $('pass').value = '';
+    }, (err)=>{
+      token = '';
+      $('loginErr').textContent = err.auth ? 'Неверный пароль'
+        : err.message === 'not_configured' ? 'Пароль на сервере не задан'
+        : 'Не удалось загрузить заявки';
+    }).finally(()=>{ $('loginBtn').disabled = false; });
+  });
+
+  $('logout').addEventListener('click', ()=>{
+    token = '';
+    try { sessionStorage.removeItem(KEY); } catch(e) {}
+    leads = [];
+    $('rows').textContent = '';
+    showLogin();
+  });
+
+  $('refresh').addEventListener('click', ()=> load().catch(e=>{ if(e.auth) showLogin('Сессия истекла, войдите снова'); }));
+  $('q').addEventListener('input', render);
+  $('dir').addEventListener('change', render);
+
+  if(token){
+    load().catch(()=>{
+      token = '';
+      try { sessionStorage.removeItem(KEY); } catch(e) {}
+      showLogin();
+    });
+  } else {
+    showLogin();
+  }
+})();
+</script>
+</body>
+</html>
