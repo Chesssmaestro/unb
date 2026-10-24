@@ -4,8 +4,8 @@
    мнемоники вроде &amp; внутри строки должны остаться во всех языках. */
 const DECK_I18N = {
 ru:{
-  "meta.title":"От инспекции к управлению ЛЭП — UNB Group",
-  "meta.description":"Презентация UNB Group: интеллектуальная инспекция ЛЭП — автономные облёты, AI-распознавание дефектов, цифровой двойник сети и автоматизация обслуживания.",
+  "meta.title":"Обследование ЛЭП дронами и AI-поиск дефектов | UNB Group",
+  "meta.description":"Облёт и инспекция линий электропередачи дронами в Узбекистане: дефекты изоляторов, коррозия, обрывы проводов, опасная растительность — тепловизор, LiDAR и цифровой двойник сети.",
   "meta.short":"ЛЭП",
 
   "s01.k01":"Digital Grid",
@@ -184,8 +184,8 @@ ru:{
   "s15.k07":"Инспекция ЛЭП с воздуха"
 },
 en:{
-  "meta.title":"From inspection to power line management — UNB Group",
-  "meta.description":"UNB Group deck: intelligent power line inspection — autonomous flights, AI defect recognition, a digital twin of the grid and automated O&M.",
+  "meta.title":"Power line inspection by drones with AI | UNB Group",
+  "meta.description":"Drone inspection of power transmission lines in Uzbekistan: insulator defects, corrosion, broken wires and vegetation encroachment — thermal imaging, LiDAR and a digital twin of the grid.",
   "meta.short":"Power lines",
 
   "s01.k01":"Digital Grid",
@@ -364,8 +364,8 @@ en:{
   "s15.k07":"Power line inspection from the air"
 },
 uz:{
-  "meta.title":"Inspeksiyadan elektr uzatish liniyalarini boshqarishga — UNB Group",
-  "meta.description":"UNB Group prezentatsiyasi: EUT intellektual inspeksiyasi — avtonom parvozlar, nuqsonlarni AI orqali tanish, tarmoqning raqamli egizagi va xizmat ko'rsatishni avtomatlashtirish.",
+  "meta.title":"EUTni dronlar bilan tekshirish va AI yordamida nuqsonlarni aniqlash | UNB Group",
+  "meta.description":"O'zbekistonda elektr uzatish liniyalarini dronlar bilan aylanib uchish va inspeksiya qilish: izolyator nuqsonlari, korroziya, sim uzilishlari, xavfli o'simliklar — teplovizor, LiDAR va tarmoqning raqamli egizagi.",
   "meta.short":"EUT",
 
   "s01.k01":"Digital Grid",
@@ -544,8 +544,8 @@ uz:{
   "s15.k07":"EUTni havodan inspeksiya qilish"
 },
 ch:{
-  "meta.title":"从巡检到输电线路管理 — UNB Group",
-  "meta.description":"UNB Group 演示：输电线路智能巡检 — 自主飞行、AI 缺陷识别、电网数字孪生与运维自动化。",
+  "meta.title":"无人机输电线路巡检与 AI 缺陷识别 | UNB Group",
+  "meta.description":"乌兹别克斯坦无人机输电线路巡检：绝缘子缺陷、锈蚀、断线与树障隐患——红外热成像、激光雷达与电网数字孪生。",
   "meta.short":"输电线路",
 
   "s01.k01":"Digital Grid",

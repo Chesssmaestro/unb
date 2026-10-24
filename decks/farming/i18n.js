@@ -5,8 +5,8 @@
    во всех языках. */
 const DECK_I18N = {
 ru:{
-  "meta.title":"Smart Farming: цифровой двойник агробизнеса — UNB Group",
-  "meta.description":"Презентация UNB Group: точное земледелие — автопилот с RTK, мониторинг полей и NDVI, дифференцированное внесение и окупаемость менее чем за сезон.",
+  "meta.title":"Точное земледелие: NDVI, агродроны, автопилот RTK | UNB Group",
+  "meta.description":"Smart Farming в Узбекистане: мониторинг посевов с воздуха и NDVI, обработка полей агродронами, дифференцированное внесение и автопилот с RTK для сельхозтехники.",
   "meta.short":"Smart Farming",
 
   "s01.k01":"01 / Титул",
@@ -80,8 +80,8 @@ ru:{
 },
 
 en:{
-  "meta.title":"Smart Farming: a digital twin of your agribusiness — UNB Group",
-  "meta.description":"UNB Group deck: precision agriculture — RTK autosteer, aerial field monitoring and NDVI, variable rate application and payback within one season.",
+  "meta.title":"Precision agriculture: NDVI, agri-drones, RTK autosteer | UNB Group",
+  "meta.description":"Smart Farming in Uzbekistan: aerial crop monitoring and NDVI, field treatment by agricultural drones, variable rate application and RTK autosteer for farm machinery.",
   "meta.short":"Smart Farming",
 
   "s01.k01":"01 / Cover",
@@ -155,8 +155,8 @@ en:{
 },
 
 uz:{
-  "meta.title":"Smart Farming: agrobiznesingizning raqamli egizagi — UNB Group",
-  "meta.description":"UNB Group taqdimoti: aniq dehqonchilik — RTK avtopilot, dalalar monitoringi va NDVI, differensial sepish hamda bir mavsumdan tez qoplanish.",
+  "meta.title":"Aniq dehqonchilik: NDVI, agrodronlar, RTK avtopilot | UNB Group",
+  "meta.description":"O'zbekistonda Smart Farming: ekinlarni havodan monitoring qilish va NDVI, dalalarga agrodronlar bilan ishlov berish, differensial sepish va qishloq xo'jaligi texnikasi uchun RTK avtopilot.",
   "meta.short":"Smart Farming",
 
   "s01.k01":"01 / Muqova",
@@ -230,8 +230,8 @@ uz:{
 },
 
 ch:{
-  "meta.title":"智慧农业：您的农业数字孪生 — UNB Group",
-  "meta.description":"UNB Group 演示：精准农业 — RTK 自动驾驶、航空农田巡查与 NDVI、变量施肥，一个种植季内回本。",
+  "meta.title":"精准农业：NDVI、植保无人机与 RTK 自动驾驶 | UNB Group",
+  "meta.description":"乌兹别克斯坦智慧农业：航空作物监测与 NDVI、植保无人机田间作业、变量施肥与农机 RTK 自动驾驶。",
   "meta.short":"智慧农业",
 
   "s01.k01":"01 / 封面",

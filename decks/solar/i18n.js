@@ -5,8 +5,8 @@
    во всех языках. */
 const DECK_I18N = {
 ru:{
-  "meta.title":"Интеллектуальные решения для солнечной энергетики — UNB Group",
-  "meta.description":"Презентация UNB Group: AI-инспекция солнечных станций — автономные БПЛА и док-станции, мультиспектральный анализ, карта дефектов и цифровой контроль обслуживания.",
+  "meta.title":"Инспекция солнечных станций дронами с тепловизором | UNB Group",
+  "meta.description":"Аэроинспекция СЭС в Узбекистане: тепловизионная съёмка солнечных панелей с дронов, AI-поиск перегрева, микротрещин, загрязнения и затенения, карта дефектов и контроль O&M.",
   "meta.short":"Солнечная энергетика",
 
   "s01.k01":"01 / Титул",
@@ -179,8 +179,8 @@ ru:{
 },
 
 en:{
-  "meta.title":"Intelligent solutions for solar power — UNB Group",
-  "meta.description":"UNB Group deck: AI inspection of solar plants — autonomous drones and docking stations, multispectral analysis, a defect map and digital control of maintenance.",
+  "meta.title":"Solar plant inspection by thermal drones | UNB Group",
+  "meta.description":"Aerial solar farm inspection in Uzbekistan: thermal drone imaging of PV panels, AI detection of hot spots, micro-cracks, soiling and shading, a defect map and O&M tracking.",
   "meta.short":"Solar power",
 
   "s01.k01":"01 / Cover",
@@ -353,8 +353,8 @@ en:{
 },
 
 uz:{
-  "meta.title":"Quyosh energetikasi uchun intellektual yechimlar — UNB Group",
-  "meta.description":"UNB Group taqdimoti: quyosh stansiyalarini AI-inspeksiya qilish — avtonom BPLA va dok-stansiyalar, multispektral tahlil, nuqsonlar xaritasi va xizmat ko'rsatishning raqamli nazorati.",
+  "meta.title":"Quyosh stansiyalarini teplovizorli dronlar bilan inspeksiya qilish | UNB Group",
+  "meta.description":"O'zbekistonda quyosh elektr stansiyalarini havodan inspeksiya qilish: panellarni dronlardan teplovizion suratga olish, AI yordamida qizish, mikroyoriqlar, ifloslanish va soyani aniqlash, nuqsonlar xaritasi va O&M nazorati.",
   "meta.short":"Quyosh energetikasi",
 
   "s01.k01":"01 / Muqova",
@@ -527,8 +527,8 @@ uz:{
 },
 
 ch:{
-  "meta.title":"光伏电站智能解决方案 — UNB Group",
-  "meta.description":"UNB Group 演示：光伏电站 AI 巡检 — 自主无人机与机场、多光谱分析、缺陷地图与运维数字化管控。",
+  "meta.title":"无人机红外热成像光伏电站巡检 | UNB Group",
+  "meta.description":"乌兹别克斯坦光伏电站航空巡检：无人机红外热成像拍摄光伏组件，AI 识别热斑、隐裂、积灰与遮挡，生成缺陷地图并管控运维。",
   "meta.short":"光伏电站",
 
   "s01.k01":"01 / 封面",

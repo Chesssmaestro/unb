@@ -4,8 +4,8 @@
    и <span> внутри строки должны остаться на месте во всех языках. */
 const DECK_I18N = {
 ru:{
-  "meta.title":"Интеллектуальная платформа Smart City — UNB Group",
-  "meta.description":"Презентация UNB Group: платформа Smart City — автономные дроны, AI-аналитика, цифровой двойник города и автоматизация городских процессов.",
+  "meta.title":"Умный город: мониторинг дронами и AI-аналитика | UNB Group",
+  "meta.description":"Smart City в Узбекистане: аэромониторинг города дронами, AI-выявление несанкционированных свалок, транспортных аномалий и ЧС, цифровой двойник города для хокимиятов.",
   "meta.short":"Смарт-сити",
 
   "s01.k01":"Интеллектуальная платформа Smart City мониторинга и управления",
@@ -107,8 +107,8 @@ ru:{
   "s10.k12":"Переход к предиктивному data-driven управлению"
 },
 en:{
-  "meta.title":"Smart City monitoring and management platform — UNB Group",
-  "meta.description":"UNB Group deck: the Smart City platform — autonomous drones, AI analytics, a digital twin of the city and automated municipal workflows.",
+  "meta.title":"Smart city monitoring with drones and AI | UNB Group",
+  "meta.description":"Smart City in Uzbekistan: aerial city monitoring by drones, AI detection of illegal dumping, traffic anomalies and emergencies, and a digital twin of the city for municipal authorities.",
   "meta.short":"Smart city",
 
   "s01.k01":"Intelligent Smart City platform for monitoring and management",
@@ -210,8 +210,8 @@ en:{
   "s10.k12":"A move to predictive, data-driven management"
 },
 uz:{
-  "meta.title":"Smart City monitoring va boshqaruv platformasi — UNB Group",
-  "meta.description":"UNB Group prezentatsiyasi: Smart City platformasi — avtonom dronlar, AI-tahlil, shaharning raqamli egizagi va shahar jarayonlarini avtomatlashtirish.",
+  "meta.title":"Aqlli shahar: dronlar bilan monitoring va AI-tahlil | UNB Group",
+  "meta.description":"O'zbekistonda Smart City: shaharni dronlar bilan havodan monitoring qilish, AI yordamida ruxsatsiz chiqindixonalar, transport anomaliyalari va favqulodda vaziyatlarni aniqlash, hokimiyatlar uchun shaharning raqamli egizagi.",
   "meta.short":"Aqlli shahar",
 
   "s01.k01":"Monitoring va boshqaruv uchun intellektual Smart City platformasi",
@@ -313,8 +313,8 @@ uz:{
   "s10.k12":"Prediktiv, data-driven boshqaruvga o'tish"
 },
 ch:{
-  "meta.title":"智慧城市监测与管理平台 — UNB Group",
-  "meta.description":"UNB Group 演示：智慧城市平台 — 自主无人机、AI 分析、城市数字孪生与城市流程自动化。",
+  "meta.title":"智慧城市：无人机监测与 AI 分析 | UNB Group",
+  "meta.description":"乌兹别克斯坦智慧城市：无人机城市航空监测，AI 识别违规垃圾堆放、交通异常与突发事件，为市政管理部门构建城市数字孪生。",
   "meta.short":"智慧城市",
 
   "s01.k01":"面向监测与管理的智慧城市智能平台",

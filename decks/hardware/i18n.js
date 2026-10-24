@@ -5,8 +5,8 @@
    во всех языках. */
 const DECK_I18N = {
 ru:{
-  "meta.title":"Комплексные поставки БПЛА и энергооборудования — UNB Group",
-  "meta.description":"Презентация UNB Group: промышленные БПЛА, докинг-станции, энергооборудование и сервис SLA — единая экосистема автономного мониторинга под ключ.",
+  "meta.title":"Поставка промышленных дронов и док-станций | UNB Group",
+  "meta.description":"Поставка промышленных и сельскохозяйственных дронов, док-станций, тепловизоров, лидаров и энергооборудования в Узбекистане: подбор под задачу, внедрение и сервис по SLA.",
   "meta.short":"Дроны и энергооборудование",
 
   "s01.k01":"01 / Титул",
@@ -96,8 +96,8 @@ ru:{
 },
 
 en:{
-  "meta.title":"Turnkey supply of industrial drones and power equipment — UNB Group",
-  "meta.description":"UNB Group deck: industrial drones, docking stations, power equipment and SLA service — a single turnkey ecosystem for autonomous monitoring.",
+  "meta.title":"Industrial drones and docking stations supply | UNB Group",
+  "meta.description":"Supply of industrial and agricultural drones, docking stations, thermal cameras, LiDAR and power equipment in Uzbekistan: configuration for the task, deployment and SLA service.",
   "meta.short":"Drones and power equipment",
 
   "s01.k01":"01 / Cover",
@@ -187,8 +187,8 @@ en:{
 },
 
 uz:{
-  "meta.title":"Sanoat BPLA va energiya uskunalarini kompleks yetkazib berish — UNB Group",
-  "meta.description":"UNB Group taqdimoti: sanoat BPLA, dok-stansiyalar, energiya uskunalari va SLA xizmati — avtonom monitoring uchun yagona «kalit topshirish» ekotizimi.",
+  "meta.title":"Sanoat dronlari va dok-stansiyalarni yetkazib berish | UNB Group",
+  "meta.description":"O'zbekistonda sanoat va qishloq xo'jaligi dronlari, dok-stansiyalar, teplovizorlar, lidarlar va energiya uskunalarini yetkazib berish: vazifaga mos tanlash, joriy etish va SLA bo'yicha servis.",
   "meta.short":"Dronlar va energiya uskunalari",
 
   "s01.k01":"01 / Muqova",
@@ -278,8 +278,8 @@ uz:{
 },
 
 ch:{
-  "meta.title":"工业无人机与能源设备一体化供应 — UNB Group",
-  "meta.description":"UNB Group 演示：工业无人机、机巢、能源设备与 SLA 服务 — 自主巡检的一体化交钥匙生态。",
+  "meta.title":"工业无人机与机巢供应 | UNB Group",
+  "meta.description":"在乌兹别克斯坦供应工业与植保无人机、机巢、红外热像仪、激光雷达与能源设备：按需选型、部署实施与 SLA 服务。",
   "meta.short":"无人机与能源设备",
 
   "s01.k01":"01 / 封面",

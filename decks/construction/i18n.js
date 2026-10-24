@@ -5,8 +5,8 @@
    во всех языках. */
 const DECK_I18N = {
 ru:{
-  "meta.title":"Автономный мониторинг строительной площадки — UNB Group",
-  "meta.description":"Презентация UNB Group: цифровой контроль строительства — облёты БПЛА, сканирование закрытых зон, сопоставление с BIM, расчёт объёмов и оперативная сводка по готовности объекта.",
+  "meta.title":"Мониторинг стройки дронами и сверка с BIM | UNB Group",
+  "meta.description":"Контроль строительства с БПЛА в Узбекистане: аэросъёмка площадки, сравнение с BIM/CAD, расчёт объёмов, прогресс работ и нарушения техники безопасности в одной сводке.",
   "meta.short":"Стройка",
 
   "s01.k01":"01 / Титул",
@@ -124,8 +124,8 @@ ru:{
 },
 
 en:{
-  "meta.title":"Autonomous construction site monitoring — UNB Group",
-  "meta.description":"UNB Group deck: digital construction control — drone survey flights, scanning of enclosed areas, comparison against BIM, volume calculation and a live readiness summary.",
+  "meta.title":"Construction site monitoring by drones with BIM | UNB Group",
+  "meta.description":"Drone-based construction monitoring in Uzbekistan: site aerial surveys, comparison against BIM/CAD, volume calculation, work progress and safety violations in one report.",
   "meta.short":"Construction",
 
   "s01.k01":"01 / Cover",
@@ -243,8 +243,8 @@ en:{
 },
 
 uz:{
-  "meta.title":"Qurilish maydonchasining avtonom monitoringi — UNB Group",
-  "meta.description":"UNB Group taqdimoti: qurilishning raqamli nazorati — BPLA uchishlari, yopiq zonalarni skanerlash, BIM bilan solishtirish, hajmlarni hisoblash va obyekt tayyorligi bo'yicha operativ ma’lumotnoma.",
+  "meta.title":"Qurilishni dronlar bilan monitoring qilish va BIM bilan solishtirish | UNB Group",
+  "meta.description":"O'zbekistonda qurilishni BPLA yordamida nazorat qilish: maydonchani aerosuratga olish, BIM/CAD bilan solishtirish, hajmlarni hisoblash, ishlar jarayoni va xavfsizlik texnikasi buzilishlari bitta hisobotda.",
   "meta.short":"Qurilish",
 
   "s01.k01":"01 / Muqova",
@@ -362,8 +362,8 @@ uz:{
 },
 
 ch:{
-  "meta.title":"施工现场自主监测 — UNB Group",
-  "meta.description":"UNB Group 演示：施工数字化管控 — 无人机巡飞、封闭区域扫描、与 BIM 比对、工程量计算与实时形象进度看板。",
+  "meta.title":"无人机施工现场监测与 BIM 比对 | UNB Group",
+  "meta.description":"乌兹别克斯坦无人机施工管控：现场航测、与 BIM/CAD 比对、工程量计算、施工进度与安全违规汇总于一份报告。",
   "meta.short":"施工现场",
 
   "s01.k01":"01 / 封面",

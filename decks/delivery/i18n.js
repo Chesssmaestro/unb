@@ -5,8 +5,8 @@
    во всех языках. */
 const DECK_I18N = {
 ru:{
-  "meta.title":"Drone Delivery: автономная доставка грузов — UNB Group",
-  "meta.description":"Презентация UNB Group: доставка грузов дронами — грузовые БПЛА до 30 кг, док-станции 24/7, BVLOS-маршруты, Fleet Management и интеграция с ERP заказчика.",
+  "meta.title":"Доставка грузов дронами до 30 кг, док-станции 24/7 | UNB Group",
+  "meta.description":"Доставка грузов дронами в Узбекистане: грузовые БПЛА до 30 кг, док-станции 24/7, BVLOS-маршруты, управление флотом и интеграция с ERP — для стройки, медицины и промышленности.",
   "meta.short":"Drone Delivery",
 
   "s01.k01":"01 / Титул",
@@ -99,8 +99,8 @@ ru:{
 },
 
 en:{
-  "meta.title":"Drone Delivery: autonomous cargo delivery — UNB Group",
-  "meta.description":"UNB Group deck: cargo delivery by drone — payloads up to 30 kg, 24/7 docking stations, BVLOS routes, fleet management and integration with the client's ERP.",
+  "meta.title":"Drone cargo delivery up to 30 kg, 24/7 docks | UNB Group",
+  "meta.description":"Drone cargo delivery in Uzbekistan: payloads up to 30 kg, 24/7 docking stations, BVLOS routes, fleet management and ERP integration — for construction, healthcare and industry.",
   "meta.short":"Drone Delivery",
 
   "s01.k01":"01 / Cover",
@@ -193,8 +193,8 @@ en:{
 },
 
 uz:{
-  "meta.title":"Drone Delivery: yuklarni avtonom yetkazib berish — UNB Group",
-  "meta.description":"UNB Group taqdimoti: yuklarni dron bilan yetkazib berish — 30 kg gacha yuk ko'taruvchi BPLA, 24/7 dok-stansiyalar, BVLOS marshrutlar, Fleet Management va buyurtmachi ERP tizimi bilan integratsiya.",
+  "meta.title":"Dronlar bilan 30 kg gacha yuk yetkazish, 24/7 dok-stansiyalar | UNB Group",
+  "meta.description":"O'zbekistonda yuklarni dronlar bilan yetkazib berish: 30 kg gacha yuk ko'taruvchi BPLA, 24/7 dok-stansiyalar, BVLOS marshrutlar, parkni boshqarish va ERP bilan integratsiya — qurilish, tibbiyot va sanoat uchun.",
   "meta.short":"Drone Delivery",
 
   "s01.k01":"01 / Muqova",
@@ -287,8 +287,8 @@ uz:{
 },
 
 ch:{
-  "meta.title":"无人机运输：货物自主配送 — UNB Group",
-  "meta.description":"UNB Group 演示：无人机货运配送 — 载重 30 公斤级运输无人机、7×24 机场、超视距航线、机队管理与客户 ERP 系统集成。",
+  "meta.title":"无人机货运配送：载重 30 公斤、7×24 机场 | UNB Group",
+  "meta.description":"乌兹别克斯坦无人机货运配送：载重 30 公斤级运输无人机、7×24 机场、超视距航线、机队管理与 ERP 集成——服务建筑、医疗与工业。",
   "meta.short":"无人机配送",
 
   "s01.k01":"01 / 封面",

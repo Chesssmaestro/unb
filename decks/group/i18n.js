@@ -5,8 +5,8 @@
    месте во всех языках. */
 const DECK_I18N = {
 ru:{
-  "meta.title":"UNB Group — интеллектуальная платформа мониторинга инфраструктуры",
-  "meta.description":"Корпоративная презентация UNB Group: дроны, AI и цифровые двойники для энергетики, городов, дорог, строительства, сельского хозяйства и логистики.",
+  "meta.title":"Мониторинг инфраструктуры дронами и AI в Узбекистане | UNB Group",
+  "meta.description":"UNB Group — дроны, AI-поиск дефектов и цифровые двойники в Узбекистане: инспекция ЛЭП и солнечных станций, диагностика дорог, контроль строек, умный город и агродроны.",
   "meta.short":"UNB Group",
 
   "s01.k01":"01 / Титул",
@@ -274,8 +274,8 @@ ru:{
 },
 
 en:{
-  "meta.title":"UNB Group — intelligent infrastructure monitoring platform",
-  "meta.description":"UNB Group corporate deck: drones, AI and digital twins for power grids, cities, roads, construction, agriculture and logistics.",
+  "meta.title":"Drone and AI infrastructure monitoring in Uzbekistan | UNB Group",
+  "meta.description":"UNB Group — drones, AI defect detection and digital twins in Uzbekistan: power line and solar plant inspection, road surveys, construction monitoring, smart city and agri-drones.",
   "meta.short":"UNB Group",
 
   "s01.k01":"01 / Title",
@@ -543,8 +543,8 @@ en:{
 },
 
 uz:{
-  "meta.title":"UNB Group — infratuzilma monitoringining intellektual platformasi",
-  "meta.description":"UNB Group korporativ taqdimoti: energetika, shaharlar, yo'llar, qurilish, qishloq xo'jaligi va logistika uchun dronlar, AI va raqamli egizaklar.",
+  "meta.title":"O'zbekistonda dronlar va AI bilan infratuzilma monitoringi | UNB Group",
+  "meta.description":"UNB Group — O'zbekistonda dronlar, AI yordamida nuqsonlarni aniqlash va raqamli egizaklar: EUT va quyosh stansiyalari inspeksiyasi, yo'llar diagnostikasi, qurilish nazorati, aqlli shahar va agrodronlar.",
   "meta.short":"UNB Group",
 
   "s01.k01":"01 / Titul",
@@ -812,8 +812,8 @@ uz:{
 },
 
 ch:{
-  "meta.title":"UNB Group — 基础设施智能监测平台",
-  "meta.description":"UNB Group 企业演示：面向电力、城市、道路、建筑、农业与物流的无人机、AI 与数字孪生解决方案。",
+  "meta.title":"乌兹别克斯坦无人机与 AI 基础设施监测 | UNB Group",
+  "meta.description":"UNB Group：乌兹别克斯坦无人机、AI 缺陷识别与数字孪生——输电线路与光伏电站巡检、道路检测、施工监测、智慧城市与植保无人机。",
   "meta.short":"UNB Group",
 
   "s01.k01":"01 / 封面",

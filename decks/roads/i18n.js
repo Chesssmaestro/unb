@@ -4,8 +4,8 @@
    внутри строки должны остаться на месте во всех языках. */
 const DECK_I18N = {
 ru:{
-  "meta.title":"Интеллектуальные решения для инспекции дорог — UNB Group",
-  "meta.description":"Презентация UNB Group: AI-инспекция дорог — мониторинг покрытия, трафика и инфраструктуры, цифровая модель дорожной сети и планирование ремонтов.",
+  "meta.title":"Диагностика дорог дронами: ямы, трещины, разметка | UNB Group",
+  "meta.description":"AI-диагностика автомобильных дорог с дронов в Узбекистане: выбоины, трещины, износ разметки, откосы и растительность — интерактивная карта дефектов вместо ручных обходов.",
   "meta.short":"Дороги",
 
   "s01.k01":"Аэросъёмка многоуровневой транспортной развязки",
@@ -212,8 +212,8 @@ ru:{
   "s16.k04":"<b>UNB Group</b> — ваш надёжный партнёр в цифровизации инфраструктуры."
 },
 en:{
-  "meta.title":"Intelligent road inspection solutions — UNB Group",
-  "meta.description":"UNB Group deck: AI road inspection — pavement, traffic and infrastructure monitoring, a digital model of the road network and repair planning.",
+  "meta.title":"Road condition survey by drones: potholes, cracks | UNB Group",
+  "meta.description":"AI road condition surveys from drones in Uzbekistan: potholes, cracks, worn markings, slopes and vegetation — an interactive defect map instead of manual inspections.",
   "meta.short":"Roads",
 
   "s01.k01":"Aerial view of a multi-level interchange",
@@ -420,8 +420,8 @@ en:{
   "s16.k04":"<b>UNB Group</b> — your reliable partner in infrastructure digitalisation."
 },
 uz:{
-  "meta.title":"Yo'llarni inspeksiya qilishning intellektual yechimlari — UNB Group",
-  "meta.description":"UNB Group prezentatsiyasi: yo'llarning AI-inspeksiyasi — qoplama, tirbandlik va infratuzilma monitoringi, yo'l tarmog'ining raqamli modeli va ta'mirni rejalashtirish.",
+  "meta.title":"Yo'llarni dronlar bilan diagnostika qilish: chuqurlar, yoriqlar | UNB Group",
+  "meta.description":"O'zbekistonda avtomobil yo'llarini dronlardan AI-diagnostika qilish: chuqurlar, yoriqlar, yo'l chiziqlarining yeyilishi, qiyaliklar va o'simliklar — qo'lda tekshirish o'rniga nuqsonlarning interaktiv xaritasi.",
   "meta.short":"Yo'llar",
 
   "s01.k01":"Ko'p darajali transport chorrahasining aerosurati",
@@ -628,8 +628,8 @@ uz:{
   "s16.k04":"<b>UNB Group</b> — infratuzilmani raqamlashtirishda ishonchli hamkoringiz."
 },
 ch:{
-  "meta.title":"道路巡检智能解决方案 — UNB Group",
-  "meta.description":"UNB Group 演示：道路 AI 巡检 — 路面、交通与基础设施监测，道路网数字模型与养护计划。",
+  "meta.title":"无人机道路检测：坑槽、裂缝与标线 | UNB Group",
+  "meta.description":"乌兹别克斯坦无人机道路 AI 检测：坑槽、裂缝、标线磨损、边坡与植被——以交互式病害地图取代人工巡查。",
   "meta.short":"道路",
 
   "s01.k01":"多层互通立交的航拍影像",

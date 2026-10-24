@@ -5,8 +5,8 @@
    во всех языках. */
 const DECK_I18N = {
 ru:{
-  "meta.title":"Современная картография: цифровой двойник объекта — UNB Group",
-  "meta.description":"Презентация UNB Group: геодезия и картография на базе БПЛА — ортофотопланы, цифровые модели рельефа, топосъёмка и RTK-точность до 1 см.",
+  "meta.title":"Аэрофотосъёмка и топосъёмка дроном с RTK | UNB Group",
+  "meta.description":"Аэрофотосъёмка и геодезия с БПЛА в Узбекистане: ортофотопланы, цифровые модели рельефа, топографическая съёмка, 3D-модели и облака точек с RTK-точностью до 1 см.",
   "meta.short":"Картография",
 
   "s01.k01":"01 / Титул",
@@ -79,8 +79,8 @@ ru:{
 },
 
 en:{
-  "meta.title":"Modern mapping: a digital twin of your site — UNB Group",
-  "meta.description":"UNB Group deck: drone-based surveying and mapping — orthomosaics, digital terrain models, topographic surveys and RTK accuracy down to 1 cm.",
+  "meta.title":"Drone aerial survey and topographic mapping with RTK | UNB Group",
+  "meta.description":"Drone aerial photography and surveying in Uzbekistan: orthomosaics, digital terrain models, topographic surveys, 3D models and point clouds with RTK accuracy down to 1 cm.",
   "meta.short":"Mapping",
 
   "s01.k01":"01 / Cover",
@@ -153,8 +153,8 @@ en:{
 },
 
 uz:{
-  "meta.title":"Zamonaviy kartografiya: obyektingizning raqamli egizagi — UNB Group",
-  "meta.description":"UNB Group taqdimoti: BPLA asosidagi geodeziya va kartografiya — ortofotoplanlar, relyefning raqamli modellari, topografik suratga olish va 1 sm gacha RTK aniqligi.",
+  "meta.title":"Dron bilan aerofotosyomka va topografik syomka (RTK) | UNB Group",
+  "meta.description":"O'zbekistonda BPLA yordamida aerofotosyomka va geodeziya: ortofotoplanlar, relyefning raqamli modellari, topografik syomka, 3D-modellar va 1 sm gacha RTK aniqlikdagi nuqtalar buluti.",
   "meta.short":"Kartografiya",
 
   "s01.k01":"01 / Muqova",
@@ -227,8 +227,8 @@ uz:{
 },
 
 ch:{
-  "meta.title":"现代测绘：您的项目数字孪生 — UNB Group",
-  "meta.description":"UNB Group 演示：基于无人机的测绘与勘测 — 正射影像、数字地形模型、地形测量与 1 厘米级 RTK 精度。",
+  "meta.title":"无人机航空摄影与 RTK 地形测绘 | UNB Group",
+  "meta.description":"乌兹别克斯坦无人机航测与大地测量：正射影像、数字地形模型、地形测量、三维模型与点云，RTK 精度可达 1 厘米。",
   "meta.short":"测绘",
 
   "s01.k01":"01 / 封面",

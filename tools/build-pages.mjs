@@ -195,18 +195,27 @@ function jsonLd(lang, dict, slugs) {
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: dict['directions.title'],
-      itemListElement: slugs.map((slug) => ({
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: dict[`dir.${slug}.title`],
-          description: dict[`dir.${slug}.text`],
-          serviceType: dict[`dir.${slug}.title`],
-          url: home + '#dir-' + slug,
-          provider: { '@id': orgId },
-          areaServed: { '@type': 'Country', name: 'Uzbekistan' },
-        },
-      })),
+      itemListElement: slugs.map((slug) => {
+        // У направления с презентацией-страницей услуга описана там же
+        // (tools/build-deck-pages.mjs) — ссылаемся на неё тем же @id, чтобы
+        // поисковик склеил две записи в одну, а не видел две разные услуги.
+        const deck = fs.existsSync(path.join(ROOT, 'decks', slug, 'index.html'))
+          ? home + 'decks/' + slug + '/'
+          : null;
+        return {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            ...(deck ? { '@id': deck + '#service' } : {}),
+            name: dict[`dir.${slug}.title`],
+            description: dict[`dir.${slug}.text`],
+            serviceType: dict[`dir.${slug}.title`],
+            url: deck || home + '#dir-' + slug,
+            provider: { '@id': orgId },
+            areaServed: { '@type': 'Country', name: 'Uzbekistan' },
+          },
+        };
+      }),
     },
   };
   if (SAME_AS.length) org.sameAs = SAME_AS;
